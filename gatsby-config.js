@@ -1,3 +1,5 @@
+//Plugins de configurações do gatsby
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
