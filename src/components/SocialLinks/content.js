@@ -10,6 +10,10 @@ const links = [
     {
         label: 'Instagram',
         url: 'https://instagram.com/rene_sena'
+    },
+    {
+        label: 'Linkedin',
+        url: 'https://br.linkedin.com/in/rene-sena'
     }
 ]
 
