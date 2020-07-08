@@ -8,10 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import Sidebar from '../Sidebar'
+import MenuBar from '../MenuBar'
+
 import * as S from './styled'
 import GlobalStyle from '../../styles/global'
-
-import Sidebar from '../Sidebar'
 
 const Layout = ({ children }) => {
   return (
@@ -19,6 +20,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Sidebar />
       <S.LayoutMan>{children}</S.LayoutMan>
+      <MenuBar />
     </S.LayoutWrapper>
   )
 }
