@@ -4,7 +4,7 @@ module.exports = {
     siteMetadata: {
         title: `Rene Sena`,
         position: `Front-end Developer`,
-        description: `Sou desenvolvedor, e busco escrever sobre o mundo de tecnologia.`,
+        description: `Um aventureiro no mundo da tecnologia, buscando sempre aprender e compartilhar experiências e conhecimentos durante a minha trajetória.`,
         author: `@gatsbyjs`,
     },
     plugins: [
@@ -15,6 +15,19 @@ module.exports = {
             options: {
                 name: `images`,
                 path: `${__dirname}/src/images`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `posts`,
+                path: `${__dirname}/posts`,
+            },
+        },
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins:[],
             },
         },
         `gatsby-transformer-sharp`,

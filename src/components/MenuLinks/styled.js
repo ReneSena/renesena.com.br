@@ -6,6 +6,7 @@ export const MenuLinksWrapper = styled.nav``
 export const MenuLinksList = styled.ul`
     font-size: 1.2rem;
     font-weight: 300;
+    text-align: left;
 `
 
 export const MenuLinksItem = styled.li`
@@ -13,6 +14,14 @@ export const MenuLinksItem = styled.li`
 
     .active {
         color: #1fa1f2;
+    } 
+
+    .active:after {
+        content: '';
+        display: flex;
+        width: 20px;
+        height: 4px;
+        background-color: #FFF;
     }
 `
 
