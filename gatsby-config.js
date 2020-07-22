@@ -10,6 +10,14 @@ module.exports = {
     plugins: [
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-react-helmet`,
+        //Para esse plugin funcionar, ele tem que ser o primeiro a ser lido
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `uploads`,
+                path: `${__dirname}/static/assets/img`,
+            },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -27,7 +35,25 @@ module.exports = {
         {
             resolve: `gatsby-transformer-remark`,
             options: {
-                plugins:[],
+                plugins:[
+                    {
+                        /*Importante salientar que as imagens não vão estar dentro da mesma pasta 
+                            que a dos post's, será útil quando for integrar com o CMS*/
+                        resolve: "gatsby-remark-relative-images",
+                        options: {
+                            name: "uploads"
+                        }, 
+                    },
+                    {
+                        resolve: "gatsby-remark-images",
+                        options: {
+                            maxWidth: 960,
+                            linkImagesToOriginal: false,
+                        },
+                    },
+                    
+                    `gatsby-remark-lazy-load`,     
+                ],
             },
         },
         `gatsby-transformer-sharp`,

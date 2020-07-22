@@ -5,4 +5,6 @@
  */
 
 // You can delete this file if you're not using it
-//Bibliotecas que serão usadas no projeto
+//Bibliotecas que serão usadas no projeto, externa do react
+
+import "lazysizes"

@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 export const SocialLinksWrapper = styled.nav`
-    margin: 2rem auto;
+    margin: 1.5rem auto;
     width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
 `
 
 export const SocialLinksList = styled.ul`
