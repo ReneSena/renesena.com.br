@@ -16,13 +16,13 @@ export const MenuLinksItem = styled.li`
         color: #1fa1f2;
     } 
 
-    .active:after {
+    /* .active:after {
         content: '';
         display: flex;
         width: 20px;
         height: 4px;
         background-color: #FFF;
-    }
+    } */
 `
 
 export const MenuLinksLink = styled(Link)`

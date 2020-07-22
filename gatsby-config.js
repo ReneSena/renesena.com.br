@@ -4,7 +4,7 @@ module.exports = {
     siteMetadata: {
         title: `Rene Sena`,
         position: `Front-end Developer`,
-        description: `Um aventureiro no mundo da tecnologia, buscando sempre aprender e compartilhar experiências e conhecimentos durante a minha trajetória.`,
+        description: `Um aventureiro no mundo da tecnologia 🏄`,
         author: `@gatsbyjs`,
     },
     plugins: [
