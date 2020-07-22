@@ -23,20 +23,23 @@ export const ProfileLink = styled(Link)`
 export const ProfileAuthor = styled.h1`
     font-size: 18px;
     color: #222;
-    margin: 0.5rem auto 1.5rem;
+    margin: 0.5rem auto 1rem;
 `
 
 export const ProfilePosition = styled.small`
     display: block;
     color: #222;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 0.5rem;
+    font-variant: small-caps;
+
 `
 
 export const ProfileDescription = styled.p`
     font-size: 14px;
     color: #222;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.4;
+    font-variant: small-caps;
 `
