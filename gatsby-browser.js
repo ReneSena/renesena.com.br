@@ -8,3 +8,4 @@
 //Bibliotecas que serão usadas no projeto, externa do react
 
 import "lazysizes"
+require("prismjs/themes/prism-okaidia.css") 
