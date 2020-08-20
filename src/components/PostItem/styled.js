@@ -1,19 +1,19 @@
 import styled from 'styled-components'
-import { Link } from 'gatsby'
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
-export const PostItemLink = styled(Link)`
-    color: #fff;
+export const PostItemLink = styled(AniLink)`
+    color: var(--texts);
     display: flex;
     text-decoration: none;
     padding: 0 20px;
 
     &:hover {
-        color: #1fa1f2;
+        color: var(--highlight);
     }
 `
 
 export const PostItemWrapper = styled.section`
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--borders);
     display: flex;
     align-items: center;
     /* flex-direction: column; */
@@ -25,9 +25,9 @@ export const PostItemTag = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${props => props.background ? props.background : '#1fa1f2'};
+    background-color: ${props => props.background ? props.background : 'var(--highlight)'};
     border-radius: 50%;
-    color: #fff;
+    color: var(--postColor);
     font-size: 1.3rem;
     font-weight: 700;
     min-height: 90px;

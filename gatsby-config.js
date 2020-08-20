@@ -12,6 +12,7 @@ module.exports = {
     plugins: [
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-transition-link`,
         //Para esse plugin funcionar, ele tem que ser o primeiro a ser lido
         {
             resolve: `gatsby-source-filesystem`,
