@@ -8,7 +8,7 @@ module.exports = {
         position: `Front-end Developer`,
         description: `Um aventureiro no mundo da tecnologia 🏄`,
         author: `@gatsbyjs`,
-        siteUrl: `https://rene.sena.com.br`
+        siteUrl: `http://renesena.netlify.app/`
     },
     plugins: [
         `gatsby-plugin-styled-components`,
