@@ -8,6 +8,7 @@ module.exports = {
         position: `Front-end Developer`,
         description: `Um aventureiro no mundo da tecnologia 🏄`,
         author: `@gatsbyjs`,
+        siteUrl: `https://rene.sena.com.br`
     },
     plugins: [
         `gatsby-plugin-styled-components`,
@@ -76,17 +77,19 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `gatsby-starter-default`,
-                short_name: `starter`,
+                name: `Rene`,
+                short_name: `Rene Sena`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
+                background_color: `#16202c`,
+                theme_color: `#16202c`,
                 display: `minimal-ui`,
+                // icon: `src/images/nome do icone`
                 // This path is relative to the root of the site.
             },
         },
+        `gatsby-plugin-sitemap`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
-        // `gatsby-plugin-offline`,
+        `gatsby-plugin-offline`,
     ],
 }

@@ -4,6 +4,7 @@ title: Meu segundo post
 description: Esse é o segundo post do meu blog
 category: CSS
 background: "#7AAB13"
+image: "/assets/img/desert.jpg"
 ---
 
 # Lorem ipsum
