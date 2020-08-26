@@ -8,7 +8,8 @@ module.exports = {
         position: `Front-end Developer`,
         description: `Um aventureiro no mundo da tecnologia 🏄`,
         author: `Rene Sena`,
-        siteUrl: `https://www.renesena.com.br`
+        siteUrl: `https://www.renesena.com.br`,
+        icon: `/src/images/favicon.png`
     },
     plugins: [
         `gatsby-plugin-styled-components`,
@@ -90,10 +91,10 @@ module.exports = {
                 name: `Rene`,
                 short_name: `Rene Sena`,
                 start_url: `/`,
-                background_color: `#16202c`,
-                theme_color: `#16202c`,
+                background_color: `#121212`,
+                theme_color: `#121212`,
                 display: `minimal-ui`,
-                // icon: `src/images/nome do icone`
+                icon: `src/images/favicon.png`
                 // This path is relative to the root of the site.
             },
         },
