@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import AniLink from "gatsby-plugin-transition-link/AniLink";
+import media from 'styled-media-query';
 
 export const PostItemLink = styled(AniLink)`
     color: var(--texts);
     display: flex;
     text-decoration: none;
     padding: 0 20px;
+    position: relative;
 
     &:hover {
         color: var(--highlight);
@@ -19,6 +21,11 @@ export const PostItemWrapper = styled.section`
     /* flex-direction: column; */
     padding: 2rem 3rem;
     width: 100%;
+
+    ${media.lessThan("large")`
+        padding: 1rem;
+    `}
+
 `
 
 export const PostItemTag = styled.div`
@@ -33,12 +40,16 @@ export const PostItemTag = styled.div`
     min-height: 90px;
     min-width: 90px;
     text-transform: uppercase;
+
+    ${media.lessThan("large")`
+        display: none;
+    `}
 `
 
 export const PostItemInfo = styled.div`
     display: flex;
     flex-direction: column;
-    margin-left: 1.5rem;
+    /* margin-left: 1.5rem; */
 `
 
 export const PostItemDate = styled.time`

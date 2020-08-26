@@ -4,7 +4,7 @@ import { Home } from "@styled-icons/boxicons-solid/Home"
 import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2"
 import { UpArrowAlt as Arrow } from "@styled-icons/boxicons-regular/UpArrowAlt"
 import { LightBulb } from "@styled-icons/entypo/LightBulb"
-import { Grid } from "@styled-icons/boxicons-solid/Grid"
+// import { Grid } from "@styled-icons/boxicons-solid/Grid"
 
 import getThemeColor from "../../utils/getThemeColor"
 
@@ -62,10 +62,15 @@ const MenuBar = () => {
                 >
                     <LightBulb />
                 </S.MenuBarItem>
-                <S.MenuBarItem title="Mudar visualização">
+                {/* <S.MenuBarItem title="Mudar visualização">
                     <Grid />
-                </S.MenuBarItem>
-                <S.MenuBarItem title="Ir para o Topo">
+                </S.MenuBarItem> */}
+                <S.MenuBarItem title="Ir para o Topo" onClick={function goTop() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }}>
                     <Arrow />
                 </S.MenuBarItem>
             </S.MenuBarGroup>

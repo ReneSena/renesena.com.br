@@ -37,9 +37,7 @@
     "styled-icons": "^10.6.0",
     "styled-media-query": "^2.1.2"
   },
-  "devDependencies": {
-    "prettier": "2.0.5"
-  },
+  "devDependencies": {},
   "keywords": [
     "gatsby"
   ],
