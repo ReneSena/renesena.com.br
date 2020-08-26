@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import media from 'styled-media-query';
 
 const GlobalStyles = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -59,7 +60,8 @@ const GlobalStyles = createGlobalStyle`
         line-height: 1;
         font-size: 100%;
         color: #222;
-        font-family: ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
     }
 
     img {

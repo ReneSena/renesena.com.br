@@ -9,7 +9,7 @@ export const PostHeader = styled.header`
 
     ${media.lessThan("large")`
         width: 100%;
-        padding: 2.5rem 0.5rem;
+        padding: 2.5rem 0 0 0;
     `}
 `;
 
@@ -22,7 +22,7 @@ export const PostTitle = styled.h1`
     ${media.lessThan("large")`
         font-size: 1.5rem;
     `}
-`
+`;
 
 export const PostDescription = styled.h2`
     font-size: 1.25rem;
@@ -31,14 +31,19 @@ export const PostDescription = styled.h2`
 
     ${media.lessThan("large")`
         width: 100%;
+        font-size: 1rem;
     `}
-`
+`;
 
 export const PostDate = styled.p`
     font-size: 1.1rem;
     font-weight: 100;
     padding: 0 1.4rem;
-`
+
+    ${media.lessThan("large")`
+        font-size: 0.75rem;
+    `}
+`;
 
 export const MainContent = styled.section`
     margin: auto;
@@ -65,6 +70,10 @@ export const MainContent = styled.section`
         line-height: 1.7;
         letter-spacing: 0.069rem;
         padding: 0 1.4rem;
+
+        ${media.lessThan("large")`
+            font-size: 1rem;
+        `}
     }
     p {
         margin: 0 auto 1.6rem;
@@ -108,6 +117,10 @@ export const MainContent = styled.section`
         border-left: 0.3rem solid var(--highlight);
         padding: 0 1.875rem;
         margin: 3.125rem auto;
+
+        ${media.lessThan("large")`
+            padding: 0;
+        `}
     }
     hr {
         border: 1px solid var(--borders);
@@ -129,18 +142,38 @@ export const MainContent = styled.section`
     }
     h1 {
         font-size: 2.8rem;
+
+        ${media.lessThan("large")`
+            font-size: 1.25rem;
+        `}
     }
     h2 {
         font-size: 2.1rem;
+        
+        ${media.lessThan("large")`
+            font-size: 1.125rem;
+        `}
     }
     h3 {
         font-size: 1.6rem;
+
+        ${media.lessThan("large")`
+            font-size: 1rem;
+        `}
     }
     h4 {
         font-size: 1.4rem;
+
+        ${media.lessThan("large")`
+            font-size: 0.915rem;
+        `}
     }
     h5 {
         font-size: 1.2rem;
+
+        ${media.lessThan("large")`
+            font-size: 0.75rem;
+        `}
     }
     strong {
         font-weight: 700;
@@ -178,4 +211,4 @@ export const MainContent = styled.section`
             opacity: 0.8;
         }
     }
-`
+`;

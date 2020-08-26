@@ -23,7 +23,7 @@ export const PostItemWrapper = styled.section`
     width: 100%;
 
     ${media.lessThan("large")`
-        padding: 1rem;
+        padding: 1rem 0;
     `}
 
 `
