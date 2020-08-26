@@ -66,13 +66,13 @@ export const MainContent = styled.section`
     .button-post {
         color: var(--texts);
         font-size: 1.25rem;
-        font-weight: 300;
+        font-weight: 400;
         line-height: 1.7;
         letter-spacing: 0.069rem;
         padding: 0 1.4rem;
 
         ${media.lessThan("large")`
-            font-size: 1rem;
+            font-size: 0.95rem;
         `}
     }
     p {
@@ -144,14 +144,14 @@ export const MainContent = styled.section`
         font-size: 2.8rem;
 
         ${media.lessThan("large")`
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         `}
     }
     h2 {
         font-size: 2.1rem;
         
         ${media.lessThan("large")`
-            font-size: 1.125rem;
+            font-size: 1.25rem;
         `}
     }
     h3 {

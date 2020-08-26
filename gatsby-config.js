@@ -7,13 +7,23 @@ module.exports = {
         title: `Rene Sena`,
         position: `Front-end Developer`,
         description: `Um aventureiro no mundo da tecnologia 🏄`,
-        author: `@gatsbyjs`,
+        author: `Rene Sena`,
         siteUrl: `https://www.renesena.com.br`
     },
     plugins: [
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-transition-link`,
+        {
+            resolve: `gatsby-plugin-google-fonts`,
+            options: {
+              fonts: [
+                `Open Sans`,
+                `400,600,700`
+              ],
+            }
+        },
+        
         //Para esse plugin funcionar, ele tem que ser o primeiro a ser lido
         {
             resolve: `gatsby-source-filesystem`,

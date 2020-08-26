@@ -1,7 +1,7 @@
 ---
 date: 2020-06-08 14:00:00
-title: Meu segundo post
-description: Esse é o segundo post do meu blog
+title: 5 dicas para usar o chrome de forma eficiente
+description: Você já desvendou tudo que o chrome tem a te oferecer?
 category: CSS
 background: "#7AAB13"
 image: "/assets/img/desert.jpg"
