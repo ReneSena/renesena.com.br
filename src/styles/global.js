@@ -70,11 +70,11 @@ const GlobalStyles = createGlobalStyle`
 
 body.dark {
     --borders: #38444d;
-    --texts: #8899a6;
+    --texts: #c1c1c1;
     --postColor: #fff;
     --highlight: #1fa1f2;
-    --mediumBackground: #192734;
-    --background: #16202c;
+    --mediumBackground: #121212;
+    --background: #171717;
     --white: #fff;
     --black: #333;
   }
