@@ -9,7 +9,7 @@ export const PaginationWrapper = styled.section`
   justify-content: space-between;
   
   ${media.lessThan("large")`
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 2.5rem 1rem;
   `}
 
   a {

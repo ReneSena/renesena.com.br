@@ -3,7 +3,7 @@ import media from 'styled-media-query'
 
 export const SidebarWrapper = styled.aside`
     align-items: center;
-    border-right: 1px solid var(--borders);
+    /* border-right: 1px solid var(--borders); */
     background-color: var(--mediumBackground);
     display: flex;
     flex-direction: column;
@@ -12,6 +12,7 @@ export const SidebarWrapper = styled.aside`
     padding: 20px;
     text-align: center;
     width: 20rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0,.5);
 
     ${media.lessThan("large")`
         align-items: flex-start;

@@ -42,6 +42,7 @@ export const MenuBarGroup = styled.div`
 
 export const MenuBarLink = styled(AniLink)`
     display: block;
+    text-decoration: none;
 `
 
 export const MenuBarItem = styled.span`
@@ -52,6 +53,22 @@ export const MenuBarItem = styled.span`
     padding: 1.1rem;
     position: relative;
     width: 3.75rem;
+    font-size: 12px;
+
+    & .icon {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 10px;
+    }
+
+    ${media.lessThan("large")`
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        padding: 0.8rem;
+    `}
 
     &.light {
         color: #d4d400;

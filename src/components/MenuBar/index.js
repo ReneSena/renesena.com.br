@@ -32,7 +32,8 @@ const MenuBar = () => {
                     title="Voltar para Home"
                 >
                     <S.MenuBarItem>
-                        <Home />
+                        <Home className="icon" />
+                        Início
                     </S.MenuBarItem>
                 </S.MenuBarLink>
                 <S.MenuBarLink
@@ -44,7 +45,8 @@ const MenuBar = () => {
                     title="Pesquisar"
                 >
                     <S.MenuBarItem>
-                        <Search />
+                        <Search className="icon" />
+                        Buscar
                     </S.MenuBarItem>
                 </S.MenuBarLink>
                 <S.MenuBarItem
@@ -56,15 +58,17 @@ const MenuBar = () => {
                     }}
                     className={theme}
                 >
-                    <Lightbulb size="24" />
+                    <Lightbulb className="icon" />
+                    Modo
                 </S.MenuBarItem>
-                <S.MenuBarItem size="24" title="Ir para o Topo" onClick={function goTop() {
+                <S.MenuBarItem className="icon" title="Ir para o Topo" onClick={function goTop() {
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
                 }}>
-                    <Arrow />
+                    <Arrow className="icon" />
+                    Ir ao topo
                 </S.MenuBarItem>
             </S.MenuBarGroup>
         </S.MenuBarWrapper>

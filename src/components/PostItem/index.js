@@ -17,7 +17,7 @@ const PostItem = ({ slug, background, category, date, timeToRead, title, descrip
                 <S.PostItemDescription>
                     {description}
                 </S.PostItemDescription>
-                <S.PostTag>Tags: {category}</S.PostTag>
+                {/* <S.PostTag>Tags: {category}</S.PostTag> */}
             </S.PostItemInfo>
         </S.PostItemWrapper>
     </S.PostItemLink>
