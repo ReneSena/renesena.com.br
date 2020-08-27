@@ -8,7 +8,7 @@ export const PostItemLink = styled(AniLink)`
     text-decoration: none;
     padding: 16px;
     position: relative;
-    margin: 10px auto;
+    margin: 10px;
     background-color: #222;
     border: 1px solid #222;
     border-radius: 5px;
