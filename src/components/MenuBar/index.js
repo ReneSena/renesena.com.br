@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react"
 import { Home } from "@styled-icons/boxicons-solid/Home"
 import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2"
 import { UpArrowAlt as Arrow } from "@styled-icons/boxicons-regular/UpArrowAlt"
-import { LightBulb } from "@styled-icons/entypo/LightBulb"
-// import { Grid } from "@styled-icons/boxicons-solid/Grid"
+import { Lightbulb } from "@styled-icons/fa-solid/Lightbulb"
 
 import getThemeColor from "../../utils/getThemeColor"
 
@@ -48,9 +47,6 @@ const MenuBar = () => {
                         <Search />
                     </S.MenuBarItem>
                 </S.MenuBarLink>
-            </S.MenuBarGroup>
-
-            <S.MenuBarGroup>
                 <S.MenuBarItem
                     title="Mudar o tema"
                     onClick={() => {
@@ -60,12 +56,9 @@ const MenuBar = () => {
                     }}
                     className={theme}
                 >
-                    <LightBulb />
+                    <Lightbulb size="24" />
                 </S.MenuBarItem>
-                {/* <S.MenuBarItem title="Mudar visualização">
-                    <Grid />
-                </S.MenuBarItem> */}
-                <S.MenuBarItem title="Ir para o Topo" onClick={function goTop() {
+                <S.MenuBarItem size="24" title="Ir para o Topo" onClick={function goTop() {
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'

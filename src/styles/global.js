@@ -84,12 +84,12 @@ body.dark {
   body.light {
     --borders: #dedede;
     --postColor: #111;
-    --texts: #555555;
+    --texts: #171717;
     --highlight: #1fa1f2;
-    --mediumBackground: #f0f0f3;
-    --background: #fff;
+    --mediumBackground: #ddd;
+    --background: #f3f3f3;
     --white: #fff;
-    --black: #333;
+    --black: #222;
   }
 `
 

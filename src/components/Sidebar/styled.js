@@ -4,7 +4,7 @@ import media from 'styled-media-query'
 export const SidebarWrapper = styled.aside`
     align-items: center;
     border-right: 1px solid var(--borders);
-    background-color: var(--background);
+    background-color: var(--mediumBackground);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -16,7 +16,7 @@ export const SidebarWrapper = styled.aside`
     ${media.lessThan("large")`
         align-items: flex-start;
         height: auto;
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
         width: 100%;
     `}
 `

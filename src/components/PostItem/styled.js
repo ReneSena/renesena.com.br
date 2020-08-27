@@ -8,7 +8,7 @@ export const PostItemLink = styled(AniLink)`
     text-decoration: none;
     padding: 16px;
     position: relative;
-    margin: 10px;
+    margin: 10px auto;
     background-color: #222;
     border: 1px solid #222;
     border-radius: 5px;
@@ -80,19 +80,19 @@ export const PostItemTitle = styled.h1`
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0.2rem 0 1rem;
-    color: #F3F3F3;
+    color: var(--texts);
 
     ${media.lessThan("large")`
         font-size: 1.25rem;
     `}
-`
+`;
 
 export const PostItemDescription = styled.p`
     font-size: 14px;
     font-weight: 400;
     line-height: 1.2;
     margin-bottom: 20px;
-`
+`;
 
 export const PostTag = styled.span`
     font-size: 12px;
@@ -103,4 +103,4 @@ export const PostTag = styled.span`
     ${media.lessThan("large")`
         display: block;
     `}
-`
+`;

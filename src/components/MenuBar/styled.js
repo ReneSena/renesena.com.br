@@ -32,7 +32,11 @@ export const MenuBarGroup = styled.div`
     flex-direction: column;
 
     ${media.lessThan("large")`
+        display: flex;
+        align-items: center;
         flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
     `}
 `
 

@@ -15,7 +15,6 @@ const Comments = ({ url, title }) => {
 				title={title}
 				url={completeURL}
 			/>
-			);
 		</S.CommentWrapper>
 	);
 };
