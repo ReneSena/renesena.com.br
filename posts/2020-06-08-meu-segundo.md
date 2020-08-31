@@ -3,8 +3,7 @@ date: 2020-06-08 14:00:00
 title: 5 dicas para usar o chrome de forma eficiente
 description: Você já desvendou tudo que o chrome tem a te oferecer?
 category: CSS
-background: "#7AAB13"
-image: "/assets/img/desert.jpg"
+image: "/assets/img/css.jpg"
 ---
 
 # Lorem ipsum
