@@ -6,7 +6,7 @@ module.exports = {
     siteMetadata: {
         title: `Rene Sena`,
         position: `Front-end Developer`,
-        description: `Um aventureiro no mundo da tecnologia 🏄`,
+        description: `Um aventureiro no mundo da tecnologia, buscando sempre aprender e compartilhar meus conhecimentos adquiridos com as pessoas. Assim como no esporte, acredito que juntos somos mais fortes. 🏄`,
         author: `Rene Sena`,
         siteUrl: `https://www.renesena.com.br`,
         icon: `/src/images/favicon.png`
