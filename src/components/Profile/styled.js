@@ -27,9 +27,10 @@ export const ProfileLink = styled(AniLink)`
 `
 
 export const ProfileAuthor = styled.h1`
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
-    color: (--texts);
+    /* color: (--texts); */
+    color: #f3f3f3;
     margin: 0.5rem auto 1rem;
 
     ${media.lessThan("large")`
@@ -44,7 +45,7 @@ export const ProfilePosition = styled.small`
     font-size: 14px;
     font-weight: 400;
     margin-top: 0.5rem;
-    font-variant: small-caps;
+    /* font-variant: small-caps; */
 
     ${media.lessThan("large")`
       font-size: 0.8rem;
@@ -54,11 +55,11 @@ export const ProfilePosition = styled.small`
 `
 
 export const ProfileDescription = styled.p`
-    font-size: 14px;
+    font-size: 1rem;
     color: var(--texts);
     font-weight: 400;
     line-height: 1.4;
-    font-variant: small-caps;
+    /* font-variant: small-caps; */
 
     ${media.lessThan("large")`
         display: none;

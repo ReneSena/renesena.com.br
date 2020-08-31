@@ -5,8 +5,10 @@ export const PaginationWrapper = styled.section`
   align-items: center;
   color: var(--texts);
   display: flex;
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 1rem;
   justify-content: space-between;
+  width: 600px;
+  margin: auto;
   
   ${media.lessThan("large")`
     padding: 1.5rem 1rem 2.5rem 1rem;

@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import media from 'styled-media-query'
 
 export const SocialLinksWrapper = styled.nav`
-    margin: 1.5rem auto;
+    margin: 2rem 0 0 auto;
     width: 100%;
-    border-bottom: 1px solid var(--borders);
-    padding-bottom: 20px;
+    /* border-bottom: 1px solid var(--borders); */
+    /* padding-bottom: 20px; */
 
     ${media.lessThan("large")`
         display: none;
@@ -15,7 +15,7 @@ export const SocialLinksWrapper = styled.nav`
 export const SocialLinksList = styled.ul`
     align-items: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     list-style: none;
 `
 
@@ -33,6 +33,6 @@ export const SocialLinksLink = styled.a`
 
 export const IconWrapper = styled.div`
     fill: var(--texts);
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
 `

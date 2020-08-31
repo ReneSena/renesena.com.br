@@ -4,7 +4,8 @@ import media from 'styled-media-query';
 
 export const MenuBarWrapper = styled.aside`
     align-items: center;
-    background-color: var(--mediumBackground);
+    /* background-color: var(--mediumBackground);*/
+    background-color: #353535;
     border-left: 1px solid var(--borders);
     display: flex;
     flex-direction: column;
@@ -14,6 +15,7 @@ export const MenuBarWrapper = styled.aside`
     position: fixed;
     right: 0;
     width: 3.75rem;
+    display: none;
 
     ${media.lessThan("large")`
         position: fixed;
@@ -46,7 +48,8 @@ export const MenuBarLink = styled(AniLink)`
 `
 
 export const MenuBarItem = styled.span`
-    color: var(--texts);
+    /* color: var(--texts); */
+    color: #f3f3f3;
     cursor: pointer;
     display: block;
     height: 3.75rem;
@@ -73,12 +76,12 @@ export const MenuBarItem = styled.span`
     &.light {
         color: #d4d400;
 
-        &:hover {
+        &:hover:not(media.lessThan){
             color: #e2e240;
         }
     }
 
-    &:hover {
+    &:hover:not(media.lessThan) {
         color: var(--highlight)
     }
 `

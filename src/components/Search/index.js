@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch, SearchBox, Hits, Stats } from 'react-instantsearch-dom'
+import { InstantSearch, SearchBox, Hits, Stats } from 'react-instantsearch-dom';
 
-import Hit from './Hit'
-import * as S from './styled'
+import Hit from './Hit';
+import * as S from './styled';
 
 //Buscando chave do arquivo .env
 const algolia = {
@@ -18,7 +18,7 @@ const searchClient = algoliasearch(algolia.appId, algolia.searchOnlyApiKey);
 const Search = () => (
     <S.SearchWrapper>
         <InstantSearch searchClient={searchClient} indexName={algolia.indexName}>
-            <SearchBox autoFocus translations={ { placeholder: "Pesquisar..." } }/>
+            <SearchBox translations={ { placeholder: "Buscar..." } }/>
             <Stats translations={{stats(nbHits, timeSpentMs) {
                 return `${nbHits} resultados encontrados em ${timeSpentMs}ms`
             }}} />
@@ -28,4 +28,4 @@ const Search = () => (
 );
 
 
-export default Search
+export default Search;

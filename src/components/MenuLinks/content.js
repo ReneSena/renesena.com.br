@@ -4,9 +4,17 @@ const links = [
         url: '/'
     },
     {
-        label: 'Sobre Mim',
+        label: 'Sobre',
         url: '/about'
-    }
+    },
+    // {
+    //     label: 'blog',
+    //     url: '/'
+    // },
+    // {
+    //     label: 'Projetos',
+    //     url: '/about'
+    // }
 ]
 
 export default links
