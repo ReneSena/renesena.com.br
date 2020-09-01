@@ -1,12 +1,12 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { TransitionPortal } from 'gatsby-plugin-transition-link'
+import React from "react";
+import PropTypes from "prop-types";
+import { TransitionPortal } from 'gatsby-plugin-transition-link';
 
-import Sidebar from '../Sidebar'
-import MenuBar from '../MenuBar'
+import Sidebar from '../Sidebar';
+import MenuBar from '../MenuBar';
 
-import * as S from './styled'
-import GlobalStyle from '../../styles/global'
+import * as S from './styled';
+import GlobalStyle from '../../styles/global';
 
 const Layout = ({ children }) => {
   return (
