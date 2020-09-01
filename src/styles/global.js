@@ -59,7 +59,7 @@ const GlobalStyles = createGlobalStyle`
         line-height: 1;
         font-size: 100%;
         color: #222;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: 400;
     }
 
