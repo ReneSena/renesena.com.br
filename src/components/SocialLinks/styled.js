@@ -1,26 +1,34 @@
 import styled from 'styled-components'
 import media from 'styled-media-query'
 
-export const SocialLinksWrapper = styled.nav`
-    /* margin: 2rem 0 0 auto; */
-    width: 100%;
-    /* border-bottom: 1px solid var(--borders); */
-    /* padding-bottom: 20px; */
+export const SocialLinksWrapper = styled.nav``;
 
-    ${media.lessThan("large")`
-        /* display: none; */
+export const SocialLinksList = styled.ul`
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    background-color: rgba(0, 0, 0, .5);
+
+    ${media.greaterThan('medium')`
+        top: 50%;
+        right: 1%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        width: 60px;
+        height: 100vh;
+        justify-content: center;
+        background-color: transparent;
     `}
 `
 
-export const SocialLinksList = styled.ul`
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-`
-
 export const SocialLinksItem = styled.li`
-    margin: 0 1.25rem;
+    margin: 0.7rem;
 `
 
 export const SocialLinksLink = styled.a`
@@ -34,8 +42,5 @@ export const SocialLinksLink = styled.a`
 `
 
 export const IconWrapper = styled.div`
-    /* fill: var(--texts); */
-    /* width: 40px;
-    height: 40px; */
     fill: #C1C1C1;
 `
