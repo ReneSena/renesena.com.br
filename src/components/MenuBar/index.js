@@ -28,7 +28,7 @@ const MenuBar = () => {
                     bg={getThemeColor()}
                     direction="right"
                     duration={0.6}
-                    to="/"
+                    to="/home"
                     title="Voltar para Home"
                 >
                     <S.MenuBarItem>
