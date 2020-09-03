@@ -32,15 +32,11 @@ export const SocialLinksItem = styled.li`
 `
 
 export const SocialLinksLink = styled.a`
-    color: var(--texts);
+    color: #F4F4F4;
     text-decoration: none;
     transition: color 0.5s;
 
     &:hover {
         color: var(--highlight);
     }
-`
-
-export const IconWrapper = styled.div`
-    fill: #C1C1C1;
-`
+`;

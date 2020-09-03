@@ -9,7 +9,7 @@ module.exports = {
         description: `Um aventureiro no mundo da tecnologia, buscando sempre aprender e compartilhar meus conhecimentos adquiridos com as pessoas. Assim como no esporte, acredito que juntos somos mais fortes. 🏄`,
         author: `Rene Sena`,
         siteUrl: `https://www.renesena.com.br`,
-        icon: `/src/images/favicon.png`
+        icon: `/src/images/favicon.webp`
     },
     plugins: [
         `gatsby-plugin-styled-components`,
@@ -95,7 +95,7 @@ module.exports = {
                 background_color: `#121212`,
                 theme_color: `#121212`,
                 display: `minimal-ui`,
-                icon: `src/images/favicon.png`
+                icon: `src/images/favicon.webp`
                 // This path is relative to the root of the site.
             },
         },

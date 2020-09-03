@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
-import { Link } from 'gatsby';
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
-import Background from '../../images/background.jpg';
+import Background from '../../images/background.webp';
 
 export const Container = styled.div`
     width: 100%;
@@ -131,7 +131,7 @@ export const MenuLinkItem = styled.li`
     }
 `;
 
-export const MenuLink = styled(Link)`
+export const MenuLink = styled(AniLink)`
     color: #FFF;
     font-size: 1.2rem;
     font-family: 'Poppins', sans-serif;

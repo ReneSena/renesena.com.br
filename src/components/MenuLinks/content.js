@@ -1,16 +1,16 @@
 const links = [
     {
         label: 'Home',
-        url: '/home'
+        url: '/'
     },
     {
         label: 'Sobre',
         url: '/about'
     },
-    // {
-    //     label: 'blog',
-    //     url: '/'
-    // },
+    {
+        label: 'Blog',
+        url: '/blog'
+    },
     // {
     //     label: 'Projetos',
     //     url: '/about'

@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 
 import getThemeColor from '../../utils/getThemeColor';
 
-import * as S from './styled'
+import * as S from './styled';
 
 const Pagination = ({ isFirst, isLast, currentPage, numPages, prevPage, nextPage }) => (
     <S.PaginationWrapper>
