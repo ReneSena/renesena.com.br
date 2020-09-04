@@ -22,20 +22,20 @@ const Profile = () => {
                 }
             }
         }
-    `)
+    `);
 
     return (
         <S.ProfileWrapper>
             <S.ProfileLink to="/" cover bg={getThemeColor()} direction="left" duration={0.6}>
                 <Avatar />
-                <S.ProfileAuthor>
-                    {title}
+                <S.ProfileInfo>
+                    <S.ProfileAuthor>{title}</S.ProfileAuthor>
                     <S.ProfilePosition>{position}</S.ProfilePosition>
-                </S.ProfileAuthor>
+                    <S.ProfileDescription>{description}</S.ProfileDescription>
+                </S.ProfileInfo>
             </S.ProfileLink>
-            <S.ProfileDescription>{description}</S.ProfileDescription>
         </S.ProfileWrapper>
-    )
+    );
 }
 
-export default Profile
+export default Profile;

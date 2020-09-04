@@ -11,10 +11,6 @@ const links = [
         label: 'Blog',
         url: '/blog'
     },
-    // {
-    //     label: 'Projetos',
-    //     url: '/about'
-    // }
 ]
 
-export default links
+export default links;

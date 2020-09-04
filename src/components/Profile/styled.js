@@ -3,65 +3,70 @@ import media from 'styled-media-query'
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 export const ProfileWrapper = styled.section`
-    color: var(--texts);
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    border-radius: 10px;
-` 
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+
+    ${media.greaterThan('medium')`
+        margin-top: 0;
+        margin-bottom: 0;
+    `}
+` ;
+
+export const ProfileInfo = styled.div``;
 
 export const ProfileLink = styled(AniLink)`
-    color: var(--texts);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    transition: color 0.5s;
-    
-    ${media.lessThan("large")`
-        display: flex;
-        align-items: center;
-        text-align: left;
-    `}
 
-    &:hover {
-        color: (--texts);
-    }
-`
+    ${media.lessThan("medium")`
+        text-align: left;
+        flex-direction: column;
+    `}
+`;
 
 export const ProfileAuthor = styled.h1`
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: 600;
-    /* color: (--texts); */
-    color: #f3f3f3;
-    margin: 0.5rem auto 1rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    margin-bottom: 1.5rem;
 
-    ${media.lessThan("large")`
-      font-size: 1.2rem;
-      margin: 0 0 0 10px;
+    ${media.greaterThan('medium')`
+        font-size: 2.5rem;
+        text-align: left;
     `}
-`
+`;
 
-export const ProfilePosition = styled.small`
-    display: block;
-    color: var(--texts);
-    font-size: 14px;
-    font-weight: 400;
-    margin-top: 0.5rem;
-    /* font-variant: small-caps; */
+export const ProfilePosition = styled.h2`
+    font-size: 1.125rem;
+    font-weight: 300;
+    letter-spacing: 0.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    margin-bottom: 1.5rem;
 
-    ${media.lessThan("large")`
-      font-size: 0.8rem;
-      margin-top: 0.2rem;
-      display: none;
+    ${media.greaterThan('medium')`
+        font-size: 1.5rem;
+        text-align: left;
+        margin: 0;
     `}
-`
+`;
 
 export const ProfileDescription = styled.p`
-    font-size: 1rem;
-    color: var(--texts);
-    font-weight: 400;
-    line-height: 1.4;
-    /* font-variant: small-caps; */
+   font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    color: #FFF;
+    text-align: center;
 
-    ${media.lessThan("large")`
-        display: none;
+    ${media.greaterThan('medium')`
+        position: fixed;
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%);
     `}
-`
+`;

@@ -3,7 +3,7 @@ date: 2020-06-08 14:00:00
 title: 5 dicas para usar o chrome de forma eficiente
 description: Você já desvendou tudo que o chrome tem a te oferecer?
 category: CSS
-image: "/assets/img/css.jpg"
+image: "/assets/img/css.webp"
 ---
 
 # Lorem ipsum
@@ -23,7 +23,7 @@ const meuBlogLindo = `Ele é demais, já estou amando`;
 console.log(meuBlogLindo)
 ```
 
-![Descricao da imagem](/assets/img/desert.jpg)
+![Descricao da imagem](/assets/img/desert.webp)
 
 ## Fusce a metus eu
 
@@ -34,7 +34,7 @@ Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis met
 
 ### Cras semper consectetur elementum
 
-![Segunda imagem](/assets/img/lake.jpg)
+![Segunda imagem](/assets/img/lake.webp)
 
 Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
 

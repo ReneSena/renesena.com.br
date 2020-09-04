@@ -21,7 +21,6 @@ export const SocialLinksList = styled.ul`
         transform: translateY(-50%);
         flex-direction: column;
         width: 60px;
-        height: 100vh;
         justify-content: center;
         background-color: transparent;
     `}

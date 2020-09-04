@@ -21,7 +21,7 @@ const Avatar = () => {
     return (
         <S.AvatarWrapper
             fluid={avatarImage.childImageSharp.fluid}
-            alt='Foto de Rene Sena, criador do blog'
+            alt='Foto de Rene Sena, criador do site/blog'
         />
     );
 };

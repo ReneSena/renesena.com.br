@@ -3,15 +3,14 @@ import media from 'styled-media-query'
 import Img from 'gatsby-image'
 
 export const AvatarWrapper = styled(Img)`
-    border-radius: 50%;
-    /* box-shadow: 0 3px 6px rgba(0,0,0,0.4); */
-    margin: auto;
-    width: 200px;
-    height: 200px;
-    /* border: 5px solid #FFF; */
+        width: 9.5rem;
+        height: 9.5rem;
+        border-radius: 100%;
+        margin: 0 auto 1.5rem auto;
 
-    ${media.lessThan("large")`
-        height: 3rem;
-        width: 3rem;
-    `}
+        ${media.greaterThan('medium')`
+            width: 12.5rem;
+            height: 12.5rem;
+            margin: 0 30px 0 0;
+        `}
 `;
