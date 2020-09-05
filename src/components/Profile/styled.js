@@ -33,6 +33,7 @@ export const ProfileAuthor = styled.h1`
     text-align: center;
     text-transform: uppercase;
     color: #FFF;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 
     ${media.greaterThan('medium')`

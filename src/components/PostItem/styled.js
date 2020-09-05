@@ -17,12 +17,7 @@ export const PostItemLink = styled(AniLink)`
     position: relative;
     width: 600px;
 
-    &:first-of-type {
-        margin-top: 100px;
-    }
-
     ${media.lessThan("large")`
-        /* padding: 0 1rem; */
         width: auto;
         margin: 20px 10px;
     `}
