@@ -12,7 +12,9 @@ export const ProfileWrapper = styled.section`
     `}
 ` ;
 
-export const ProfileInfo = styled.div``;
+export const ProfileInfo = styled.div`
+    margin-left: 1.875rem;
+`;
 
 export const ProfileLink = styled(AniLink)`
     display: flex;

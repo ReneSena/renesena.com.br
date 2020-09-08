@@ -6,7 +6,6 @@ export const MenuBarWrapper = styled.aside`
     align-items: center;
     /* background-color: var(--mediumBackground);*/
     background-color: #353535;
-    border-left: 1px solid var(--borders);
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -30,48 +29,40 @@ export const MenuBarWrapper = styled.aside`
 `
 
 export const MenuBarGroup = styled.div`
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
 
-    ${media.lessThan("large")`
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
+    ${media.greaterThan("medium")`
+        display: none;
     `}
 `
 
 export const MenuBarLink = styled(AniLink)`
-    display: block;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     text-decoration: none;
-`
-
-export const MenuBarItem = styled.span`
-    /* color: var(--texts); */
     color: #f3f3f3;
     cursor: pointer;
-    display: block;
-    height: 3.75rem;
-    padding: 1.1rem;
     position: relative;
-    width: 3.75rem;
     font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+
+    &.active {
+        color: #0FFF73;
+    }
 
     & .icon {
         width: 24px;
         height: 24px;
-        margin-bottom: 10px;
+        margin-bottom: 4px;
     }
+`;
 
-    ${media.lessThan("large")`
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        width: auto;
-        height: auto;
-        padding: 0.8rem;
-    `}
+export const MenuBarItem = styled(MenuBarLink)`
 
     &.light {
         color: #d4d400;
@@ -84,4 +75,4 @@ export const MenuBarItem = styled.span`
     &:hover:not(media.lessThan) {
         color: var(--highlight)
     }
-`
+`;

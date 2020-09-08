@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from "react"
 
-import { Home } from "@styled-icons/boxicons-solid/Home";
-import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2";
-import { UpArrowAlt as Arrow } from "@styled-icons/boxicons-regular/UpArrowAlt";
-import { Lightbulb } from "@styled-icons/fa-solid/Lightbulb";
+import { Home } from '@styled-icons/heroicons-solid/Home';
+import { BookOpen } from '@styled-icons/feather/BookOpen';
+import { Article } from '@styled-icons/material-outlined/Article';
+import { Link } from '@styled-icons/zondicons/Link';
 
-import getThemeColor from "../../utils/getThemeColor"
+import getThemeColor from "../../utils/getThemeColor";
 
 import * as S from "./styled"
 
 const MenuBar = () => {
-    const [theme, setTheme] = useState(null)
-
-    const isDarkMode = theme === "dark"
-
-    //Quando renderizar o componente
-    useEffect(() => {
-        setTheme(window.__theme)
-        window.__onThemeChange = () => setTheme(window.__theme)
-    }, [])
 
     return (
         <S.MenuBarWrapper>
             <S.MenuBarGroup>
                 <S.MenuBarLink
+                    activeClassName="active"
                     cover
                     bg={getThemeColor()}
                     direction="right"
@@ -31,44 +23,36 @@ const MenuBar = () => {
                     to="/"
                     title="Voltar para Home"
                 >
-                    <S.MenuBarItem>
-                        <Home className="icon" />
-                        Início
-                    </S.MenuBarItem>
+                    <Home className="icon" />
+                    <span>Home</span>
                 </S.MenuBarLink>
                 <S.MenuBarLink
-                    to="/search"
+                    activeClassName="active"
                     cover
                     bg={getThemeColor()}
-                    direction="left"
+                    direction="right"
                     duration={0.6}
-                    title="Pesquisar"
+                    to="/about"
+                    title="Sobre"
                 >
-                    <S.MenuBarItem>
-                        <Search className="icon" />
-                        Buscar
-                    </S.MenuBarItem>
+                    <BookOpen className="icon" />
+                    <span>Sobre</span>
                 </S.MenuBarLink>
-                <S.MenuBarItem
-                    title="Mudar o tema"
-                    onClick={() => {
-                        window.__setPreferredTheme(
-                            isDarkMode ? "light" : "dark"
-                        )
-                    }}
-                    className={theme}
+                <S.MenuBarLink
+                    activeClassName="active"
+                    cover
+                    bg={getThemeColor()}
+                    direction="right"
+                    duration={0.6}
+                    to="/blog"
+                    title="Blog"
                 >
-                    <Lightbulb className="icon" />
-                    Modo
-                </S.MenuBarItem>
-                <S.MenuBarItem className="icon" title="Ir para o Topo" onClick={function goTop() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }}>
-                    <Arrow className="icon" />
-                    Ir ao topo
+                    <Article className="icon" />
+                    <span>Blog</span>
+                </S.MenuBarLink>
+                <S.MenuBarItem as="span">
+                    <Link className="icon" />
+                    <span>Contatos</span>
                 </S.MenuBarItem>
             </S.MenuBarGroup>
         </S.MenuBarWrapper>

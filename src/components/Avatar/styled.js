@@ -10,6 +10,5 @@ export const AvatarWrapper = styled(Img)`
     ${media.greaterThan('medium')`
         width: ${props => props.sizeDesktop && props.sizeDesktop};
         height: ${props => props.sizeDesktop && props.sizeDesktop};
-        margin: 0 30px 0 0;
     `}
 `;

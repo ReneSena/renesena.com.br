@@ -68,14 +68,17 @@ const GlobalStyles = createGlobalStyle`
         width: 100%;
         height: auto;
     }
-
+    
+:root {
+    --background: #171717;  
+}
 body.dark {
     --borders: #38444d;
     --texts: #c1c1c1;
     --postColor: #fff;
     --highlight: #1fa1f2;
     --mediumBackground: #121212;
-    --background: #171717;
+    background-color: var(--background);
     --white: #fff;
     --black: #333;
   }
