@@ -20,10 +20,11 @@ export const HeaderWrapper = styled.header`
     `}
 `;
 
-export const AvatarWrapper = styled.div`
+export const AvatarWrapperLink = styled(AniLink)`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    text-decoration: none;
 `;
 
 export const Author = styled.h1`

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
 import { Home } from '@styled-icons/heroicons-solid/Home';
 import { BookOpen } from '@styled-icons/feather/BookOpen';

@@ -23,10 +23,17 @@ const Header = () => {
 
     return (
         <S.HeaderWrapper>
-            <S.AvatarWrapper>
+            <S.AvatarWrapperLink
+                to="/"
+                cover
+                bg={getThemeColor()}
+                direction="left"
+                duration={0.6}
+                title="Voltar para Home"
+            >
                 <Avatar sizeDesktop="2.5rem" sizeMobile="1.875rem" />
                 <S.Author>Rene Sena</S.Author>
-            </S.AvatarWrapper>
+            </S.AvatarWrapperLink>
             <S.NavigationWrapper>
                 <MenuLinks />
             </S.NavigationWrapper>

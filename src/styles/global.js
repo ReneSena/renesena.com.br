@@ -69,18 +69,23 @@ const GlobalStyles = createGlobalStyle`
         height: auto;
     }
     
-:root {
-    --background: #171717;  
-}
 body.dark {
     --borders: #38444d;
     --texts: #c1c1c1;
-    --postColor: #fff;
+    --postColor: #f3f3f3;
     --highlight: #1fa1f2;
     --mediumBackground: #121212;
-    background-color: var(--background);
+    --background: #171717;
     --white: #fff;
     --black: #333;
+
+    --postTime: #c1c1c1;
+    --postTitle: #F3F3F3;
+    --postDescription: #c1c1c1;
+    --postTimeRead: #c1c1c1; 
+    --postBackground: #222;
+    --postBorder: #333;
+    --postCardBorder: #222;
   }
 
   body.light {
@@ -92,6 +97,14 @@ body.dark {
     --background: #f3f3f3;
     --white: #fff;
     --black: #222;
+
+    --postTime: #555;
+    --postTitle: #222;
+    --postDescription: #555;
+    --postTimeRead: #555; 
+    --postBackground: #FFF;
+    --postBorder: #E4E4E4;
+    --postCardBorder: #c1c1c1;
   }
 `
 

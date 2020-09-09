@@ -5,7 +5,7 @@ export const SocialLinksWrapper = styled.nav``;
 
 export const SocialLinksList = styled.ul`
     width: 100%;
-    height: 60px;
+    height: 40px;
     position: fixed;
     right: 0;
     bottom: 0;
