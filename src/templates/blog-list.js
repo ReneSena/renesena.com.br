@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
-import PostItem from '../components/PostItem'
-import Pagination from '../components/Pagination'
+import Layout from "../components/Layout";
+import SEO from "../components/seo";
+import { PostWrapper } from '../components/PostItem/styled';
+import PostItem from '../components/PostItem';
+import Pagination from '../components/Pagination';
 
 const BlogList = props => {
   const postList = props.data.allMarkdownRemark.edges
@@ -18,25 +19,28 @@ const BlogList = props => {
   return (
     <Layout>
         <SEO title="Blog" />
-        {postList.map((
-            { node: { 
-                frontmatter: { background, category, date, description, title, image },
-                timeToRead,
-                fields: { slug }
-            },
-            }) => (
-            <PostItem 
-                slug={slug}
-                background={background}
-                category={category}
-                date={date}
-                timeToRead={timeToRead}
-                title={title}
-                description={description}
-                image={image}    
-            />
-            )
-        )}
+        <PostWrapper>
+            {postList.map((
+                { node: { 
+                    frontmatter: { background, category, date, description, title, image },
+                    timeToRead,
+                    fields: { slug }
+                },
+                }) => (
+                <PostItem 
+                    key={slug}
+                    slug={slug}
+                    background={background}
+                    category={category}
+                    date={date}
+                    timeToRead={timeToRead}
+                    title={title}
+                    description={description}
+                    image={image}    
+                />
+                )
+            )}
+        </PostWrapper>
         <Pagination 
             isFirst={isFirst} 
             isLast={isLast} 

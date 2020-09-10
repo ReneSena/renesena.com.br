@@ -28,14 +28,10 @@ export const SocialLinksList = styled.ul`
 
 export const SocialLinksItem = styled.li`
     margin: 0.7rem;
-`
+`;
 
 export const SocialLinksLink = styled.a`
-    color: #F4F4F4;
+    color: var(--texts);
     text-decoration: none;
     transition: color 0.5s;
-
-    &:hover {
-        color: var(--highlight);
-    }
 `;

@@ -15,17 +15,6 @@ module.exports = {
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-transition-link`,
-        {
-            resolve: `gatsby-plugin-google-fonts`,
-            options: {
-              fonts: [
-                    `Roboto`,
-                    `Poppins`,
-                    `source sans pro\:300,400,600,700`,
-              ],
-            }
-        },
-        
         //Para esse plugin funcionar, ele tem que ser o primeiro a ser lido
         {
             resolve: `gatsby-source-filesystem`,
@@ -98,6 +87,16 @@ module.exports = {
                 icon: `src/images/favicon.webp`
                 // This path is relative to the root of the site.
             },
+        },
+        {
+            resolve: `gatsby-plugin-google-fonts`,
+            options: {
+              fonts: [
+                    `Roboto`,
+                    `Poppins`,
+                    `source sans pro\:300,400,600,700`,
+              ],
+            }
         },
         `gatsby-plugin-sitemap`,
         // this (optional) plugin enables Progressive Web App + Offline functionality

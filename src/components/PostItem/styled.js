@@ -2,22 +2,32 @@ import styled from 'styled-components'
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import media from 'styled-media-query';
 
+export const PostWrapper = styled.div`
+
+    ${media.greaterThan("medium")`
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0 60px;
+    `}
+`;
+
 export const PostItemLink = styled(AniLink)`
     color: var(--texts);
     display: flex;
     text-decoration: none;
     position: relative;
-    margin: 20px auto;
+    margin: 1rem;
     background-color: var(--postBackground);
     border: 1px solid var(--postCardBorder);
     border-radius: 5px;
     box-shadow: 2px 4px 4px rgba(0,0,0,.25);
     position: relative;
-    width: 600px;
 
-    ${media.lessThan("large")`
-        width: auto;
-        margin: 20px 10px;
+    ${media.greaterThan("medium")`
+        width: 650px;
+        margin: 20px;
     `}
 
     &:hover {
@@ -33,14 +43,14 @@ export const PostItemWrapper = styled.section`
 `;
 
 export const PostItemImage = styled.img`
-    height: 250px;
+    height: 180px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     object-fit: cover;
-    object-position: center 10%;
+    object-position: center;
 
-    ${media.lessThan("large")`
-        height: 180px;
+    ${media.greaterThan("medium")`
+        height: 250px;
     `}
 `;
 
@@ -68,9 +78,11 @@ export const PostItemTag = styled.div`
 
 export const PostItemInfo = styled.div`
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     padding: 16px;
     width: 100%;
+    height: 100%;
 `
 
 export const PostItemDate = styled.time`
@@ -80,10 +92,6 @@ export const PostItemDate = styled.time`
     border-top: 1px solid var(--postBorder);
     display: flex;
     justify-content: space-between;
-
-    ${media.lessThan("large")`
-        
-    `}
 `
 
 export const PostItemTitle = styled.h1`
@@ -92,11 +100,6 @@ export const PostItemTitle = styled.h1`
     font-weight: 700;
     margin: 0.2rem 0 1.5rem;
     color: var(--postTitle);
-
-    ${media.lessThan("large")`
-        font-size: 1.5rem;
-        letter-spacing: 0.10rem;
-    `}
 `;
 
 export const PostItemDescription = styled.p`

@@ -1,9 +1,9 @@
 import React from "react"
 
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout";
+import SEO from "../components/seo";
 
-import Search from '../components/Search'
+import Search from '../components/Search';
 
 const SearchPage = () => (
   <Layout>
@@ -12,4 +12,4 @@ const SearchPage = () => (
   </Layout>
 )
 
-export default SearchPage
+export default SearchPage;

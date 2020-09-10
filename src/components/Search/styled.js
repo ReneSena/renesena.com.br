@@ -3,10 +3,12 @@ import media from 'styled-media-query'
 
 export const SearchWrapper = styled.section`
     background: var(--background);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     transition: opacity 0.4s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
 
     .ais-InstantSearch__root {
         display: flex;
@@ -17,18 +19,12 @@ export const SearchWrapper = styled.section`
 
     .ais-SearchBox,
     .ais-Stats {
-        padding: 0.5rem 3rem;
+        width: 100%;
+        padding: 1rem;
 
-        ${media.lessThan("large")`
-            padding: 1rem;
-        `}
-    }
-
-    .ais-SearchBox {
-        padding-top: 6rem;
-
-        ${media.lessThan("large")`
-           padding-top: 1rem 
+        ${media.greaterThan("medium")`
+            width: 650px;
+            margin: 0 auto;
         `}
     }
 
@@ -39,7 +35,7 @@ export const SearchWrapper = styled.section`
     .ais-SearchBox-input {
         background: none;
         border: none;
-        border-bottom: 1px solid var(--borders);
+        border-bottom: 1px solid var(--texts);
         color: var(--texts);
         display: flex;
         font-size: 1.6rem;

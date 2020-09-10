@@ -16,6 +16,11 @@ const Pagination = ({ isFirst, isLast, currentPage, numPages, prevPage, nextPage
     </S.PaginationWrapper>
 )
 
+
+Pagination.defaultProps = {
+    numPage: 1,   
+}
+
 Pagination.propTypes = {
     isFirst: propTypes.bool.isRequired,
     isLast: propTypes.bool.isRequired,
