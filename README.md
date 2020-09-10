@@ -6,6 +6,7 @@
 - Styled Media Query
 - Algolia
 - Netlify
+- Netlify CMS
 - Disqus
 - PrismJs
 
