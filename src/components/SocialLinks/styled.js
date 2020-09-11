@@ -31,7 +31,16 @@ export const SocialLinksItem = styled.li`
 `;
 
 export const SocialLinksLink = styled.a`
-    color: var(--texts);
+    color: #c1c1c1;
     text-decoration: none;
-    transition: color 0.5s;
+
+    .icon {
+        width: 1.875rem;
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+            color: #FFF;
+            transform: scale(1.1) translate(-5px, -5px);
+        }
+    }
 `;

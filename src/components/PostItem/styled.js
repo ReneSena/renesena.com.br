@@ -5,11 +5,11 @@ import media from 'styled-media-query';
 export const PostWrapper = styled.div`
 
     ${media.greaterThan("medium")`
-        display: flex;
-        align-items: stretch;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin: 0 60px;
+        /* display: flex; */
+        /* align-items: stretch; */
+        /* justify-content: center; */
+        /* flex-wrap: wrap; */
+        margin: 0 auto;
     `}
 `;
 
@@ -27,7 +27,7 @@ export const PostItemLink = styled(AniLink)`
 
     ${media.greaterThan("medium")`
         width: 650px;
-        margin: 20px;
+        margin: 20px auto;
     `}
 
     &:hover {

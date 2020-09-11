@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Icons from './icons'
-import links from './content'
+import Icons from './icons';
+import links from './content';
 
-import * as S from './styled'
+import * as S from './styled';
 
 const SocialLinks = () => (
     <S.SocialLinksWrapper>
@@ -18,7 +18,7 @@ const SocialLinks = () => (
                             title={link.label}
                             target="_blank"
                             rel="noopener noreferrer">
-                            <Icon size="30"/>
+                            <Icon className="icon"/>
                         </S.SocialLinksLink>
                     </S.SocialLinksItem>
                 )

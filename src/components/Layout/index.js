@@ -4,7 +4,7 @@ import { TransitionPortal } from 'gatsby-plugin-transition-link';
 
 import Header from '../Header';
 import MenuBar from '../MenuBar';
-import SocialLinks from '../SocialLinks';
+import Footer from '../Footer';
 
 import * as S from './styled';
 import GlobalStyle from '../../styles/global';
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
 			<Header />
 			<S.LayoutMan>
 				{children}
-				<SocialLinks />
+				<Footer />
 			</S.LayoutMan>
 			<TransitionPortal top="level">
 				<MenuBar />

@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px 40px;
     z-index: 1;
 
     ${media.greaterThan("medium")`
