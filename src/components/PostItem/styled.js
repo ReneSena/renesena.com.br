@@ -5,12 +5,19 @@ import media from 'styled-media-query';
 export const PostWrapper = styled.div`
 
     ${media.greaterThan("medium")`
-        /* display: flex; */
-        /* align-items: stretch; */
-        /* justify-content: center; */
-        /* flex-wrap: wrap; */
         margin: 0 auto;
     `}
+
+    & > h1 {
+        color: var(--texts); 
+        margin: 20px 16px;
+        font-size: 24px;
+        width: 650px;
+
+        ${media.greaterThan("medium")`
+            margin: 20px auto;
+        `}
+    }
 `;
 
 export const PostItemLink = styled(AniLink)`
@@ -22,7 +29,8 @@ export const PostItemLink = styled(AniLink)`
     background-color: var(--postBackground);
     border: 1px solid var(--postCardBorder);
     border-radius: 5px;
-    box-shadow: 2px 4px 4px rgba(0,0,0,.25);
+    box-shadow: 2px 4px 4px rgba(0,
+    ,0,.25);
     position: relative;
 
     ${media.greaterThan("medium")`

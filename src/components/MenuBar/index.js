@@ -3,7 +3,6 @@ import React from "react"
 import { Home } from '@styled-icons/heroicons-solid/Home';
 import { BookOpen } from '@styled-icons/feather/BookOpen';
 import { Article } from '@styled-icons/material-outlined/Article';
-import { Link } from '@styled-icons/zondicons/Link';
 
 import getThemeColor from "../../utils/getThemeColor";
 
@@ -50,10 +49,10 @@ const MenuBar = () => {
                     <Article className="icon" />
                     <span>Blog</span>
                 </S.MenuBarLink>
-                <S.MenuBarItem as="span">
+                {/* <S.MenuBarItem as="span">
                     <Link className="icon" />
                     <span>Contatos</span>
-                </S.MenuBarItem>
+                </S.MenuBarItem> */}
             </S.MenuBarGroup>
         </S.MenuBarWrapper>
     )

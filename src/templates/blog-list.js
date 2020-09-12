@@ -20,9 +20,7 @@ const BlogList = props => {
     <Layout>
         <SEO title="Blog" />
           <PostWrapper>
-              <h1 style={{color: '#FFF', margin: '20px auto', fontSize: '24px', width: '650px'}}>
-                Post's recentes
-              </h1>
+              <h1>Post's recentes</h1>
             
             {postList.map((
                 { node: { 
