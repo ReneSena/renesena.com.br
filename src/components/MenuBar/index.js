@@ -39,6 +39,7 @@ const MenuBar = () => {
                 </S.MenuBarLink>
                 <S.MenuBarLink
                     activeClassName="active"
+                    partiallyActive={true}
                     cover
                     bg={getThemeColor()}
                     direction="right"
@@ -49,10 +50,6 @@ const MenuBar = () => {
                     <Article className="icon" />
                     <span>Blog</span>
                 </S.MenuBarLink>
-                {/* <S.MenuBarItem as="span">
-                    <Link className="icon" />
-                    <span>Contatos</span>
-                </S.MenuBarItem> */}
             </S.MenuBarGroup>
         </S.MenuBarWrapper>
     )

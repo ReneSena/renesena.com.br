@@ -15,7 +15,9 @@ const MenuLinksNavigation = () => {
                         cover direction="right"
                         bg={getThemeColor()}
                         duration={0.6}
-                        activeClassName="active">
+                        activeClassName="active"
+                        partiallyActive={link.url.startsWith('/blog') ? true : ''}
+                    >
                         {link.label}
                     </S.MenuLinksLink>
                 </S.MenuLinksItem>
