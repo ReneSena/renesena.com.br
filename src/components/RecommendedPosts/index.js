@@ -6,19 +6,22 @@ import getThemeColor from '../../utils/getThemeColor';
 import * as S from './styled'
 
 const RecommendedPosts = ({ next, previous }) => (
-    <S.RecommendedWrapper>
-        {previous && (
-            <S.RecommendedLink cover bg={getThemeColor()} direction="left" duration={0.6} to={previous.fields.slug} className="previous">
-                {previous.frontmatter.title}
-            </S.RecommendedLink>
-        )}
-        {next && (
-            <S.RecommendedLink cover bg={getThemeColor()} direction="rigth" duration={0.6} to={next.fields.slug} className="next">
-                {next.frontmatter.title}
-            </S.RecommendedLink>
-        )}
-    </S.RecommendedWrapper>
-)
+    <>
+        <S.RecommendedTitle>Você também pode gostar</S.RecommendedTitle>
+        <S.RecommendedWrapper>
+            {previous && (
+                <S.RecommendedLink cover bg={getThemeColor()} direction="left" duration={0.6} to={previous.fields.slug} className="previous">
+                    {previous.frontmatter.title}
+                </S.RecommendedLink>
+            )}
+            {next && (
+                <S.RecommendedLink cover bg={getThemeColor()} direction="rigth" duration={0.6} to={next.fields.slug} className="next">
+                    {next.frontmatter.title}
+                </S.RecommendedLink>
+            )}
+        </S.RecommendedWrapper>
+    </>
+);
 
 RecommendedPosts.propTypes = {
     next: propTypes.shape({

@@ -73,7 +73,7 @@ body.dark {
     --borders: #38444d;
     --texts: #c1c1c1;
     --postColor: #f3f3f3;
-    --highlight: #1fa1f2;
+    --highlight: #0FFF73;
     --mediumBackground: #121212;
     --background: #171717;
     --white: #fff;
@@ -92,8 +92,8 @@ body.dark {
     --borders: #dedede;
     --postColor: #111;
     --texts: #171717;
-    --highlight: #1fa1f2;
-    --mediumBackground: #ddd;
+    --highlight: #003516;
+    --mediumBackground: #fff;
     --background: #f3f3f3;
     --white: #fff;
     --black: #222;

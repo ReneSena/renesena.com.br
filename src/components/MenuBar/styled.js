@@ -4,7 +4,6 @@ import media from 'styled-media-query';
 
 export const MenuBarWrapper = styled.aside`
     align-items: center;
-    /* background-color: var(--mediumBackground);*/
     background-color: #353535;
     display: flex;
     flex-direction: column;

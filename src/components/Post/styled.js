@@ -35,7 +35,7 @@ export const PostDescription = styled.h2`
 
 export const PostDate = styled.p`
     font-size: 1.1rem;
-    font-weight: 100;
+    font-weight: 400;
     padding: 0 1.4rem;
 
     ${media.lessThan("large")`

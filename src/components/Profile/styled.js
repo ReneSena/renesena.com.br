@@ -13,7 +13,9 @@ export const ProfileWrapper = styled.section`
 ` ;
 
 export const ProfileInfo = styled.div`
-    margin-left: 1.875rem;
+    ${media.greaterThan('medium')`
+        margin-left: 1.875rem;
+    `}
 `;
 
 export const ProfileLink = styled(AniLink)`

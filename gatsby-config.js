@@ -88,16 +88,16 @@ module.exports = {
                 // This path is relative to the root of the site.
             },
         },
-        // {
-        //     resolve: `gatsby-plugin-google-fonts`,
-        //     options: {
-        //       fonts: [
-        //             `Roboto`,
-        //             `Poppins`,
-        //             `source sans pro\:300,400,600,700`,
-        //       ],
-        //     }
-        // },
+        {
+            resolve: `gatsby-plugin-google-fonts`,
+            options: {
+              fonts: [
+                    `Roboto`,
+                    `Poppins`,
+                    `source sans pro\:300,400,600,700`,
+              ],
+            }
+        },
         `gatsby-plugin-sitemap`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
