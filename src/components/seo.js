@@ -80,13 +80,17 @@ function SEO({ description, lang, meta, title, image }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `google-site-verification`
+          content:`7XJb3fxHRc_OO0cZYDfAuaQPqp37nOfI_u2kkGUIdW0`
+        }
       ].concat(meta)}
     />
   )
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: 'pt-br',
   meta: [],
   description: ``,
 }
