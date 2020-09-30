@@ -81,8 +81,8 @@ function SEO({ description, lang, meta, title, image }) {
           content: metaDescription,
         },
         {
-          name: `google-site-verification`
-          content:`7XJb3fxHRc_OO0cZYDfAuaQPqp37nOfI_u2kkGUIdW0`
+          name: `google-site-verification`,
+          content:`7XJb3fxHRc_OO0cZYDfAuaQPqp37nOfI_u2kkGUIdW0`,
         }
       ].concat(meta)}
     />
