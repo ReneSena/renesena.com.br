@@ -31,7 +31,7 @@ const MenuBar = () => {
                     bg={getThemeColor()}
                     direction="right"
                     duration={0.6}
-                    to="/about"
+                    to="/sobre"
                     title="Sobre"
                 >
                     <BookOpen className="icon" />
