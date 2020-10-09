@@ -12,22 +12,22 @@ const Footer = () => {
         <S.FooterWrapper>
             <ul>
                 <li>
-                    <a href="https://github.com/ReneSena">
+                    <a href="https://github.com/ReneSena" rel="noopener noreferrer" target="_blank">
                         <Github className="icon"/>
                     </a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/sleeperU_U">
+                    <a href="https://twitter.com/sleeperU_U" rel="noopener noreferrer" target="_blank">
                         <Twitter className="icon"/>
                     </a>
                 </li>
                 <li>
-                    <a href="https://instagram.com/rene_sena">
+                    <a href="https://instagram.com/rene_sena" rel="noopener noreferrer" target="_blank">
                         <Instagram className="icon"/>
                     </a>
                 </li>
                 <li>
-                    <a href="https://br.linkedin.com/in/rene-sena">
+                    <a href="https://br.linkedin.com/in/rene-sena" rel="noopener noreferrer" target="_blank">
                         <Linkedin className="icon"/>
                     </a>
                 </li>

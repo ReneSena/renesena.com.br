@@ -4,7 +4,7 @@ title: 5 dicas para usar o chrome de forma eficiente
 description: Você já desvendou tudo que o chrome tem a te oferecer?
 category: CSS
 background: "#7AAB13"
-image: "/assets/img/css.webp"
+image: "/assets/img/css.jpg"
 ---
 
 # Lorem ipsum
@@ -24,7 +24,7 @@ const meuBlogLindo = `Ele é demais, já estou amando`;
 console.log(meuBlogLindo)
 ```
 
-![Descricao da imagem](/assets/img/desert.webp)
+![Descricao da imagem](/assets/img/desert.jpg)
 
 ## Fusce a metus eu
 
@@ -35,7 +35,7 @@ Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis met
 
 ### Cras semper consectetur elementum
 
-![Segunda imagem](/assets/img/lake.webp)
+![Segunda imagem](/assets/img/lake.jpg)
 
 Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
 

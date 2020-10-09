@@ -4,7 +4,7 @@ title: Meu primeiro post
 description: Esse é o primeiro post do meu blog
 category: Misc
 background: "#7AAB13"
-image: "/assets/img/desert.webp"
+image: "/assets/img/desert.jpg"
 ---
 
 # Lorem ipsum

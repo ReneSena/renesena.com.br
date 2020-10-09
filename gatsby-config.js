@@ -9,7 +9,7 @@ module.exports = {
         description: `"Um aventureiro no mundo da tecnologia"`,
         author: `Rene Sena`,
         siteUrl: `https://www.renesena.com.br`,
-        icon: `/src/images/favicon.webp`
+        icon: `/src/images/favicon.jpg`
     },
     plugins: [
         `gatsby-plugin-styled-components`,
@@ -84,7 +84,7 @@ module.exports = {
                 background_color: `#121212`,
                 theme_color: `#121212`,
                 display: `minimal-ui`,
-                icon: `src/images/favicon.webp`
+                icon: `src/images/favicon.jpg`
                 // This path is relative to the root of the site.
             },
         },
