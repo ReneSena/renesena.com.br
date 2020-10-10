@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.section`
     max-width: 70rem;
@@ -11,7 +12,10 @@ export const Container = styled.section`
         line-height: 1.7;
         letter-spacing: 0.069rem;
         padding: 0 1.4rem;
-        /* word-wrap: break-word; */
+
+        ${media.greaterThan('medium')`
+            font-size: 1.25rem;
+        `}
     }
     
     h1 {
@@ -21,6 +25,10 @@ export const Container = styled.section`
         display: flex;
         align-items: center;
         flex-direction: column;
+
+        ${media.greaterThan('medium')`
+            font-size: 1.25rem;
+        `}
     }
 
     p {

@@ -26,8 +26,8 @@ const AboutPage = () => (
         </p>
        
         <p>
-          A web pra mim sempre foi fascinante, e se aventurar dentro do seu mundo, me revelou novas formas de pensar e ver perspectivas que eu jamais imaginariam que existiam. Eu sou uma pessoa muita curiosa, e gosto de entender os processos que permeam a criação de uma ideia. 
-          Por buscar compreender como as coisas funcionam, acabo me aventurando e me desafiando em busca dessas respostas e isso me da ensumo pra estar sempre evoluindo.
+          A web sempre foi fascinante, e se aventurar dentro do seu mundo, me revelou novas formas de pensar e ver perspectivas que eu jamais imaginei que existiam. Eu sou uma pessoa muita curiosa, e gosto de entender os processos que permeam a criação de uma ideia. 
+          Por buscar compreender como as coisas funcionam, acabo me aventurando e me desafiando em busca dessas respostas e isso me da insumo pra estar sempre evoluindo.
           Gosto de aprender coisas novas e compartilhar aquilo que aprendo com as pessoas, acredito que essa é uma forma de fixar os conhecimentos adquiridos, e tornar essa troca de informação rica para ambos, e isso me levou a criação desse blog.
         </p>
 
