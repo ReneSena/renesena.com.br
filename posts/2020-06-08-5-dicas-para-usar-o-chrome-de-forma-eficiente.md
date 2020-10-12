@@ -1,13 +1,13 @@
 ---
-date: 2020-06-08 14:00:00
-title: 5 dicas para usar o chrome de forma eficiente
-description: Você já desvendou tudo que o chrome tem a te oferecer?
+title: 5 Curiosidades sobre o Chrome DevTools
+description: Nesse post, mostro algumas funcionalidades bem interessantes que o
+  chrome nos entrega e que pode ser útil no seu dia a dia.
+date: 2020-10-12 06:51:06
+image: assets/img/background_chrome-min.jpg
 category: CSS
 background: "#7AAB13"
-image: "/assets/img/css.jpg"
 ---
-
-# Lorem ipsum
+# 1 - Screenshot
 
 Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, [adipiscing](http://google.com) eu pulvinar vel, sodales vitae dui. :thumbsup: :smile: :sparkler:
 
@@ -31,7 +31,7 @@ console.log(meuBlogLindo)
 Pellentesque `sed` sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
 
 > Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus. Ut vel arcu ac tortor adipiscing hendrerit vel sed massa. Fusce sem libero, lacinia vulputate interdum non, porttitor non quam. Aliquam sed felis ligula. Duis non nulla magna.
-Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor, erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum.
+> Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor, erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum.
 
 ### Cras semper consectetur elementum
 
@@ -45,11 +45,11 @@ Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus ege
 
 Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
 
-- Lorem
-- Ipsum
-- Dolor
-- Sit
-- amet
+* Lorem
+* Ipsum
+* Dolor
+* Sit
+* amet
 
 #### Sed enim mi
 
