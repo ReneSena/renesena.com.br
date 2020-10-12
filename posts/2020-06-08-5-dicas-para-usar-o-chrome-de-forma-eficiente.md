@@ -1,15 +1,21 @@
 ---
 title: 5 Curiosidades sobre o Chrome DevTools
 description: Nesse post, mostro algumas funcionalidades bem interessantes que o
-  chrome nos entrega e que pode ser útil no seu dia a dia.
+  chrome nos entrega e que pode ser útil no dia a dia.
 date: 2020-10-12 06:51:06
 image: assets/img/background_chrome-min.jpg
 category: CSS
 background: "#7AAB13"
 ---
-# 1 - Screenshot
+Hey Guys! Tudo jóia com você?!!
 
-Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, [adipiscing](http://google.com) eu pulvinar vel, sodales vitae dui. :thumbsup: :smile: :sparkler:
+Bom, sabemos que os navegadores fazem parte da nossa rotina diariamente, e conhecer as funcionalidades que eles nos disponibilizam, nos ajudam a ter uma melhor experiência ao usá-lo. Pensando nisso, hoje trago algumas curiosidades sobre o **Google Chrome**. 
+
+
+
+## 1 - Screenshot
+
+sdsadsadsa
 
 ```css
 .classe {
