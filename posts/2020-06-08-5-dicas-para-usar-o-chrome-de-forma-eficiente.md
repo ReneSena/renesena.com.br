@@ -1,56 +1,50 @@
 ---
-date: 2020-06-08 14:00:00
-title: 5 dicas para usar o chrome de forma eficiente
-description: Você já desvendou tudo que o chrome tem a te oferecer?
-category: CSS
-background: "#7AAB13"
-image: "/assets/img/css.jpg"
+title: Uma alternativa para selecionar elementos do DOM com JavaScript
+description: Nesse post, mostro como usar a função bind para selecionar
+  elementos de forma simples no Javascript.
+date: 2020-10-13 11:08:40
+image: assets/img/background_js.jpeg
+category: Javascript, HTML
+background: "#888"
 ---
+Hey Guys! Tudo jóia com você?!!
 
-# Lorem ipsum
+Hoje venho trazer uma dica, sobre como selecionar elementos do DOM de uma forma mais feliz. :)
 
-Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, [adipiscing](http://google.com) eu pulvinar vel, sodales vitae dui. :thumbsup: :smile: :sparkler:
+Você provavelmente já deve estar familiarizado com essa sintaxe que vou mostrar logo a seguir. Mas afinal, o que vamos abordar?
 
-```css
-.classe {
-    color: #000;
-    font-size: 14px;
-}
-```
+Bom, vamos falar sobre a função `querySelector` do JavaScript, sabemos que essa função é versátil e nos permite selecionar qualquer elemento do DOM independente do seletor. Por exemplo, vamos supor que queremos selecionar um classe do nosso HTML, ficaria do seguinte modo:
 
 ```javascript
-const meuBlogLindo = `Ele é demais, já estou amando`;
-
-console.log(meuBlogLindo)
+let minhaVariavel = document.querySelector('.classe');
 ```
 
-![Descricao da imagem](/assets/img/desert.jpg)
+A a sintaxe acima, é a mais comum e mais usada por nós desenvolvedores. Vamos imaginar que iremos declarar mais de uma variável em nosso projeto, o mesmo ficaria assim:
 
-## Fusce a metus eu
+```javascript
+let minhaVariavel1 = document.querySelector('.classe1');
+let minhaVariavel2 = document.querySelector('.classe2');
+let minhaVariavel3 = document.querySelector('.classe3');
+let minhaVariavel4 = document.querySelector('.classe4');
+```
 
-Pellentesque `sed` sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
+Perceba que a função document.querySelector aparece em todas elas, porém esse é um processo um tanto trabalhoso, e que acaba tornando nosso código um tanto repetitivo. Pensando nisso, que tal simplificarmos essa declaração afim de diminuir essas repetições, será que existe um alternativa para esse caso?
 
-> Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus. Ut vel arcu ac tortor adipiscing hendrerit vel sed massa. Fusce sem libero, lacinia vulputate interdum non, porttitor non quam. Aliquam sed felis ligula. Duis non nulla magna.
-Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor, erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum.
+E a resposta é sim, nesse caso poderíamos atribuir a função document.querySelector a uma variável, fazendo associação o DOM. Exemplo:
 
-### Cras semper consectetur elementum
+```javascript
+let $ = document.querySelector.bind(document);
+```
 
-![Segunda imagem](/assets/img/lake.jpg)
+Sim, isso é possível! Com a função `bind`, conseguimos manter a associação com o objeto document, assim não perdendo a referência da árvore de elementos.
 
-Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
+Se por acaso o `bind` não for chamado na declaração, a função querySelector perder a referência do DOM e o mesmo não conseguirá ser executado. Com essa nova atribuição nossa seleção de elementos fica da seguinte forma:
 
-Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, bibendum eu pulvinar vel, sodales vitae dui. Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
+```javascript
+let variavel1 = $('.classe1');
+let Variavel2 = $('#classe2');
+```
 
-#### Proin suscipit luctus
+Criamos basicamente um micro Jquery, essa sintaxe se a assemelha a uma das bibliotecas mais usadas pelo mundo a fora e que agora, pode ser aplicada com JavaScript puro, é bem útil para quando você deseja evitar escrever a função querySelector muitas vezes, simplificando de forma ágil sua declaração.
 
-Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
-
-- Lorem
-- Ipsum
-- Dolor
-- Sit
-- amet
-
-#### Sed enim mi
-
-Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, bibendum eu pulvinar vel, sodales vitae dui. Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.
+Espero que vocês tenham gostado dessa dica, qualquer dúvida, sugestão, elogio e crítica, deixem nos comentários, até a próxima.
