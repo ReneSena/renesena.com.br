@@ -35,7 +35,7 @@ const MenuBar = () => {
                     title="Sobre"
                 >
                     <BookOpen className="icon" />
-                    <span>Sobre</span>
+                    <span>Sobre mim</span>
                 </S.MenuBarLink>
                 <S.MenuBarLink
                     activeClassName="active"
