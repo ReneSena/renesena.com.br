@@ -19,7 +19,7 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
       - {label: "Image", name: "image", widget: "image"}
-      - {label: "Category", name: "category", widget: "select", options: ["MISC", "CSS", "Javascript"]}
+      - {label: "Category", name: "category", widget: "select", options: ["MISC", "CSS", "Javascript, HTML"]}
       - {
         label: "Background", name: "background", widget: "select",
         options: [
