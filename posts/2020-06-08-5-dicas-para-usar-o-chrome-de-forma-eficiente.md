@@ -1,28 +1,50 @@
 ---
-title: 5 Curiosidades sobre o Chrome DevTools
-description: Nesse post, mostro algumas funcionalidades bem interessantes que o
-  chrome nos entrega e que pode ser útil no dia a dia.
-date: 2020-10-12 06:51:06
-image: assets/img/background_chrome-min.jpg
-category: MISC
-background: "#7AAB13"
+title: Uma alternativa para selecionar elementos do DOM com JavaScript
+description: Nesse post, mostro como usar a função bind para selecionar
+  elementos de forma simples no Javascript.
+date: 2020-10-13 11:08:40
+image: assets/img/background_js.jpeg
+category: Javascript, HTML
+background: "#888"
 ---
 Hey Guys! Tudo jóia com você?!!
 
-Bom, sabemos que os navegadores fazem parte da nossa rotina diariamente, e conhecer as funcionalidades que eles nos disponibilizam, nos ajudam a ter uma melhor experiência ao usá-lo. Pensando nisso, hoje trago algumas curiosidades sobre o **Google Chrome**. 
+Hoje venho trazer uma dica, sobre como selecionar elementos do DOM de uma forma mais feliz. :)
 
-## 1 - Screenshot
+Você provavelmente já deve estar familiarizado com essa sintaxe que vou mostrar logo a seguir. Mas afinal, o que vamos abordar?
 
-Essa é uma atividade bem simples, e que fazemos com muita frequência no dia a dia, principalmente quando queremos compartilhar referências que encontramos na web com pessoas do time, amigos e ou até mesmo para realizar apresentações. O chrome faz isso de forma nativa, de um modo simples e objetivo, basta você pressionar a tecla  `F12`  do seu teclado, irá abrir o inspec do navegador, com ele aberto, pressione `CTRL+SHIFT+M,` a sua tela mudará a forma de exibição, após esse processo, vá até ao ... que estão localizados do seu lado direito, clique e aparecerá as opções Capture Screenshoot e Capture full size Screenshoot, após selecionar uma das opções o chrome realizará a captura e fará o download logo em seguida, é uma maneira rápida e prática caso não queira recorrer a um plugin que faça isso.
+Bom, vamos falar sobre a função `querySelector` do JavaScript, sabemos que essa função é versátil e nos permite selecionar qualquer elemento do DOM independente do seletor. Por exemplo, vamos supor que queremos selecionar um classe do nosso HTML, ficaria do seguinte modo:
 
-## 2 - Esconder elementos
+```javascript
+let minhaVariavel = document.querySelector('.classe');
+```
 
-No dia a dia, as vezes precisamos fazer alguns testes rápidos em relação a layout que estamos desenvolvendo, existe uma forma de você esconder os elementos da interface, sem precisar excluir o elemento do devtools. Basta pressionar o a tecla `F12,` em seguida usar o selecionar o
+A a sintaxe acima, é a mais comum e mais usada por nós desenvolvedores. Vamos imaginar que iremos declarar mais de uma variável em nosso projeto, o mesmo ficaria assim:
 
-![]()
+```javascript
+let minhaVariavel1 = document.querySelector('.classe1');
+let minhaVariavel2 = document.querySelector('.classe2');
+let minhaVariavel3 = document.querySelector('.classe3');
+let minhaVariavel4 = document.querySelector('.classe4');
+```
 
-## 3 - Editor de Scripts
+Perceba que a função document.querySelector aparece em todas elas, porém esse é um processo um tanto trabalhoso, e que acaba tornando nosso código um tanto repetitivo. Pensando nisso, que tal simplificarmos essa declaração afim de diminuir essas repetições, será que existe um alternativa para esse caso?
 
-## 4 - Simular velocidade da internet
+E a resposta é sim, nesse caso poderíamos atribuir a função document.querySelector a uma variável, fazendo associação o DOM. Exemplo:
 
-## 5 - Inspecionar animações
+```javascript
+let $ = document.querySelector.bind(document);
+```
+
+Sim, isso é possível! Com a função `bind`, conseguimos manter a associação com o objeto document, assim não perdendo a referência da árvore de elementos.
+
+Se por acaso o `bind` não for chamado na declaração, a função querySelector perder a referência do DOM e o mesmo não conseguirá ser executado. Com essa nova atribuição nossa seleção de elementos fica da seguinte forma:
+
+```javascript
+let variavel1 = $('.classe1');
+let Variavel2 = $('#classe2');
+```
+
+Criamos basicamente um micro Jquery, essa sintaxe se a assemelha a uma das bibliotecas mais usadas pelo mundo a fora e que agora, pode ser aplicada com JavaScript puro, é bem útil para quando você deseja evitar escrever a função querySelector muitas vezes, simplificando de forma ágil sua declaração.
+
+Espero que vocês tenham gostado dessa dica, qualquer dúvida, sugestão, elogio e crítica, deixem nos comentários, até a próxima.
