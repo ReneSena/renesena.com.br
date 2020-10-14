@@ -27,10 +27,10 @@ Nesse primeiro exemplo, vamos usar as imagens como estilo do nosso `input`,  a s
 </div>
 ```
 
-Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, onde tem a função de agrupar os elementos. Vale lembrar que o input e o label, devem estar sempre conectados com seus respectivos atributos `for e id`, pois, é essa ligação que vai fazer com que seja possível acionar o campo quando ele estiver escondido. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos atacar vai ser a `field-checkbox`.
+Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, onde tem a função de agrupar os elementos. Vale lembrar que o input e o label, devem estar sempre conectados com seus respectivos atributos `for e id`, pois, é essa ligação que vai fazer com que seja possível acionar o campo quando ele estiver escondido. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos atacar vai ser a `field-checkbox1`.
 
 ```css
-.field-checkbox {
+.field-checkbox1 {
     position: relative;
 }
 ```
@@ -49,16 +49,16 @@ Adicionamos `position relative` no nosso container, para conseguirmos posicionar
 Você verá, que agora temos só o `label` visível, podemos então, adicionar a nossa tão esperada imagem que fará o papel do input checado e não checado,  ficará da seguinte forma: 
 
 ```css
-.field-checkbox .field:not(:checked) + .description::before {
+.field-checkbox1 .field:not(:checked) + .description::before {
     content: url(/images/checkbox_off.svg);
 }
 
-.field-checkbox .field:checked + .description::before {
+.field-checkbox1 .field:checked + .description::before {
     content: url(/images/checkbox_on.svg);
 }
 ```
 
-A sacada está aqui, utilizamos a *pseudo-classe* `:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+,` onde através do `pseudo-elemento ::before`, usamos o valor `url` da propriedade `content` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
+A sacada está aqui, utilizamos a *pseudo-classe* ```:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+,``` onde através do `pseudo-elemento ::before`, usamos o valor `url` da propriedade `content` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
 
 Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Fica da seguinte forma: 
 
@@ -80,7 +80,7 @@ Resultado final:
 
 ## Utilizando símbolos
 
-Para essa abordagem utilizamos os mesmo conceitos da anterior, a diferença é que vamos ter que construir a estrutura do checkbox, o que não acontece no caso da imagem. Bom, como já temos a estrutura pronta, vou apenas copiar o que já criamos:
+Para essa abordagem utilizamos os mesmo conceitos da anterior, a diferença é que vamos ter que construir a estrutura do checkbox, ou seja, a parte visual, o que não acontece no caso da imagem. Bom, como já temos a estrutura pronta, vou apenas copiar o que já criamos:
 
 `HTML`
 
@@ -113,7 +113,7 @@ Para essa abordagem utilizamos os mesmo conceitos da anterior, a diferença é q
 } 
 ```
 
-Agora já temos o que precisamos, vamos estilar o checkbox quando o mesmo não está ativo, usando as mesmas regras anteriores:
+Agora já temos o que precisamos, vamos estilar o checkbox quando o mesmo não está ativo, usando as mesmas regras css anteriores, porém criando nosso próprio estilo.
 
 ```css
 .field-checkbox2 .field:not(:checked) + .description::before {
