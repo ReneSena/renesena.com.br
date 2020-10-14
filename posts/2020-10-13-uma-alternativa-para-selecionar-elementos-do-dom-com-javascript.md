@@ -7,7 +7,7 @@ image: assets/img/background_js.jpeg
 category: JS
 background: "#888"
 ---
-Hey Guys! Tudo jóia com você?!!
+Hey Guys! Tudo jóia com vocês?!!
 
 Hoje venho trazer uma dica, sobre como selecionar elementos do DOM de uma forma mais feliz. :)
 
