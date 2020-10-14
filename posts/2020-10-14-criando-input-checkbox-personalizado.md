@@ -27,7 +27,15 @@ Nesse primeiro exemplo, vamos usar as imagens como estilo do nosso `input`,  a s
 </div>
 ```
 
-Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, que tem a função de agrupar os elementos. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos utilizar vai ser a `field-checkbox1`
+Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, que tem a função de agrupar os elementos. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos atacar vai ser a `field-checkbox1`.
+
+```css
+.field-checkbox1 {
+    position: relative;
+}
+```
+
+Adicionamos `position relative` no nosso container, para conseguirmos posicionar o `input` original por baixo da nossa imagem que vamos adicionar em breve. Agora iremos posicionar o nosso input original, ao lado do nosso label e adicionaremos uma opacidade nele, para que o elemento não fique visível. 
 
 ```css
 .field-checkbox1 .field {
