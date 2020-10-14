@@ -150,3 +150,19 @@ E para finalizar, quando o checkbox estiver ativo, vamos acrescentar um símbolo
 Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as propriedades de alinhamento, background e color para conseguir chegar nesse resultado: 
 
 ![Resultado da segunda implementação do checkbox, personalizado.](assets/img/captura-de-tela-de-2020-10-14-00-31-04.png)
+
+
+
+## Conclusão
+
+As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e menos incompatibilidade de layout. Essas são uma das formas de personalizar um checkbox, temos a possibilidade também de por no lugar das imagens, fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
+
+Bom pessoal, espero que tenham gostado, se vocês tiverem duvidas, sugestões, elogios ou críticas deixem nos comentários, e se por um acaso vocês tenham outras formas de fazer esses hack's, conta pra gente, não deixem de compartilhar com a comunidade. Até a próxima. :)  
+
+
+
+## Referências
+
+* Pseudo-classes: <https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes>
+* Pseudo-elementos: <https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-elementos>
+* Seletores: <https://developer.mozilla.org/pt-BR/docs/Web/CSS/Seletores_CSS>
