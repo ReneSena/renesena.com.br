@@ -45,3 +45,15 @@ Adicionamos `position relative` no nosso container, para conseguirmos posicionar
     opacity: 0;
 }
 ```
+
+Você verá, que agora temos só o `label` visível, podemos então, adicionar a nossa tão esperada imagem que fará o papel do input checado e não checado, então fica da seguinte forma: 
+
+```css
+.field-checkbox1 .field:not(:checked) + .description::before {
+    content: url(/images/checkbox_off.svg);
+}
+
+.field-checkbox1 .field:checked + .description::before {
+    content: url(/images/checkbox_on.svg);
+}
+```
