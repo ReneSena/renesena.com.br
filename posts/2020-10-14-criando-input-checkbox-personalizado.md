@@ -27,7 +27,7 @@ Nesse primeiro exemplo, vamos usar as imagens como estilo do nosso `input`,  a s
 </div>
 ```
 
-Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, que tem a função de agrupar os elementos. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos atacar vai ser a `field-checkbox1`.
+Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, que tem a função de agrupar os elementos. Vale lembrar que o input e o label, devem estar conectados com seus respectivos atributos `for e id`, pois, é essa ligação que vai fazer com que seja possível acionar o campo quando ele estiver escondido. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos atacar vai ser a `field-checkbox1`.
 
 ```css
 .field-checkbox1 {
@@ -155,7 +155,7 @@ Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as pro
 
 ## Conclusão
 
-As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e menos incompatibilidade de layout. Essas são uma das formas de personalizar um checkbox, temos a possibilidade também de por no lugar das imagens, fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
+As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e menos incompatibilidade de layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são uma das formas de personalizar um checkbox, temos a possibilidade também de por no lugar das imagens, fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
 
 Bom pessoal, espero que tenham gostado, se vocês tiverem duvidas, sugestões, elogios ou críticas deixem nos comentários, e se por um acaso vocês tenham outras formas de fazer esses hack's, conta pra gente, não deixem de compartilhar com a comunidade. Até a próxima. :)  
 
