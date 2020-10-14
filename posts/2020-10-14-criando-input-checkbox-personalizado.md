@@ -76,7 +76,7 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 
 Resultado final: 
 
-![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/checkbox_com_imagem.png)
+![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/desert.jpg)
 
 ## Utilizando símbolos
 
