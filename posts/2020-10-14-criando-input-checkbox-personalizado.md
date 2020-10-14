@@ -9,3 +9,31 @@ category: CSS
 background: "#F22"
 ---
 Hey Guys! Tudo jóia com vocês?!!
+
+Vou abordar pra vocês alguns hackzinhos que podemos usar pra deixar o input de checkbox mais apresentável e agradável para os seus projetos. :)
+
+## Introdução
+
+É muito comum no nosso dia a dia, termos que modificar elementos nativos do navegador para atender algum layout do projeto em que estamos trabalhando, porém, nem sempre é possível conseguir realizar essas alterações, pois o próprio browser, não nos da essa permissão de customização de certos elementos do HTML. Sabemos que por padrão, o input de checkbox não aceita customização radicais de estilo, além do mais, cada navegador implementa os elementos de uma forma diferente, o famoso `default do browser`.
+
+## Utilizando imagens
+
+Nesse primeiro exemplo, vamos usar as imagens como estilo do nosso `input`,  a seguir criaremos a seguinte estrutura HTML:
+
+```html
+<div class="field-checkbox1">
+    <input type="checkbox" class="field" id="exemple1" />
+    <label for="exemple1" class="description">Me selecione 1</label>
+</div>
+```
+
+Nessa estrutura, vemos que tanto o `input e o label`, estão envolvidos por uma `div`, que tem a função de agrupar os elementos. Com a estrutura pronta, podemos partir para o estilo,  e a primeira classe que vamos utilizar vai ser a `field-checkbox1`
+
+```css
+.field-checkbox1 .field {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    opacity: 0;
+}
+```
