@@ -6,7 +6,7 @@ backend:
 
 publish_mode: editorial_workflow
 media_folder: "static/assets/img"
-public_folder: "assets/img"
+public_folder: "/assets/img"
 
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
@@ -19,13 +19,14 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm:ss"}
       - {label: "Image", name: "image", widget: "image"}
-      - {label: "Category", name: "category", widget: "select", options: ["MISC", "CSS", "Javascript", "HTML"]}
+      - {label: "Category", name: "category", widget: "select", options: ["MISC", "CSS", "JS", "HTML"]}
       - {
         label: "Background", name: "background", widget: "select",
         options: [
-          { label: "MISC", value: "#F57"},
-          { label: "CSS", value: "#F22"},
-          { label: "Javascript", value: "#888"},
+          { label: "Purple", value: "#8c7ae6"},
+          { label: "Blue", value: "#0097e6"},
+          { label: "Yellow", value: "#fbc531"},
+          { label: "Grey", value: "#353b48"},
         ] 
       }
       - {label: "Body", name: "body", widget: "markdown"}
