@@ -5,17 +5,18 @@ export const PostHeader = styled.header`
     color: var(--texts);
     margin: auto;
     max-width: 70rem;
-
-    ${media.greaterThan("medium")`
-        padding: 2rem 5rem;
+    padding: 2rem 5rem;
+    
+    ${media.lessThan("large")`
+        padding: 0;
     `}
 `;
 
 export const PostTitle = styled.h1`
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     padding: 0 1.4rem;
-    margin: 1rem auto;
+    margin: 2rem auto;
 
     ${media.lessThan("large")`
         font-size: 1.5rem;
@@ -26,6 +27,7 @@ export const PostDescription = styled.h2`
     font-size: 1.25rem;
     font-weight: 400;
     padding: 0 1.4rem;
+    margin-bottom: 1rem;
 
     ${media.lessThan("large")`
         width: 100%;
