@@ -60,13 +60,12 @@ Você verá, que agora temos só o `label` visível, podemos então, adicionar a
 
 A sacada está aqui, utilizamos a *[pseudo-classe](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-elementos)* `:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+`*[`pseudo-elemento`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes)*` ::before.` Através do content, usamos o valor `url` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
 
-Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label sempre ao centro, e dar um espaçamento entre eles. Ficaria da seguinte forma: 
+Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Ficaria da seguinte forma: 
 
 ```css
 .field-checkbox1 .field:not(:checked) + .description,
 .field-checkbox1 .field:checked + .description {
    display: flex;
-   align-items: center;
 }
 
 .field-checkbox1 .field:not(:checked) + .description::before,
@@ -74,3 +73,5 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
     margin-right: 10px;
 }
 ```
+
+Resultado final:
