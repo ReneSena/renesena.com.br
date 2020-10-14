@@ -77,3 +77,76 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 Resultado final: 
 
 ![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/captura-de-tela-de-2020-10-13-23-57-57.png)
+
+
+
+## Utilizando símbolos
+
+Para essa abordagem utilizamos os mesmo conceitos da anterior, a diferença é que vamos ter que construir a estrutura do checkbox, o que não acontece no caso da imagem. Bom, como já temos a estrutura pronta, vou apenas copiar o que já criamos:
+
+`HTML`
+
+```html
+<div class="field-checkbox2">
+    <input type="checkbox" class="field" id="exemple2" />
+    <label for="exemple2" class="description">Me selecione 2</label>
+</div>
+```
+
+ `CSS`
+
+```css
+.field-checkbox2 .field {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    opacity: 0;
+}
+
+.field-checkbox2 .field:not(:checked) + .description,
+.field-checkbox2 .field:checked + .description {
+   display: flex;
+   align-items: center;
+}
+
+.field-checkbox2 .field:not(:checked) + .description::before,
+.field-checkbox2 .field:checked + .description::before {
+    margin-right: 10px;
+} 
+```
+
+Agora já temos o que precisamos, vamos estilar o checkbox quando o mesmo não está ativo, usando as mesmas regras anteriores:
+
+```css
+.field-checkbox2 .field:not(:checked) + .description::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000;
+}
+```
+
+Note que deixei o `content` vazio, justamente para eu conseguir criar o meu próprio elemento, tendo isso em mente vamos dar um `display block`, para que de fato ele seja um bloco, inserimos largura e altura para dimensionarmos o tamanho que queremos do checkbox, e por fim, adicionamos uma borda pra dar a impressão de não selecionado. O resultado fica assim: 
+
+![Resultado da segunda implementação do checkbox, personalizado.](assets/img/captura-de-tela-de-2020-10-14-00-30-34.png)
+
+E para finalizar, quando o checkbox estiver ativo, vamos acrescentar um símbolo de check para o nosso `content`, alinhando ele ao centro e adicionando um background para representar o input checado. Fica da seguinte forma:
+
+```css
+.field-checkbox2 .field:checked + .description::before {
+    content: "✔";
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000;
+    color: #FFF;  
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+```
+
+Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as propriedades de alinhamento, background e color para conseguir chegar nesse resultado: 
+
+![Resultado da segunda implementação do checkbox, personalizado.](assets/img/captura-de-tela-de-2020-10-14-00-31-04.png)
