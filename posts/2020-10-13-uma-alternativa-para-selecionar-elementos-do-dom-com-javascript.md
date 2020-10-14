@@ -4,12 +4,14 @@ description: Nesse post, mostro como usar a função bind para
   selecionar   elementos de forma simples no Javascript.
 date: 2020-10-13 12:00:14
 image: assets/img/background_js.jpeg
-category: Javascript
+category: JS
 background: "#888"
 ---
 Hey Guys! Tudo jóia com você?!!
 
 Hoje venho trazer uma dica, sobre como selecionar elementos do DOM de uma forma mais feliz. :)
+
+## Introdução
 
 Você provavelmente já deve estar familiarizado com essa sintaxe que vou mostrar logo a seguir. Mas afinal, o que vamos abordar?
 
@@ -30,6 +32,8 @@ let minhaVariavel4 = document.querySelector('.classe4');
 
 Perceba que a função document.querySelector aparece em todas elas, porém esse é um processo um tanto trabalhoso, e que acaba tornando nosso código um tanto repetitivo. Pensando nisso, que tal simplificarmos essa declaração afim de diminuir essas repetições, será que existe um alternativa para esse caso?
 
+## A Função Bind
+
 E a resposta é sim, nesse caso poderíamos atribuir a função document.querySelector a uma variável, fazendo associação o DOM. Exemplo:
 
 ```javascript
@@ -45,6 +49,8 @@ let variavel1 = $('.classe1');
 let Variavel2 = $('#classe2');
 ```
 
-Criamos basicamente um micro Jquery, essa sintaxe se a assemelha a uma das bibliotecas mais usadas pelo mundo a fora e que agora, pode ser aplicada com JavaScript puro, é bem útil para quando você deseja evitar escrever a função querySelector muitas vezes, simplificando de forma ágil sua declaração.
+## Conclusão
+
+Criamos basicamente um micro Jquery, essa sintaxe se a assemelha a uma das bibliotecas mais famosas pelo mundo a fora e que agora, pode ser aplicada com JavaScript puro, é bem útil para quando você deseja evitar escrever a função querySelector muitas vezes, simplificando de forma ágil sua declaração. A função bind, ela tem muitas outras utilidades, recomendo a leitura da documentação que explica mais detalhadamente seu uso [](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)<https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind>.
 
 Espero que vocês tenham gostado dessa dica, qualquer dúvida, sugestão, elogio e crítica, deixem nos comentários, até a próxima.
