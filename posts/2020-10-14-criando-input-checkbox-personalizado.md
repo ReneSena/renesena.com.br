@@ -58,7 +58,7 @@ Você verá, que agora temos só o `label` visível, podemos então, adicionar a
 }
 ```
 
-A sacada está aqui, utilizamos a *[pseudo-classe](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-elementos)* `:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+`*[`pseudo-elemento`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes)*` ::before.` Através do content, usamos o valor `url` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
+A sacada está aqui, utilizamos a *pseudo-classe* `:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+``pseudo-elemento` Através do content, usamos o valor `url` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
 
 Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Ficaria da seguinte forma: 
 
@@ -76,4 +76,4 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 
 Resultado final: 
 
-![Resultado final de como ficou implementado o input de checkbox personalizado](assets/img/captura-de-tela-de-2020-10-13-23-57-57.png)
+![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/captura-de-tela-de-2020-10-13-23-57-57.png)
