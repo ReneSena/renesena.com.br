@@ -3,7 +3,7 @@ title: "Criando input checkbox personalizado "
 description: É muito comum termos que modificar estilos dos elementos nativos do
   navegador no nosso dia a dia, sendo assim, trago algumas dicas de hack's de
   como vocês podem estar fazendo essa personalização.
-date: 2020-10-13 09:34:28
+date: 2020-10-14 10:43:41
 image: assets/img/css.jpg
 category: CSS
 background: "#F22"
@@ -76,7 +76,7 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 
 Resultado final: 
 
-![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/checkbox_com_imagem.png)
+![Resultado final de como ficou implementado o input de checkbox personalizado.](/assets/img/checkbox_com_imagem.png)
 
 ## Utilizando símbolos
 
@@ -127,7 +127,7 @@ Agora já temos o que precisamos, vamos estilar o checkbox quando o mesmo não e
 
 Note que deixei o `content` vazio, justamente para eu conseguir criar o meu próprio elemento, tendo isso em mente vamos dar um `display block`, para que de fato ele seja um bloco, inserimos largura e altura para dimensionarmos o tamanho que queremos do checkbox, e por fim, adicionamos uma borda pra dar a impressão de não selecionado. O resultado fica assim: 
 
-![Resultado da segunda implementação do checkbox, personalizado.](assets/img/checkbox_off.png)
+![Resultado da segunda implementação do checkbox, personalizado.](/assets/img/checkbox_off.png)
 
 E para finalizar, quando o checkbox estiver ativo, vamos acrescentar um símbolo de check para o nosso `content`, alinhando ele ao centro e adicionando um background para representar o input checado. Fica da seguinte forma:
 
@@ -147,7 +147,7 @@ E para finalizar, quando o checkbox estiver ativo, vamos acrescentar um símbolo
 
 Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as propriedades de alinhamento, background e color para conseguir chegar nesse resultado: 
 
-![Resultado da segunda implementação do checkbox, personalizado.](assets/img/checkbox_on.png)
+![Resultado da segunda implementação do checkbox, personalizado.](/assets/img/checkbox_on.png)
 
 ## Conclusão
 
