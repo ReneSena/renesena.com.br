@@ -74,4 +74,6 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 }
 ```
 
-Resultado final:
+Resultado final: 
+
+![Resultado final de como ficou implementado o input de checkbox personalizado](assets/img/captura-de-tela-de-2020-10-13-23-57-57.png)
