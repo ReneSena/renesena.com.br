@@ -76,7 +76,7 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 
 Resultado final: 
 
-![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/desert.jpg)
+![Resultado final de como ficou implementado o input de checkbox personalizado.](assets/img/checkbox_com_imagem.png)
 
 ## Utilizando símbolos
 
@@ -151,7 +151,7 @@ Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as pro
 
 ## Conclusão
 
-As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e menos incompatibilidade de layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são uma das formas de personalizar um checkbox, temos a possibilidade também de por no lugar das imagens, fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
+As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e padrão no layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são apenas, uma das formas de personalizar um checkbox, temos a possibilidade também, de no lugar de imagens, usar fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
 
 Bom pessoal, espero que tenham gostado, se vocês tiverem duvidas, sugestões, elogios ou críticas deixem nos comentários, e se por um acaso vocês tenham outras formas de fazer esses hack's, conta pra gente, não deixem de compartilhar com a comunidade. Até a próxima. :)  
 
