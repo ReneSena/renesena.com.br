@@ -5,7 +5,7 @@ description: Nesse post, mostro como usar a função bind para
 date: 2020-10-13 12:00:14
 image: assets/img/background_js.jpeg
 category: JS
-background: "#888"
+background: "#fbc531"
 ---
 Hey Guys! Tudo jóia com vocês?!!
 
