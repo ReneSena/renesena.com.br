@@ -6,7 +6,7 @@ description: É muito comum termos que modificar estilos dos elementos nativos d
 date: 2020-10-14 10:43:41
 image: assets/img/css.jpg
 category: CSS
-background: "#F22"
+background: "#0097e6"
 ---
 Hey Guys! Tudo jóia com vocês?!!
 
@@ -153,7 +153,9 @@ Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as pro
 
 As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e padrão no layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são apenas, uma das formas de personalizar um checkbox, temos a possibilidade também, de no lugar de imagens, usar fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
 
-Bom pessoal, espero que tenham gostado, se vocês tiverem duvidas, sugestões, elogios ou críticas deixem nos comentários, e se por um acaso vocês tenham outras formas de fazer esses hack's, conta pra gente, não deixem de compartilhar com a comunidade. Até a próxima. :)  
+Uma observação a se considerar é que esse mesmo conceito, vale pra o `input radio,` e pra outras situações que você considere válida que não são necessariamente inputs, por exemplo as famosas `Tabs`, usando esse mesmo conceito da pra conseguir um resultado bacana sem usar javascript.
+
+Bom pessoal, espero que tenham gostado dessas dicas, se vocês tiverem duvidas, sugestões, elogios ou críticas deixem nos comentários, e se por um acaso vocês tenham outras formas de fazer esses hack's, conta pra gente, não deixem de compartilhar com a comunidade. Até a próxima. :)  
 
 ## Referências
 
