@@ -5,7 +5,7 @@ export const PostHeader = styled.header`
     color: var(--texts);
     margin: auto;
     max-width: 70rem;
-    padding: 2rem 5rem;
+    padding: 2rem 2rem 0 5rem;
     
     ${media.lessThan("large")`
         padding: 0;
@@ -17,6 +17,7 @@ export const PostTitle = styled.h1`
     font-weight: 700;
     padding: 0 1.4rem;
     margin: 2rem auto;
+    line-height: 1.2;
 
     ${media.lessThan("large")`
         font-size: 1.5rem;
@@ -28,6 +29,7 @@ export const PostDescription = styled.h2`
     font-weight: 400;
     padding: 0 1.4rem;
     margin-bottom: 1rem;
+    line-height: 1.7;
 
     ${media.lessThan("large")`
         width: 100%;
@@ -194,7 +196,7 @@ export const MainContent = styled.section`
         }
     }
     .gatsby-highlight {
-        padding: 0 1.6rem 1.6rem;
+        padding: 0 1.6rem 1.6rem 1.6rem;
     }
     .instagram-media {
         margin: 1rem auto !important;
