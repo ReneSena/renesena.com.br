@@ -7,6 +7,8 @@ image: /assets/img/background_js.jpg
 category: JS
 background: "#8c7ae6"
 ---
+![Imagem representando a sigla da linguagem Javascript.](/assets/img/background_js.jpg)
+
 Hey Guys! Tudo jóia com vocês?!!
 
 Hoje venho trazer uma dica, sobre como selecionar elementos do DOM de uma forma mais feliz. :)
