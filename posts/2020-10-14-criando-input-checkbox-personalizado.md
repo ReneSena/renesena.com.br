@@ -4,7 +4,7 @@ description: É muito comum termos que modificar estilos dos elementos nativos d
   navegador no nosso dia a dia, sendo assim, trago algumas dicas de hack's de
   como vocês podem estar fazendo essa personalização.
 date: 2020-10-14 10:43:41
-image: assets/img/css.jpg
+image: /assets/img/css.jpg
 category: CSS
 background: "#0097e6"
 ---
