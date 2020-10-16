@@ -8,6 +8,8 @@ image: /assets/img/background_css.jpg
 category: CSS
 background: "#0097e6"
 ---
+![Imagem representando um computador com editor de texto aberto, exibindo a codificação do código css.](/assets/img/background_css.jpg)
+
 Hey Guys! Tudo jóia com vocês?!!
 
 Vou abordar pra vocês alguns hackzinhos que podemos usar pra deixar o input de checkbox mais apresentável e agradável para os seus projetos. :)
