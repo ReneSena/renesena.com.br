@@ -1,3 +1,6 @@
+# Objetivo
+A proposta dessa aplicação é consolidar meus conhecimentos e compartilhar aquilo vou aprendendo ao longo da minha trajetória com as pessoas da área, acredito que compartilhar aquilo que sabemos é uma ótima forma de aprender e ajudar outras pessoas que estão entrando na área.
+
 ## Tecnologias usadas no projeto
 
 - GatsbyJS
