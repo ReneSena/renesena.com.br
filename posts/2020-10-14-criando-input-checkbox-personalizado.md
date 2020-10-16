@@ -23,7 +23,7 @@ Nesse primeiro exemplo, vamos usar as imagens como estilo do nosso `input`,  a s
 ```html
 <div class="field-checkbox1">
     <input type="checkbox" class="field" id="exemple1" />
-    <label for="exemple1" class="description">Me selecione 1</label>
+    <label for="exemple1" class="description">Checkbox com imagem</label>
 </div>
 ```
 
@@ -50,17 +50,17 @@ Você verá, que agora temos só o `label` visível, podemos então, adicionar a
 
 ```css
 .field-checkbox1 .field:not(:checked) + .description::before {
-    content: url(/images/checkbox_off.svg);
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
 }
 
 .field-checkbox1 .field:checked + .description::before {
-    content: url(/images/checkbox_on.svg);
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
 }
 ```
 
-A sacada está aqui, utilizamos a *pseudo-classe* ```:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+,``` onde através do `pseudo-elemento ::before`, usamos o valor `url` da propriedade `content` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
+A sacada está aqui, utilizamos a *pseudo-classe* `:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por +,` onde através do `pseudo-elemento ::before`, usamos o valor `url` da propriedade `content` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
 
-Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Fica da seguinte forma: 
+Bom, estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Fica da seguinte forma: 
 
 ```css
 .field-checkbox1 .field:not(:checked) + .description,
@@ -148,6 +148,8 @@ E para finalizar, quando o checkbox estiver ativo, vamos acrescentar um símbolo
 Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as propriedades de alinhamento, background e color para conseguir chegar nesse resultado: 
 
 ![Resultado da segunda implementação do checkbox, personalizado.](/assets/img/checkbox_on.png)
+
+Link com o código completo e demonstrando o funcionamento: <https://codepen.io/ReneSena/pen/jOrqyOy>
 
 ## Conclusão
 
