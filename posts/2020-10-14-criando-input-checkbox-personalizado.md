@@ -4,7 +4,7 @@ description: É muito comum termos que modificar estilos dos elementos nativos d
   navegador no nosso dia a dia, sendo assim, trago algumas dicas de hack's de
   como vocês podem estar fazendo essa personalização.
 date: 2020-10-14 10:43:41
-image: assets/img/css.jpg
+image: /assets/img/background_css.jpg
 category: CSS
 background: "#0097e6"
 ---
@@ -23,7 +23,7 @@ Nesse primeiro exemplo, vamos usar as imagens como estilo do nosso `input`,  a s
 ```html
 <div class="field-checkbox1">
     <input type="checkbox" class="field" id="exemple1" />
-    <label for="exemple1" class="description">Me selecione 1</label>
+    <label for="exemple1" class="description">Checkbox com imagem</label>
 </div>
 ```
 
@@ -50,17 +50,17 @@ Você verá, que agora temos só o `label` visível, podemos então, adicionar a
 
 ```css
 .field-checkbox1 .field:not(:checked) + .description::before {
-    content: url(/images/checkbox_off.svg);
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
 }
 
 .field-checkbox1 .field:checked + .description::before {
-    content: url(/images/checkbox_on.svg);
+    content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
 }
 ```
 
-A sacada está aqui, utilizamos a *pseudo-classe* ```:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por ``+,``` onde através do `pseudo-elemento ::before`, usamos o valor `url` da propriedade `content` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
+A sacada está aqui, utilizamos a *pseudo-classe* `:not() para verificar quando o checkbox não está ativo, usando o seletor irmão representado por +,` onde através do `pseudo-elemento ::before`, usamos o valor `url` da propriedade `content` para atribuir o caminho da imagem que queremos adicionar, e todo esse processo também vale para o checkbox ativo, a diferença é que precisamos otimitir o `:not()` .
 
-Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Fica da seguinte forma: 
+Bom, estamos terminando esse primeiro exemplo, falta apenas dois ajustes, alinhar o checkbox e a label, e dar um espaçamento entre eles. Fica da seguinte forma: 
 
 ```css
 .field-checkbox1 .field:not(:checked) + .description,
@@ -76,7 +76,7 @@ Bom, estamos estamos terminando esse primeiro exemplo, falta apenas dois ajustes
 
 Resultado final: 
 
-![Resultado final de como ficou implementado o input de checkbox personalizado.](/assets/img/checkbox_com_imagem.png)
+![Resultado final de como ficou implementado o input de checkbox personalizado.](/assets/img/checkboxs.png)
 
 ## Utilizando símbolos
 
@@ -149,9 +149,11 @@ Eu mantive as mesma propriedades do checkbox não ativo, porém adicionei as pro
 
 ![Resultado da segunda implementação do checkbox, personalizado.](/assets/img/checkbox_on.png)
 
+Link com o código completo e demonstrando o funcionamento: <https://codepen.io/ReneSena/pen/jOrqyOy>
+
 ## Conclusão
 
-As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e padrão no layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são apenas, uma das formas de personalizar um checkbox, temos a possibilidade também, de no lugar de imagens, usar fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
+As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e padrão no layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são apenas, uma das formas de personalizar um checkbox, temos a possibilidade também, de no lugar de imagens, usar fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las. Use o que melhor se enquadrar no seu projeto. :)
 
 Uma observação a se considerar é que esse mesmo conceito, vale pra o `input radio,` e pra outras situações que você considere válida que não são necessariamente inputs, por exemplo as famosas `Tabs`, usando esse mesmo conceito da pra conseguir um resultado bacana sem usar javascript.
 
