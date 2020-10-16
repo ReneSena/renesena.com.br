@@ -3,9 +3,9 @@ title: Uma alternativa para selecionar elementos do DOM com JavaScript
 description: Nesse post, mostro como usar a função bind para
   selecionar   elementos de forma simples no Javascript.
 date: 2020-10-13 12:00:14
-image: assets/img/background_js.jpeg
+image: /assets/img/background_js.jpg
 category: JS
-background: "#fbc531"
+background: "#8c7ae6"
 ---
 Hey Guys! Tudo jóia com vocês?!!
 
@@ -53,4 +53,4 @@ let Variavel2 = $('#classe2');
 
 Criamos basicamente um micro Jquery, essa sintaxe se a assemelha a uma das bibliotecas mais famosas pelo mundo a fora e que agora, pode ser aplicada com JavaScript puro, é bem útil para quando você deseja evitar escrever a função querySelector muitas vezes, simplificando de forma ágil sua declaração. A função bind, ela tem muitas outras utilidades, recomendo a leitura da documentação que explica mais detalhadamente seu uso [](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)<https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind>.
 
-Espero que vocês tenham gostado dessa dica, qualquer dúvida, sugestão, elogio e crítica, deixem nos comentários, até a próxima.
+Espero que vocês tenham gostado dessa dica, qualquer dúvida, sugestão, elogio e crítica, deixem nos comentários, até a próxima. :)
