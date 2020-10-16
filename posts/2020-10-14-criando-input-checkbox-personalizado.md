@@ -4,7 +4,7 @@ description: É muito comum termos que modificar estilos dos elementos nativos d
   navegador no nosso dia a dia, sendo assim, trago algumas dicas de hack's de
   como vocês podem estar fazendo essa personalização.
 date: 2020-10-14 10:43:41
-image: /assets/img/css.jpg
+image: /assets/img/background_css.jpg
 category: CSS
 background: "#0097e6"
 ---
@@ -153,7 +153,7 @@ Link com o código completo e demonstrando o funcionamento: <https://codepen.io/
 
 ## Conclusão
 
-As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e padrão no layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são apenas, uma das formas de personalizar um checkbox, temos a possibilidade também, de no lugar de imagens, usar fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las.
+As duas abordagens funcionam muito bem, mas na minha opinião, aconselho o uso da primeira, justamente por ser mais simples e manter o padrão de estilo em todos os browsers que você for usar, assim possuindo mais flexibilidade e padrão no layout. Ambos, permitem que leitores de tela, identifiquem os campos, mesmo eles se mantendo escondidos, auxiliando na acessibilidade. Essas são apenas, uma das formas de personalizar um checkbox, temos a possibilidade também, de no lugar de imagens, usar fontes de ícones personalizadas de acordo com o seu projeto e inserir usando o mesmo contexto da imagem, porém você vai precisar  adicionar as propriedades da fonte, para conseguir usá-las. Use o que melhor se enquadrar no seu projeto. :)
 
 Uma observação a se considerar é que esse mesmo conceito, vale pra o `input radio,` e pra outras situações que você considere válida que não são necessariamente inputs, por exemplo as famosas `Tabs`, usando esse mesmo conceito da pra conseguir um resultado bacana sem usar javascript.
 
