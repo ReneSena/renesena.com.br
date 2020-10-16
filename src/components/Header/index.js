@@ -38,7 +38,7 @@ const Header = () => {
                 <MenuLinks />
             </S.NavigationWrapper>
             <S.Controls>
-                <S.ControlsItem>
+                {/* <S.ControlsItem>
                     <S.ControlsItemLink
                         activeClassName="active"
                         to="/search"
@@ -50,7 +50,7 @@ const Header = () => {
                     >
                         <Search className="icon" />
                     </S.ControlsItemLink>
-                </S.ControlsItem>
+                </S.ControlsItem> */}
                 <S.ControlsItem
                     title="Mudar o tema"
                     onClick={() => {
