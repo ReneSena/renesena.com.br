@@ -1,7 +1,7 @@
 ---
 title: "Terminal customizável com Hyper "
 description: Você conhece algum terminal que é possível modificar suas
-  configurações visuais de formas simples? Bem, nesse poste vou lhe apresentar o
+  configurações visuais de formas simples? Bom, nesse post vou lhe apresentar o
   Hyper, um terminal feito em Electron e que nos permite dar nosso toque
   pessoal.
 date: 2020-10-21 01:08:11
