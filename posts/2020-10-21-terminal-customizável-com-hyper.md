@@ -16,3 +16,5 @@ Hey, guys!! Tudo jóia com você?!
 Bom pessoal, nós que sempre que estamos codando, geralmente temos preferencias em relação a ambientes que utilizamos, seja IDE, ferramentas de organização, gerenciamento de tempo e afins. Com o terminal não é diferente, mas nem todos nós, inclusive eu (risos), não gostamos do visual padrão do terminal que vem no sistema operacional, e a boa noticia é que temos alternativas para mudar essa situação e deixar o terminal mais amigável e bonito com o [**Hyper**. ](https://hyper.is/)
 
 ## Introdução
+
+O Hyper é um terminal feito em [Electron](https://www.electronjs.org/) e que utiliza as principais linguagens da web (HTML, CSS e Javascript) na sua criação, seu intuito é permitir que os usuários adeptos da linha de comando tenham uma experiência agradável e que os ajudem a ter mais produtividade. Ele pode ser configurado de forma simples
