@@ -14,3 +14,5 @@ background: "#353b48"
 Hey, guys!! Tudo jóia com você?!
 
 Bom pessoal, nós que sempre que estamos codando, geralmente temos preferencias em relação a ambientes que utilizamos, seja IDE, ferramentas de organização, gerenciamento de tempo e afins. Com o terminal não é diferente, mas nem todos nós, inclusive eu (risos), não gostamos do visual padrão do terminal que vem no sistema operacional, e a boa noticia é que temos alternativas para mudar essa situação e deixar o terminal mais amigável e bonito com o [**Hyper**. ](https://hyper.is/)
+
+## Introdução
