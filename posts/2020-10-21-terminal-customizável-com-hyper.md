@@ -1,5 +1,5 @@
 ---
-title: "Terminal customizável com Hyper "
+title: Terminal customizável com Hyper + Tema Drácula
 description: Você conhece algum terminal que é possível modificar suas
   configurações visuais de formas simples? Bom, nesse post vou lhe apresentar o
   Hyper, um terminal feito em Electron e que nos permite dar nosso toque
@@ -17,4 +17,4 @@ Bom pessoal, nós que sempre que estamos codando, geralmente temos preferencias 
 
 ## Introdução
 
-O Hyper é um terminal feito em [Electron](https://www.electronjs.org/) e que utiliza as principais linguagens da web (HTML, CSS e Javascript) na sua criação, seu intuito é permitir que os usuários adeptos da linha de comando tenham uma experiência agradável e que os ajudem a ter mais produtividade. Ele pode ser configurado de forma simples
+O Hyper é um terminal feito em [Electron](https://www.electronjs.org/) e que utiliza as principais linguagens da web (HTML, CSS e Javascript) na sua criação, seu intuito é permitir que os usuários adeptos da linha de comando tenham uma experiência agradável e que os ajudem a ter mais produtividade. A configuração é bem simples, e nos da flexibilidade para alterar cores, fontes, fazer integrações através de plugins e o mais bacana que é [`open source`](https://canaltech.com.br/produtos/O-que-e-open-source/). Ele está disponível pra Linux, Windows e MacOs, porém hoje vou mostrar a instação no Linux mais especificamente na distro Ubuntu, mas vou deixar referências para instalação nos outros sistemas operacionais no final do post.
