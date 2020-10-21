@@ -13,6 +13,8 @@ A proposta dessa aplicação é consolidar meus conhecimentos e compartilhar aqu
 - Disqus
 - PrismJs
 
+**Data de lançamento: 16/10/2020**
+
 ## 💫 Deploy
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
