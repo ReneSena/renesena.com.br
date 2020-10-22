@@ -37,14 +37,12 @@ sudo apt upgrade
 
 Essa ação atualizará completamente todos os novos pacotes e dependências que foram criados e que ainda não tinham sido atualizados. Finalizamos a etapa inicial, e agora precisamos acessar a pasta de `Downloads` do seu computador, onde o Hyper foi baixado. Em seu terminal acesse:
 
-```
+```shell
 cd ~ / Downloads
- 
-
 ```
 
 Dentro da pasta de `Downloads`, certifique-se se existe um arquivo chamado `hyper_3.0.2_amd64.deb` *(a versão em questão está suscetível a mudanças dependendo da época acessada).* A após a verificação do arquivo, iremos realizar a instalação do pacote com o comando: 
 
-```
+```shell
 sudo apt install ./hyper_3.0.2_amd64.deb
 ```
