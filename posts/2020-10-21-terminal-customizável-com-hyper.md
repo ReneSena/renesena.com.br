@@ -29,4 +29,18 @@ Após a conclusão do download, abra o seu terminal e rode o comando:
 sudo apt update
 ```
 
-Isso fará com que os pacotes e dependências locais de sua de sua máquina sejam atualizados, em seguida va
+Isso fará com que os pacotes e dependências locais de sua de sua máquina sejam atualizados, e após a conclusão, em seu terminal rode:
+
+```shell
+sudo apt upgrade
+```
+
+Essa ação atualizará completamente todos os novos pacotes e dependências que foram criados e que ainda não tinham sido atualizados. Finalizamos a etapa inicial, e agora precisamos acessar a pasta de `Downloads` do seu computador, onde o Hyper foi baixado. Em seu terminal acesse:
+
+```
+cd ~ / Downloads
+ 
+
+```
+
+  Dentro da pasta de `Downloads`, você terá um arquivo chamado `hyper_3.0.2_amd64.deb, a versão em questão está suscetível a mudanças dependendo da época acessada`
