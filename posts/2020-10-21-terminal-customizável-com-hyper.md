@@ -25,6 +25,8 @@ O Hyper é um terminal feito em [Electron](https://www.electronjs.org/) e que ut
 Primeiramente vamos acessar o site oficial do hyper [`https://hyper.is/`](https://hyper.is/) e navegar até a aba de `Downloads`, ao clicar no link somos direcionados para as versões disponíveis dos sistemas operacionais. Iremos escolher a opção `Debian(.deb)` e realizar o download. \
 Após a conclusão do download, abra o seu terminal e rode o comando:
 
-```
+```shell
 sudo apt update
 ```
+
+Isso fará com que os pacotes e dependências locais de sua de sua máquina sejam atualizados, em seguida va
