@@ -62,3 +62,5 @@ Hyper
 ![](/assets/img/checkbox_off.png)
 
 Bom, agora que temos o terminal instalado, vamos realizar algumas configurações, acessando o menu hambúrguer localizado ao lado esquerdo do terminal, clique em `Edit e em seguida Preferences`, ou se preferir use o atalho `CTRL + I`.
+
+![Abrindo o menu de configurações do terminal Hyper](/assets/img/abrindo_menu_terminal.gif)
