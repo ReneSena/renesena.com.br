@@ -46,5 +46,5 @@ cd ~ / Downloads
 Dentro da pasta de `Downloads`, certifique-se se existe um arquivo chamado `hyper_3.0.2_amd64.deb` *(a versão em questão está suscetível a mudanças dependendo da época acessada).* A após a verificação do arquivo, iremos realizar a instalação do pacote com o comando: 
 
 ```
-sudo apt install ./ hyper_3.0.2_amd64.deb
+sudo apt install ./hyper_3.0.2_amd64.deb
 ```
