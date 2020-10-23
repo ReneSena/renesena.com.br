@@ -49,7 +49,7 @@ sudo apt install ./hyper_3.0.2_amd64.deb
 
 Será perguntado se você deseja continuar a instalação, digite `Y` 
 
-![](/assets/img/background_css.jpg)
+![Uma pergunta se o usuário quer continuar com o processo de instalação do terminal Hyper.](/assets/img/instalacao_hyper.png)
 
 E finalmente conseguimos concluir a instalação do Hyper, agora precisamos de fato verificar seu funcionamento, procure em seus aplicativos o Hyper e clique para abrir. Caso não encontre, vá em seu terminal e escreva: 
 
@@ -63,11 +63,7 @@ Hyper
 
 ## Configuração
 
-Bom, agora que temos o terminal instalado, vamos realizar algumas configurações, acessando o menu hambúrguer localizado ao lado esquerdo do terminal, clique em `Edit e em seguida Preferences`, ou se preferir use o atalho `CTRL + I`.
-
-![Abrindo o menu de configurações do terminal Hyper](/assets/img/abrindo_menu_terminal.gif "dsds")
-
-Irá abrir um arquivo `.txt`, com todas as definições do terminal, você pode alterar aquilo que você achar necessário, abaixo deixo algumas configurações como exemplo.
+Bom, agora que temos o terminal instalado, vamos realizar algumas configurações, acessando o menu hambúrguer localizado ao lado esquerdo do terminal, clique em `Edit e em seguida Preferences`, ou se preferir use o atalho `CTRL + I`. Irá abrir um arquivo `.txt`, com todas as definições do terminal, você pode alterar aquilo que você achar necessário, abaixo deixo algumas configurações como exemplo.
 
 ```json
 /*Dentro do objeto module.exports, altere com os seguites valores */
@@ -104,7 +100,7 @@ hyper i hyper-mac-controls
 
 `Tema Dracula + Controles modificados`
 
-Imagem do resultado final
+![Terminal Hyper com as configurações de tema e controles alteradas.](/assets/img/terminal_hyper_config.png "ssss")
 
 Essas foram algumas configurações bem básicas perto do que da pra inserir no terminal, vou deixar um repositório com várias funcionalidades e customizações pra vocês testarem, acesse [awesome-hyper](https://github.com/bnb/awesome-hyper). Testem e adaptem o terminal pro dia a dia de vocês, acredito que será uma experiência bem bacana.
 
