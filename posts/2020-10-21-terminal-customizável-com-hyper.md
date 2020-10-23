@@ -118,7 +118,6 @@ Bem pessoal, espero que vocês tenham gostado da dica de hoje, e qualquer duvida
 
 * Site oficial do Hyper: [https://hyper.is](https://hyper.is/#installation)
 * Configuração do Hyper pro Windows, acesse [aqui](<* https://medium.com/collabcode/hyper-no-windows10-instala%C3%A7%C3%A3o-configura%C3%A7%C3%A3o-integra%C3%A7%C3%A3o-vscode-cf80ad4a696d>).
-* Configuração do Hyper pro Mac, acesse aqui.
 * Repositório com libs pro Hyper: <https://github.com/bnb/awesome-hyper>
 * Instalação por vídeo da Rockeseat: <https://www.youtube.com/watch?v=5zl6ufeyGHE>
 * Theme Dracula - <https://draculatheme.com/hyper>
