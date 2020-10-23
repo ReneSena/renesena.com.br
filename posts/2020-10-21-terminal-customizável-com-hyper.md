@@ -12,7 +12,7 @@ background: "#353b48"
 ---
 ![Uma imagem da logo do terminal Hyper e suas tecnologias de criação, que são html, css e javascript.](/assets/img/hyper.png)
 
-Hey, guys!! Tudo jóia com você?!
+Hey guys!! Tudo jóia com você?!
 
 Bom pessoal, nós que sempre que estamos codando, geralmente temos preferencias em relação a ambientes que utilizamos, seja IDE, ferramentas de organização, gerenciamento de tempo e afins. Com o terminal não é diferente, mas nem todos nós, inclusive eu (risos), não gostamos do visual padrão do terminal que vem no sistema operacional, e a boa notícia é que temos alternativas para mudar essa situação e deixar o terminal mais amigável e bonito com o **Hyper**. 
 
