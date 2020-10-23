@@ -255,3 +255,5 @@ hyper i hyper-mac-controls
 Imagem do resultado final
 
 Essas foram algumas configurações bem básicas perto do que da pra inserir no terminal, vou deixar um repositório com várias funcionalidades e customizações pra vocês testarem, ele é o [awesome-hyper](https://github.com/bnb/awesome-hyper).
+
+Testem e adaptem o terminal pro dia a dia de vocês, acredito que será uma experiência bem bacana.
