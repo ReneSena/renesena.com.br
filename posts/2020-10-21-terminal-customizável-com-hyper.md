@@ -47,9 +47,9 @@ Dentro da pasta de `Downloads`, certifique-se se existe um arquivo chamado `hype
 sudo apt install ./hyper_3.0.2_amd64.deb
 ```
 
-Será perguntado se você deseja continuar a instalação você digite `Y` 
+Será perguntado se você deseja continuar a instalação, digite `Y` 
 
-imagem
+![](/assets/img/background_css.jpg)
 
 E finalmente conseguimos concluir a instalação do Hyper, agora precisamos de fato verificar seu funcionamento, procure em seus aplicativos o Hyper e clique para abrir. Caso não encontre, vá em seu terminal e escreva: 
 
