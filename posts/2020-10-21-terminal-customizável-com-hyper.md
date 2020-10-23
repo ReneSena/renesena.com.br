@@ -59,7 +59,7 @@ Hyper
 
  Aguarde alguns segundos e logo abrirá nosso novo terminal bonitão, abaixo o seu visual padrão.
 
-![](/assets/img/checkbox_off.png)
+![](/assets/img/background_css.jpg)
 
 ## Configuração
 
@@ -100,7 +100,7 @@ hyper i hyper-mac-controls
 
 `Tema Dracula + Controles modificados`
 
-![Terminal Hyper com as configurações de tema e controles alteradas.](/assets/img/terminal_hyper_config.png "ssss")
+![Terminal Hyper com as configurações de tema e controles alteradas.](/assets/img/terminal_hyper_config.png)
 
 Essas foram algumas configurações bem básicas perto do que da pra inserir no terminal, vou deixar um repositório com várias funcionalidades e customizações pra vocês testarem, acesse [awesome-hyper](https://github.com/bnb/awesome-hyper). Testem e adaptem o terminal pro dia a dia de vocês, acredito que será uma experiência bem bacana.
 
