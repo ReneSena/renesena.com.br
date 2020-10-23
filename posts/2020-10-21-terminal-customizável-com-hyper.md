@@ -102,8 +102,12 @@ Outra alteração bacana que podemos realizar é alterar o estilo dos controles 
 hyper i hyper-mac-controls
 ```
 
+`Tema Dracula + Controles modificados`
+
 Imagem do resultado final
 
-Essas foram algumas configurações bem básicas perto do que da pra inserir no terminal, vou deixar um repositório com várias funcionalidades e customizações pra vocês testarem, ele é o [awesome-hyper](https://github.com/bnb/awesome-hyper).
+Essas foram algumas configurações bem básicas perto do que da pra inserir no terminal, vou deixar um repositório com várias funcionalidades e customizações pra vocês testarem, acesse [awesome-hyper](https://github.com/bnb/awesome-hyper). Testem e adaptem o terminal pro dia a dia de vocês, acredito que será uma experiência bem bacana.
 
-Testem e adaptem o terminal pro dia a dia de vocês, acredito que será uma experiência bem bacana.
+## Conclusão
+
+O Hyper é um terminal muito dinâmico, e você consegue fazer várias integrações com ele, geralmente o pessoal gosta de instalar o [ZSH](https://ohmyz.sh/), para ajudar na produtividade, e recomendo vocês darem uma conferida, pois tem muito conteúdo sobre. Sendo assim, minha experiência está sendo bem produtiva com o novo terminal, e cada dia que passa vou adaptando para o meu uso, acredito que essa seja uma das grandes vantagens de usá-lo.
