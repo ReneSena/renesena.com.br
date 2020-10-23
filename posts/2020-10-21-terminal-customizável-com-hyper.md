@@ -65,7 +65,7 @@ Hyper
 
 Bom, agora que temos o terminal instalado, vamos realizar algumas configurações, acessando o menu hambúrguer localizado ao lado esquerdo do terminal, clique em `Edit e em seguida Preferences`, ou se preferir use o atalho `CTRL + I`.
 
-![Abrindo o menu de configurações do terminal Hyper](/assets/img/abrindo_menu_terminal.gif)
+![Abrindo o menu de configurações do terminal Hyper](/assets/img/abrindo_menu_terminal.gif "dsds")
 
 Irá abrir um arquivo `.txt`, com todas as definições do terminal, você pode alterar aquilo que você achar necessário, abaixo deixo algumas configurações como exemplo.
 
@@ -117,7 +117,9 @@ Bem pessoal, espero que vocês tenham gostado da dica de hoje, e qualquer duvida
 ## Referências
 
 * Site oficial do Hyper: [https://hyper.is](https://hyper.is/#installation)
+* Configuração do Hyper pro Windows, acesse [aqui](<* https://medium.com/collabcode/hyper-no-windows10-instala%C3%A7%C3%A3o-configura%C3%A7%C3%A3o-integra%C3%A7%C3%A3o-vscode-cf80ad4a696d>).
+* Configuração do Hyper pro Mac, acesse aqui.
 * Repositório com libs pro Hyper: <https://github.com/bnb/awesome-hyper>
-* Modificar os controles de Max, Min e Fechar: [](https://www.npmjs.com/package/hyper-custom-controls)<https://www.npmjs.com/package/hyper-mac-controls>
 * Instalação por vídeo da Rockeseat: <https://www.youtube.com/watch?v=5zl6ufeyGHE>
 * Theme Dracula - <https://draculatheme.com/hyper>
+* Instalação do ZSH por vídeo: <https://www.youtube.com/watch?v=Y769Tn7DYiQ>
