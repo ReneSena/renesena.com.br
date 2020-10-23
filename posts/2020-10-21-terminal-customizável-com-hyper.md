@@ -123,3 +123,4 @@ Bem pessoal, espero que vocês tenham gostado da dica de hoje, e qualquer duvida
 * Instalação por vídeo da Rockeseat: <https://www.youtube.com/watch?v=5zl6ufeyGHE>
 * Theme Dracula - <https://draculatheme.com/hyper>
 * Instalação do ZSH por vídeo: <https://www.youtube.com/watch?v=Y769Tn7DYiQ>
+* Site oficial do ZSH: <https://ohmyz.sh/>
