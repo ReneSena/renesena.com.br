@@ -116,4 +116,8 @@ Bem pessoal, espero que vocês tenham gostado da dica de hoje, e qualquer duvida
 
 ## Referências
 
-##
+* Site oficial do Hyper: [https://hyper.is](https://hyper.is/#installation)
+* Repositório com libs pro Hyper: <https://github.com/bnb/awesome-hyper>
+* Modificar os controles de Max, Min e Fechar: [](https://www.npmjs.com/package/hyper-custom-controls)<https://www.npmjs.com/package/hyper-mac-controls>
+* Instalação por vídeo da Rockeseat: <https://www.youtube.com/watch?v=5zl6ufeyGHE>
+* Theme Dracula - <https://draculatheme.com/hyper>
