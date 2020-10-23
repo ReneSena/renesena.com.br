@@ -5,7 +5,7 @@ description: Você conhece algum terminal que é possível modificar suas
   configurações visuais de formas simples? Bom, nesse post vou lhe apresentar o
   Hyper, um terminal feito em Electron e que nos permite dar nosso toque
   pessoal.
-date: 2020-10-21 01:08:11
+date: 2020-10-23 12:17:22
 image: /assets/img/hyper.png
 category: MISC
 background: "#353b48"
@@ -14,11 +14,11 @@ background: "#353b48"
 
 Hey, guys!! Tudo jóia com você?!
 
-Bom pessoal, nós que sempre que estamos codando, geralmente temos preferencias em relação a ambientes que utilizamos, seja IDE, ferramentas de organização, gerenciamento de tempo e afins. Com o terminal não é diferente, mas nem todos nós, inclusive eu (risos), não gostamos do visual padrão do terminal que vem no sistema operacional, e a boa noticia é que temos alternativas para mudar essa situação e deixar o terminal mais amigável e bonito com o **Hyper**. 
+Bom pessoal, nós que sempre que estamos codando, geralmente temos preferencias em relação a ambientes que utilizamos, seja IDE, ferramentas de organização, gerenciamento de tempo e afins. Com o terminal não é diferente, mas nem todos nós, inclusive eu (risos), não gostamos do visual padrão do terminal que vem no sistema operacional, e a boa notícia é que temos alternativas para mudar essa situação e deixar o terminal mais amigável e bonito com o **Hyper**. 
 
 ## Introdução
 
-O Hyper é um terminal feito em [Electron](https://www.electronjs.org/) e que utiliza as principais linguagens da web (HTML, CSS e Javascript) na sua criação, seu intuito é permitir que os usuários adeptos da linha de comando tenham uma experiência agradável e que os ajudem a ter mais produtividade. A configuração é bem simples, e nos da flexibilidade para alterar cores, fontes, fazer integrações através de plugins e o mais bacana que é [`open source`](https://canaltech.com.br/produtos/O-que-e-open-source/). Ele está disponível pra Linux, Windows e MacOs, porém hoje vou mostrar a instalação no Linux, mais especificamente na distro Ubuntu. No final do post, deixarei referências para instalação dos demais sistemas operacionais. 
+O Hyper é um terminal feito em [Electron](https://www.electronjs.org/) e que utiliza as principais linguagens da web (HTML, CSS e Javascript) na sua criação, seu intuito é permitir que os usuários adeptos da linha de comando tenham uma experiência agradável e que os ajudem a ter mais produtividade. A configuração é bem simples, e nos da flexibilidade para alterar cores, fontes, fazer integrações através de plugins e o mais bacana que é [`open source`](https://canaltech.com.br/produtos/O-que-e-open-source/). Ele está disponível pra Linux, Windows e MacOs, porém hoje vou mostrar a instalação no Linux, mais especificamente na distro Ubuntu. No final do post, deixarei referências para instalação dos demais sistemas. 
 
 ## Instalação
 
@@ -57,7 +57,7 @@ E finalmente conseguimos concluir a instalação do Hyper, agora precisamos de f
 Hyper
 ```
 
- Aguarde alguns segundos e logo abrirá nosso novo terminal bonitão, abaixo o seu visual padrão.
+ Aguarde alguns segundos e logo abrirá nosso novo terminal, abaixo o seu visual padrão.
 
 ![Terminal padrão do Hyper](/assets/img/terminal_default.png)
 
@@ -78,7 +78,7 @@ foregroundColor: '#fff',
 backgroundColor: '#121212',
 ```
 
-Dentre as alterações, mudei a fonte, tamanho da letra, espaçamento entre a linhas e letras e background, você comparando com seu arquivo poderá perceber o que foi alterado e ajustar do seu jeito. Todas as alterações que forem realizadas você deve salvar, e recarregar o terminal com `CTRL+SHIFT+F5`, dessa forma você garante a conclusão das alterações.
+Dentre as alterações, mudei a fonte, tamanho da letra, espaçamento entre a linhas, letras e background. Essas configurações são sugestões, então fique livre pra poder alterar do seu jeito. Todas as alterações que forem realizadas você deve salvar, e recarregar o terminal com `CTRL + SHIFT + F5`, dessa forma você garante a conclusão das alterações.
 
 É bacana observar que existe um atributo chamado `plugins` e ele vem vazio por padrão, aqui irá ficar tudo aquilo que você instalar, seja um tema ou funcionalidades de terceiros. Pois bem, vou mostrar a instalação do tema [Dracula](https://draculatheme.com/hyper) e veja como é simples, abra seu terminal hyper e rode:
 
