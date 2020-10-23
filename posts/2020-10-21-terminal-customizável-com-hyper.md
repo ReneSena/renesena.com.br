@@ -111,3 +111,9 @@ Essas foram algumas configurações bem básicas perto do que da pra inserir no 
 ## Conclusão
 
 O Hyper é um terminal muito dinâmico, e você consegue fazer várias integrações com ele, geralmente o pessoal gosta de instalar o [ZSH](https://ohmyz.sh/), para ajudar na produtividade, e recomendo vocês darem uma conferida, pois tem muito conteúdo sobre. Sendo assim, minha experiência está sendo bem produtiva com o novo terminal, e cada dia que passa vou adaptando para o meu uso, acredito que essa seja uma das grandes vantagens de usá-lo.
+
+Bem pessoal, espero que vocês tenham gostado da dica de hoje, e qualquer duvida, sugestão, crítica ou elogio, deixem nos comentários, não deixem de compartilhar a opinião de vocês sobre o assunto. Até a próxima!! :)
+
+## Referências
+
+##
