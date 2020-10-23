@@ -59,7 +59,7 @@ Hyper
 
  Aguarde alguns segundos e logo abrirá nosso novo terminal bonitão, abaixo o seu visual padrão.
 
-![](/assets/img/background_css.jpg)
+![Terminal padrão do Hyper](/assets/img/terminal_default.png)
 
 ## Configuração
 
