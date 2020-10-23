@@ -230,7 +230,7 @@ module.exports = {
 };
 ```
 
-Dentre as alterações, mudei a fonte, tamanho da letra, espaçamento entre a linhas e letras e background, você comparando com seu arquivo poderá perceber o que foi alterado e ajustar do seu jeito. 
+Dentre as alterações, mudei a fonte, tamanho da letra, espaçamento entre a linhas e letras e background, você comparando com seu arquivo poderá perceber o que foi alterado e ajustar do seu jeito. Todas as alterações que forem realizadas você deve salvar, e recarregar o terminal com `CTRL+SHIFT+F5`, dessa forma você garante a conclusão das alterações.
 
 É bacana observar que existe um atributo chamado `plugins` e ele vem vazio por padrão, aqui irá ficar tudo aquilo que você instalar, seja um tema ou funcionalidades de terceiros. Pois bem, vou mostrar a instalação do tema Drácula e veja como é simples, abra seu terminal hyper e rode:
 
@@ -238,7 +238,7 @@ Dentre as alterações, mudei a fonte, tamanho da letra, espaçamento entre a li
 hyper install hyper-dracula
 ```
 
-Após a conclusão, dê um reload no terminal apertando `CTRL+SFHIT+F5`, apenas isso o tema já está aplicado, perceba que agora plugins está com preenchido.
+Após a conclusão, dê um `reload` no terminal apertando `CTRL+SFHIT+F5`, apenas realizado essa ação o tema já é aplicado, perceba que agora plugins está com preenchido.
 
 ```json
 plugins: ["hyper-dracula"]
