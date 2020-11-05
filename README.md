@@ -1,8 +1,8 @@
-<h1 align="center">
-    <img src="/src/images/banner_readme.png" height="300" /><br />
+<div align="center">
+    <img src="/src/images/banner_readme.png" height="350" /><br />
     <img src="https://img.shields.io/badge/Gatsby-v2.23.12-%23542F61?style=flat-square&logo=appveyor" />
     <img src="https://img.shields.io/github/license/ReneSena/renesena.com.br?style=flat-square&logo=appveyor" />
-</h1>
+</div>
 
 ## :pencil2: Objetivo
 A proposta dessa aplicação é consolidar meus conhecimentos e compartilhar aquilo vou aprendendo ao longo da minha trajetória com as pessoas da área, acredito que compartilhar aquilo que sabemos é uma ótima forma de aprender e ajudar outras pessoas que estão entrando na área.
