@@ -2,6 +2,7 @@
     <img src="/src/images/banner_readme.png" height="350" /><br />
     <img src="https://img.shields.io/badge/Gatsby-v2.23.12-%23542F61?style=flat-square&logo=appveyor" />
     <img src="https://img.shields.io/github/license/ReneSena/renesena.com.br?style=flat-square&logo=appveyor" />
+    <img src="https://img.shields.io/badge/Lan%C3%A7amento-16%2F10%2F2020-%233570B2?style=flat-square&logo=appveyor" />
 </div>
 
 ## :pencil2: Objetivo
