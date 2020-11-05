@@ -1,5 +1,6 @@
-# Rene Sena - Site/Blog
-
+<h1 align="center">
+    <img src="src/assets/images/banner_readme.png" />
+</h1>
 :arrow_right: Link de acesso [aqui](https://renesena.com.br) 
 
 ## :pencil2: Objetivo
