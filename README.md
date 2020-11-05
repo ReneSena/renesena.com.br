@@ -24,4 +24,4 @@ A proposta dessa aplicação é consolidar meus conhecimentos e compartilhar aqu
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4404d923-a526-4739-8872-5e9076f00725/deploy-status)](https://app.netlify.com/sites/renesena/deploys)
 
-:arrow_right: Acesso clicando [aqui](https://renesena.com.br).
+:link: Acesse clicando [aqui](https://renesena.com.br).
