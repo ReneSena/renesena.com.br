@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Lightbulb } from "@styled-icons/fa-solid/Lightbulb";
-import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2";
+// import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2";
 
 import * as S from './styled';
 import MenuLinks from '../MenuLinksNavigation';
