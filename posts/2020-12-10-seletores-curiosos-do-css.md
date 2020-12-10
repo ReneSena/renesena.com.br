@@ -25,6 +25,8 @@ Exemplo de aplicação:
 ```
 
 ```css
+/* Irá esconder essa div, evitando estranheza no layou */
+
 div:empty {
 	display: none;
 }
@@ -42,6 +44,10 @@ O :marker é muito interessante pelo fato de ajudar com estilização específic
 ```
 
 ```css
+/*Como não temos o :before, o content faz esse papel, 
+caso queira realizar uma contagem basta usar o counter-increment 
+para referenciar o elemento a ser contato*/
+
 li {
   counter-increment: counter;
 }
@@ -67,7 +73,7 @@ Exemplo de aplicação:
 ```
 
 ```css
-/*A classe .ide não receberá nesse caso*/
+/*A classe .ide não receberá estilo nesse caso*/
 
 li:not(.ide){
   color: green;
@@ -76,7 +82,7 @@ li:not(.ide){
 
 #### **::placeholder**
 
-Já se perguntou como mudar a cor, font de um placeholder, é aquela famosa "dica" que fica dentro de inputs e selects, a felicidade é que existe um o pseudo elemento ::placeholder e que nos ajuda a dar uma cara mais bonita pro elementos de entrada de dados. 
+Já se perguntou como mudar a cor, fonte de um placeholder?!; Aquela famosa "dica" que fica dentro de inputs e selects, a felicidade é que existe um o pseudo elemento ::placeholder e que nos ajuda a dar uma cara mais bonita pro elementos de entrada de dados. 
 
 Exemplo de aplicação:
 
@@ -85,6 +91,8 @@ Exemplo de aplicação:
 ```
 
 ```css
+/* Irá modificar a cor, tamanho e estilo */
+
 input::placeholder {
   color: blue;
   font-size: 14px;
@@ -104,6 +112,9 @@ Exemplo de aplicação:
 ```
 
 ```css
+/*Com os atributos nos inputs esses seletores já conseguem 
+identificar o que é editável ou não para aplicar o estilo*/
+
 input:read-only {
 	background-color: #e4e4e4;
 }
@@ -119,6 +130,7 @@ Esse seletor nos permite alterar a cor e o background de texto selecionados, iss
 Exemplo de aplicação:
 
 ```html
+<!-- Ao selecionar o texto, verá que estará diferente do padrão do navegador-->
 <p>
   Lorem Ipsum is simply dummy text of the printing and typesetting 
   industry. Lorem Ipsum has been the industry's standard dummy text ever 
@@ -132,3 +144,19 @@ p::selection {
   color: blue;
 }
 ```
+
+Tendo em vista todas essas dicas, implementei cada uma delas, e você pode ver todos eles [aqui](https://codepen.io/ReneSena/full/VwKmLPG). :)\
+\
+Bom pessoal, foram as dicas de hoje, espero que vocês tenha gostado e se vocês tiverem sugestões, críticas deixem nos comentários ou podem me procurar em:
+
+\- Github: [@ReneSena](https://github.com/ReneSena)\
+- Linkedin: [@rene-sena](https://br.linkedin.com/in/rene-sena)\
+\
+Até a próxima guys! :) 
+
+## Referências
+
+https://css-tricks.com/almanac/\
+https://cssreference.io/\
+https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes\
+https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-elementos
