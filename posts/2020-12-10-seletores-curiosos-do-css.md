@@ -147,8 +147,8 @@ p::selection {
 }
 ```
 
-Tendo em vista todas essas dicas, implementei cada uma delas, e você pode ver todos eles [aqui](https://codepen.io/ReneSena/full/VwKmLPG). :)\
-\
+Tendo em vista todas essas dicas, implementei cada uma delas, e você pode ver todos eles [aqui](https://codepen.io/ReneSena/full/VwKmLPG). :)
+
 Bom pessoal, foram as dicas de hoje, espero que vocês tenha gostado e se vocês tiverem sugestões, críticas deixem nos comentários ou podem me procurar em:
 
 * Linkedin: [@rene-sena](https://br.linkedin.com/in/rene-sena)
@@ -158,7 +158,7 @@ Até a próxima guys! :)
 
 ## Referências
 
-https://css-tricks.com/almanac/\
-https://cssreference.io/\
-https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes\
-https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-elementos
+- https://cssreference.io/
+- https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-classes
+- https://developer.mozilla.org/pt-BR/docs/Web/CSS/Pseudo-elementos
+- https://css-tricks.com/almanac
