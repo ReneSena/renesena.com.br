@@ -3,7 +3,7 @@ title: " Seletores curiosos do CSS"
 description: "Nesse post trago alguns seletores CSS que podem te ajudar no seu
   dia a dia. :) "
 date: 2020-12-10 02:39:28
-image: /assets/img/sintaxe_css.png
+image: /assets/img/css.jpg
 category: CSS
 background: "#0097e6"
 ---
@@ -149,10 +149,12 @@ Tendo em vista todas essas dicas, implementei cada uma delas, e você pode ver t
 \
 Bom pessoal, foram as dicas de hoje, espero que vocês tenha gostado e se vocês tiverem sugestões, críticas deixem nos comentários ou podem me procurar em:
 
-\- Github: [@ReneSena](https://github.com/ReneSena)\
-- Linkedin: [@rene-sena](https://br.linkedin.com/in/rene-sena)\
-\
-Até a próxima guys! :) 
+* Linkedin: [@rene-sena](https://br.linkedin.com/in/rene-sena)
+* Github: [@ReneSena](https://github.com/ReneSena)
+
+Até a próxima guys! :)
+
+ 
 
 ## Referências
 
