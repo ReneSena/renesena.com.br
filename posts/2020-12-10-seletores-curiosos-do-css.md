@@ -55,3 +55,84 @@ li::marker {
   content: " # " counter(counter) " : ";
 }
 ```
+
+#### :not
+
+O seletor :not é muito útil, ele faz uma negação de um seletor simples, provavelmente você já deve ter usado ele alguma vez. Poderia falar que ele é mágico haha, por que em tese ele nos permite economizar muitas linhas de código CSS, além de aplicarmos um pouco de lógica nas estruturas que estamos montando.
+
+Exemplo de aplicação:
+
+```html
+<!-- Somente Vscode e Atom terão a cor verder aplicada -->
+<ul>
+  <li>Vscode</li>
+  <li class="ide">Sublime</li>
+  <li>Atom</li>
+</ul>
+```
+
+```css
+/*A classe .ide não receberá nesse caso*/
+li:not(.ide){
+  color: green;
+}
+```
+
+#### **::placeholder**
+
+Já se perguntou como mudar a cor, font de um placeholder, é aquela famosa "dica" que fica dentro de inputs e selects, a felicidade é que existe um o pseudo elemento ::placeholder e que nos ajuda a dar uma cara mais bonita pro elementos de entrada de dados. 
+
+Exemplo de aplicação:
+
+```html
+<input type="text" placeholder="Digíte sua música favorita">
+```
+
+```css
+input::placeholder {
+  color: blue;
+  font-size: 14px;
+  font-style: italic;
+}
+```
+
+#### **:read-write / :read-only**
+
+Essas pseudo classes são bem bacana por nos dar a possibilidade de conseguir diferenciar quando um campo é somente leitura ou editável. Geralmente usado em formulários pra identificar qual campo pode ser altera do ou não, vale ressaltar que é necessário ter o atributo readonly no input pra indicar somente leitura.
+
+Exemplo de aplicação:
+
+```html
+<input type="text" value="John" readonly />
+<input type="text" value="Moro no Brasil" />  
+```
+
+```css
+input:read-only {
+	background-color: #e4e4e4;
+}
+input:read-write {
+	background-color: green;
+}
+```
+
+#### **::selection**
+
+Esse seletor nos permite alterar a cor e o background de texto selecionados, isso é bem bacana pra diferenciar do padrão que temos no navegador.
+
+Exemplo de aplicação:
+
+```html
+<p>
+  Lorem Ipsum is simply dummy text of the printing and typesetting 
+  industry. Lorem Ipsum has been the industry's standard dummy text ever 
+  since the 1500s,including versions of Lorem Ipsum
+</p>
+```
+
+```css
+p::selection {
+  background-color: #e4e4e4;
+  color: blue;
+}
+```
