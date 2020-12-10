@@ -3,7 +3,7 @@ title: " Seletores curiosos do CSS"
 description: "Nesse post trago alguns seletores CSS que podem te ajudar no seu
   dia a dia. :) "
 date: 2020-12-10 02:39:28
-image: /assets/img/sintaxe_css.jpg
+image: /assets/img/sintaxe_css.png
 category: CSS
 background: "#0097e6"
 ---
