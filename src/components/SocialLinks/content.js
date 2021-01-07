@@ -10,11 +10,11 @@ const links = [
     {
         label: 'Twitter',
         url: 'https://twitter.com/sleeperU_U'
-    },
-    {
+    }
+    /*{
         label: 'Instagram',
         url: 'https://instagram.com/rene_sena'
-    }
-]
+    }*/
+];
 
 export default links;

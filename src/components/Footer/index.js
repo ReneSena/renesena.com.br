@@ -21,11 +21,11 @@ const Footer = () => {
                         <Twitter className="icon"/>
                     </a>
                 </li>
-                <li>
+                {/*<li>
                     <a href="https://instagram.com/rene_sena" rel="noopener noreferrer" target="_blank">
                         <Instagram className="icon"/>
                     </a>
-                </li>
+                </li>*/}
                 <li>
                     <a href="https://br.linkedin.com/in/rene-sena" rel="noopener noreferrer" target="_blank">
                         <Linkedin className="icon"/>
