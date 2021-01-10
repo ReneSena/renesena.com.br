@@ -42,4 +42,4 @@ const AboutPage = () => (
   </Layout>
 )
 
-export default AboutPage
+export default AboutPage;

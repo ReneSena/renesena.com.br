@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import { Lightbulb } from "@styled-icons/fa-solid/Lightbulb";
-// import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2";
+import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2";
 
 import * as S from './styled';
-import MenuLinks from '../MenuLinksNavigation';
 import Avatar from '../Avatar';
-
+import MenuLinks from '../MenuLinksNavigation';
 import getThemeColor from '../../utils/getThemeColor';
-
 
 const Header = () => {
     const [theme, setTheme] = useState(null)
@@ -38,7 +36,7 @@ const Header = () => {
                 <MenuLinks />
             </S.NavigationWrapper>
             <S.Controls>
-                {/* <S.ControlsItem>
+                <S.ControlsItem>
                     <S.ControlsItemLink
                         activeClassName="active"
                         to="/search"
@@ -50,7 +48,7 @@ const Header = () => {
                     >
                         <Search className="icon" />
                     </S.ControlsItemLink>
-                </S.ControlsItem> */}
+                </S.ControlsItem>
                 <S.ControlsItem
                     title="Mudar o tema"
                     onClick={() => {
