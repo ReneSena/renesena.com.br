@@ -68,16 +68,7 @@ Agora precisamos adicionar um `Evento` ao nosso `field`, para que possamos saber
 
 ```javascript
 /*Adicionando o Evento que ficará monitorando a mudança que 
-ocorrá no input */
+ocorrerá no input */
 
-field.addEventListener('change', function(event){
-  const file = event.target.files.item(0);
-  const read = new FileReader();
-
-  read.addEventListener(`loadend`, () => {
-    avatar.setAttribute(`src`, read.result);
-  });
-
-  read.readAsDataURL(file);
-});
+field.addEventListener('change');
 ```
