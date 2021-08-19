@@ -54,3 +54,30 @@ deixaremos em forma de circulo*/
 O nosso layout ficou dessa maneira: 
 
 ![](/assets/img/screenshot-2021-08-19-at-00-23-28-basic-an-avatar-preview.png)
+
+Agora que temos nosso layout ajustado, precisamos dar vida a funcionalidade de visualizar uma nova imagem todas as vezes que mudarmos. Para isso precisamos utilizar o JavaScript, ele nos dará poder para acessar informações do nosso HTML.
+
+Primeiro temos que pensar que o nosso `input` receberá um arquivo e que de alguma forma extrairemos o valor dele e posteriormente trocar a URL da tag `img` toda vez que um novo valor for inserido no input. Para isso, vamos fazer o seguinte, criaremos duas variáveis: `avatar` e `field`.
+
+```javascript
+const avatar = document.querySelector('.avatar');
+const field = document.querySelector('.field');
+```
+
+Agora precisamos adicionar um `Evento` ao nosso `field`, para que possamos saber quando a imagem foi trocada, então, usaremos o evento `Change`, traduzindo para o português, signifca `mudança`, ou seja, todas as vezes que o valor do input mudar, será executada alguma ação.
+
+```javascript
+/*Adicionando o Evento que ficará monitorando a mudança que 
+ocorrá no input */
+
+field.addEventListener('change', function(event){
+  const file = event.target.files.item(0);
+  const read = new FileReader();
+
+  read.addEventListener(`loadend`, () => {
+    avatar.setAttribute(`src`, read.result);
+  });
+
+  read.readAsDataURL(file);
+});
+```
