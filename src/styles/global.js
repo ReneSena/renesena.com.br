@@ -71,7 +71,7 @@ body.dark {
     --postColor: #f3f3f3;
     --highlight: #0FFF73;
     --mediumBackground: #121212;
-    --background: #171717;
+    --background: #222;
     --white: #fff;
     --black: #333;
 
@@ -90,7 +90,7 @@ body.dark {
     --texts: #171717;
     --highlight: #003516;
     --mediumBackground: #fff;
-    --background: #f3f3f3;
+    --background: #fff;
     --white: #fff;
     --black: #222;
 
