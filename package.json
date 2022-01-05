@@ -29,7 +29,7 @@
     "gsap": "^3.5.0",
     "lazysizes": "^5.2.2",
     "netlify-cms-app": "^2.12.20",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-disqus-comments": "^1.4.0",
@@ -40,7 +40,14 @@
     "styled-icons": "^10.6.0",
     "styled-media-query": "^2.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  },
   "keywords": [
     "gatsby"
   ],
