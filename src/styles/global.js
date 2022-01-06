@@ -79,9 +79,9 @@ body.dark {
     --postTitle: #F3F3F3;
     --postDescription: #c1c1c1;
     --postTimeRead: #c1c1c1; 
-    --postBackground: #222;
+    --postBackground: #202020;
     --postBorder: #333;
-    --postCardBorder: #222;
+    --postCardBorder: #333;
   }
 
   body.light {
