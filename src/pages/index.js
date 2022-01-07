@@ -9,19 +9,19 @@ import GlobalStyle from '../styles/global';
 import * as S from '../components/Home/styled';
 
 const HomePage = () => {
-    return (
-        <>
-            <GlobalStyle />
-            <S.Container>
-                <SEO title="Home" />
-                <Profile />
-                <S.NavigationWrapper>
-                    <MenuLinks />
-                </S.NavigationWrapper>
-                <SocialLinks />
-            </S.Container>
-        </>
-    );
-}
+	return (
+		<>
+			<GlobalStyle />
+			<S.Container>
+				<SEO title="Home" />
+				<Profile />
+				<S.NavigationWrapper>
+					<MenuLinks />
+				</S.NavigationWrapper>
+				<SocialLinks />
+			</S.Container>
+		</>
+	);
+};
 
 export default HomePage;
