@@ -1,6 +1,7 @@
 {
   "name": "Blog",
   "private": true,
+  "type": "module",
   "description": "Site/Blog designed to share information about technology",
   "version": "0.1.0",
   "author": "Rene Sena",
