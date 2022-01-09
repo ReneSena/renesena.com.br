@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import media from "styled-media-query";
-import AniLink from "gatsby-plugin-transition-link/AniLink";
+import styled from 'styled-components';
+import media from 'styled-media-query';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 export const HeaderWrapper = styled.header`
 	width: 100%;
@@ -15,7 +15,7 @@ export const HeaderWrapper = styled.header`
 	padding: 10px 40px;
 	z-index: 1;
 
-	${media.greaterThan("medium")`
+	${media.greaterThan('medium')`
         height: 50px;
     `}
 `;
@@ -33,7 +33,7 @@ export const Author = styled.h1`
 	color: #fff;
 	margin-left: 1rem;
 
-	${media.greaterThan("medium")`
+	${media.greaterThan('medium')`
         font-size: 1.125rem;
     `}
 `;
@@ -41,7 +41,7 @@ export const Author = styled.h1`
 export const NavigationWrapper = styled.nav`
 	display: none;
 
-	${media.greaterThan("medium")`
+	${media.greaterThan('medium')`
         display: flex;
         align-items: center;
     `}

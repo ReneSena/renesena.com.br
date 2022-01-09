@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { WeatherSunny } from "@styled-icons/fluentui-system-filled/WeatherSunny";
-import { NightlightRound } from "@styled-icons/material/NightlightRound";
+import { WeatherSunny } from '@styled-icons/fluentui-system-filled/WeatherSunny';
+import { NightlightRound } from '@styled-icons/material/NightlightRound';
 
 /* import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2"; */
 
-import * as S from "./styled";
-import Avatar from "../Avatar";
-import MenuLinks from "../MenuLinksNavigation";
-import getThemeColor from "../../utils/getThemeColor";
+import * as S from './styled';
+import Avatar from '../Avatar';
+import MenuLinks from '../MenuLinksNavigation';
+import getThemeColor from '../../utils/getThemeColor';
 
-const Header = () => {
+function Header() {
 	const [theme, setTheme] = useState(null);
 
-	const isDarkMode = theme === "dark";
+	const isDarkMode = theme === 'dark';
 
 	useEffect(() => {
 		setTheme(window.__theme);
@@ -28,8 +28,7 @@ const Header = () => {
 				bg={getThemeColor()}
 				direction="left"
 				duration={0.6}
-				title="Voltar para Home"
-			>
+				title="Voltar para Home">
 				<Avatar sizeDesktop="2.5rem" sizeMobile="1.875rem" />
 				<S.Author>Rene Sena</S.Author>
 			</S.AvatarWrapperLink>
@@ -54,11 +53,10 @@ const Header = () => {
 					title="Mudar o tema"
 					onClick={() => {
 						window.__setPreferredTheme(
-							isDarkMode ? "light" : "dark"
+							isDarkMode ? 'light' : 'dark'
 						);
 					}}
-					className={theme}
-				>
+					className={theme}>
 					{isDarkMode ? (
 						<NightlightRound className="icon" />
 					) : (
@@ -68,6 +66,6 @@ const Header = () => {
 			</S.Controls>
 		</S.HeaderWrapper>
 	);
-};
+}
 
 export default Header;

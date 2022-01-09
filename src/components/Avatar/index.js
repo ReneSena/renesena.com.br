@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import * as S from "./styled";
+import * as S from './styled';
 
-const Avatar = ({ sizeDesktop, sizeMobile }) => {
+function Avatar({ sizeDesktop, sizeMobile }) {
 	const { avatarImage } = useStaticQuery(
 		graphql`
 			query {
@@ -27,7 +27,7 @@ const Avatar = ({ sizeDesktop, sizeMobile }) => {
 			alt="Foto de Rene Sena, criador do site/blog"
 		/>
 	);
-};
+}
 
 Avatar.propTypes = {
 	sizeDesktop: PropTypes.string,
@@ -35,8 +35,8 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
-	sizeDesktop: "12.5rem",
-	sizeMobile: "9.5rem",
+	sizeDesktop: '12.5rem',
+	sizeMobile: '9.5rem',
 };
 
 export default Avatar;

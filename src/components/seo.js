@@ -1,105 +1,110 @@
 /**
+
  * SEO component that queries for data with
+
  *  Gatsby's useStaticQuery React hook
+
  *
+
  * See: https://www.gatsbyjs.org/docs/use-static-query/
+
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
 
 function SEO({ description, lang, meta, title, image }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            siteUrl
-          }
-        }
-      }
-    `
-  )
+	const { site } = useStaticQuery(
+		graphql`
+			query {
+				site {
+					siteMetadata {
+						title
+						description
+						author
+						siteUrl
+					}
+				}
+			}
+		`
+	);
 
+	const metaDescription = description || site.siteMetadata.description;
 
-  const metaDescription = description || site.siteMetadata.description
+	const url = site.siteMetadata.siteUrl;
 
-  const url = site.siteMetadata.siteUrl;
-  const ogImage = `${url}${image || "assets/img/lake.jpg"}`;
+	const ogImage = `${url}${image || 'assets/img/lake.jpg'}`;
 
-  return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:image`,
-          content: 'website',
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: `twitter:image:src`,
-          content: ogImage
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `google-site-verification`,
-          content: `0vaIt-VC1aRX5i6PufzIhX0fRxx_ynZUnMxwBIpUEBk`,
-        }
-      ].concat(meta)}
-    />
-  )
+	return (
+		<Helmet
+			htmlAttributes={{
+				lang,
+			}}
+			title={title}
+			titleTemplate={`%s | ${site.siteMetadata.title}`}
+			meta={[
+				{
+					name: `description`,
+					content: metaDescription,
+				},
+				{
+					property: `og:title`,
+					content: title,
+				},
+				{
+					property: `og:description`,
+					content: metaDescription,
+				},
+				{
+					property: `og:image`,
+					content: 'website',
+				},
+				{
+					property: `og:type`,
+					content: `website`,
+				},
+				{
+					name: `twitter:card`,
+					content: `summary_large_image`,
+				},
+				{
+					name: `twitter:image:src`,
+					content: ogImage,
+				},
+				{
+					name: `twitter:creator`,
+					content: site.siteMetadata.author,
+				},
+				{
+					name: `twitter:title`,
+					content: title,
+				},
+				{
+					name: `twitter:description`,
+					content: metaDescription,
+				},
+				{
+					name: `google-site-verification`,
+					content: `0vaIt-VC1aRX5i6PufzIhX0fRxx_ynZUnMxwBIpUEBk`,
+				},
+			].concat(meta)}
+		/>
+	);
 }
 
 SEO.defaultProps = {
-  lang: 'pt-br',
-  meta: [],
-  description: ``,
-}
+	lang: 'pt-br',
+	meta: [],
+	description: ``,
+};
 
 SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-}
+	description: PropTypes.string,
+	lang: PropTypes.string,
+	meta: PropTypes.arrayOf(PropTypes.object),
+	title: PropTypes.string.isRequired,
+};
 
-export default SEO
+export default SEO;

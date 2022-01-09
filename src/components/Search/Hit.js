@@ -1,15 +1,18 @@
-import React from 'react'
-import PostItem from '../PostItem'
+import React from 'react';
 
-const Hit = ({ hit }) => (
-    <PostItem 
-        slug={`/blog${hit.fields.slug}`}
-        background={hit.background}
-        title={hit.title}
-        date={hit.date}
-        description={hit.description}
-        category={hit.category}
-    />
-)
+import PostItem from '../PostItem';
 
-export default Hit
+function Hit({ hit }) {
+	return (
+		<PostItem
+			slug={`/blog${hit.fields.slug}`}
+			background={hit.background}
+			title={hit.title}
+			date={hit.date}
+			description={hit.description}
+			category={hit.category}
+		/>
+	);
+}
+
+export default Hit;

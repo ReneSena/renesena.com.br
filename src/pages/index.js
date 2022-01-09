@@ -8,7 +8,7 @@ import Profile from '../components/Profile';
 import GlobalStyle from '../styles/global';
 import * as S from '../components/Home/styled';
 
-const HomePage = () => {
+function HomePage() {
 	return (
 		<>
 			<GlobalStyle />
@@ -22,6 +22,6 @@ const HomePage = () => {
 			</S.Container>
 		</>
 	);
-};
+}
 
 export default HomePage;

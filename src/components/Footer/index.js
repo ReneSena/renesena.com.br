@@ -6,7 +6,7 @@ import { Linkedin } from '@styled-icons/boxicons-logos/Linkedin';
 
 import * as S from './styled';
 
-const Footer = () => {
+function Footer() {
 	return (
 		<S.FooterWrapper>
 			<ul>
@@ -38,6 +38,6 @@ const Footer = () => {
 			Copyright © 2020 Rene Sena | Feito com Gatsby &hearts;
 		</S.FooterWrapper>
 	);
-};
+}
 
 export default Footer;

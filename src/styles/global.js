@@ -102,6 +102,6 @@ body.dark {
     --postBorder: #E4E4E4;
     --postCardBorder: #c1c1c1;
   }
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;

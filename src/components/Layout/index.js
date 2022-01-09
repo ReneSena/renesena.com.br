@@ -1,23 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { TransitionPortal } from 'gatsby-plugin-transition-link';
 
 import Header from '../Header';
+
 import MenuBar from '../MenuBar';
+
 import Footer from '../Footer';
 
 import * as S from './styled';
+
 import GlobalStyle from '../../styles/global';
 
-const Layout = ({ children }) => {
+function Layout({ children }) {
 	return (
 		<S.LayoutWrapper>
 			<GlobalStyle />
+
 			<Header />
+
 			<S.LayoutMan>
 				{children}
+
 				<Footer />
 			</S.LayoutMan>
+
 			<TransitionPortal top="level">
 				<MenuBar />
 			</TransitionPortal>
@@ -26,7 +35,7 @@ const Layout = ({ children }) => {
 }
 
 Layout.propTypes = {
-  	children: PropTypes.node.isRequired,
-}
+	children: PropTypes.node.isRequired,
+};
 
 export default Layout;

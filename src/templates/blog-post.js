@@ -1,17 +1,17 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import Layout from '../components/Layout'
-import SEO from '../components/seo'
-import RecommendedPosts from '../components/RecommendedPosts'
-import Comments from '../components/Comments'
+import Layout from '../components/Layout';
+import SEO from '../components/seo';
+import RecommendedPosts from '../components/RecommendedPosts';
+import Comments from '../components/Comments';
 
-import * as S from '../components/Post/styled'
+import * as S from '../components/Post/styled';
 
 function BlogPost({ data, pageContext }) {
-	const post = data.markdownRemark
-	const next = pageContext.nextPost
-	const previous = pageContext.previousPost
+	const post = data.markdownRemark;
+	const next = pageContext.nextPost;
+	const previous = pageContext.previousPost;
 
 	return (
 		<Layout>
@@ -35,7 +35,7 @@ function BlogPost({ data, pageContext }) {
 			<RecommendedPosts next={next} previous={previous} />
 			<Comments url={post.fields.slug} title={post.frontmatter.title} />
 		</Layout>
-	)
+	);
 }
 
 export const query = graphql`
@@ -54,6 +54,6 @@ export const query = graphql`
 			timeToRead
 		}
 	}
-`
+`;
 
-export default BlogPost
+export default BlogPost;
