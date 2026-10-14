@@ -4,4 +4,11 @@ import { useT } from '../i18n/ui';
 const t = useT('pt');
 ---
 
-<SimplePage lang="pt" code="404" title={t('404.title')} text={t('404.text')} cta={t('thanks.back')} />
+<SimplePage
+  lang="pt"
+  code="404"
+  title={t('404.title')}
+  text={t('404.text')}
+  cta={t('404.cta')}
+  secondary={{ label: t('blog.all'), href: '/blog/' }}
+/>

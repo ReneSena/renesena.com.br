@@ -10,8 +10,10 @@ interface Props {
   text: string;
   cta: string;
   code?: string;
+  /** Link secundário, ao lado do CTA principal */
+  secondary?: { label: string; href: string };
 }
-const { lang, title, text, cta, code } = Astro.props;
+const { lang, title, text, cta, code, secondary } = Astro.props;
 ---
 
 <Base lang={lang} title={`${title} — Rene Sena`}>
@@ -20,7 +22,10 @@ const { lang, title, text, cta, code } = Astro.props;
     {code && <p class="simple__code">{code}</p>}
     <h1 class="display">{title}</h1>
     <p class="lead">{text}</p>
-    <a class="pill pill--solid" href={localePath(lang, '/')}>{cta}</a>
+    <div class="simple__actions">
+      <a class="pill pill--solid" href={localePath(lang, '/')}>{cta}</a>
+      {secondary && <a class="pill" href={secondary.href}>{secondary.label}</a>}
+    </div>
   </section>
 </Base>
 
@@ -45,6 +50,12 @@ const { lang, title, text, cta, code } = Astro.props;
     font-style: italic;
     color: var(--accent);
     font-size: 28px;
+  }
+  .simple__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
   .simple .display {
     font-size: clamp(40px, 6vw, 72px);

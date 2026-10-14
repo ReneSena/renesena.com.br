@@ -112,7 +112,7 @@ test.describe('trajetória', () => {
     expect(order).toEqual([...order].sort((a, b) => a - b));
   });
 
-  test('link "Role para ver a trajetória" leva aos destaques', async ({ page }) => {
+  test('link "Ver os destaques" leva aos destaques', async ({ page }) => {
     await page.locator('.numbers__cta').click();
     await expect(page).toHaveURL(/#destaques$/);
   });

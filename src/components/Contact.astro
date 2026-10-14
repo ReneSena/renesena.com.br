@@ -40,7 +40,6 @@ const types = [
           netlify-honeypot="bot-field"
           novalidate
           data-contact-form
-          data-msg-required={t('contact.required')}
           data-msg-email={t('contact.invalidEmail')}
         >
           <input type="hidden" name="form-name" value="contato" />
@@ -50,12 +49,12 @@ const types = [
           </p>
 
           <div class="field">
-            <input id="f-name" name="nome" type="text" placeholder=" " required autocomplete="name" aria-describedby="e-name" />
+            <input id="f-name" name="nome" type="text" placeholder=" " required autocomplete="name" aria-describedby="e-name" data-msg-required={t('contact.required.name')} />
             <label for="f-name">{t('contact.name')} *</label>
             <span class="field__error" id="e-name" aria-live="polite"></span>
           </div>
           <div class="field">
-            <input id="f-email" name="email" type="email" placeholder=" " required autocomplete="email" aria-describedby="e-email" />
+            <input id="f-email" name="email" type="email" placeholder=" " required autocomplete="email" aria-describedby="e-email" data-msg-required={t('contact.required.email')} />
             <label for="f-email">{t('contact.email')} *</label>
             <span class="field__error" id="e-email" aria-live="polite"></span>
           </div>
@@ -77,7 +76,7 @@ const types = [
           </fieldset>
 
           <div class="field">
-            <textarea id="f-msg" name="mensagem" rows="4" placeholder=" " required aria-describedby="e-msg"></textarea>
+            <textarea id="f-msg" name="mensagem" rows="4" placeholder=" " required aria-describedby="e-msg" data-msg-required={t('contact.required.message')}></textarea>
             <label for="f-msg">{t('contact.message')} *</label>
             <span class="field__error" id="e-msg" aria-live="polite"></span>
           </div>
@@ -334,7 +333,6 @@ const types = [
   if (form) {
     const success = document.querySelector<HTMLElement>('[data-form-success]')!;
     const errorBox = form.querySelector<HTMLElement>('[data-form-error]')!;
-    const msgRequired = form.dataset.msgRequired!;
     const msgEmail = form.dataset.msgEmail!;
 
     const validateField = (el: HTMLInputElement | HTMLTextAreaElement) => {
@@ -342,7 +340,7 @@ const types = [
       const out = field?.querySelector<HTMLElement>('.field__error');
       if (!field || !out) return true;
       let msg = '';
-      if (el.validity.valueMissing || (el.required && !el.value.trim())) msg = msgRequired;
+      if (el.validity.valueMissing || (el.required && !el.value.trim())) msg = el.dataset.msgRequired!;
       else if (el.validity.typeMismatch) msg = msgEmail;
       field.classList.toggle('is-invalid', !!msg);
       el.setAttribute('aria-invalid', String(!!msg));
