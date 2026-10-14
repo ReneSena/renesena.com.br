@@ -4,6 +4,7 @@ import Numbers from './Numbers.astro';
 import Highlights from './Highlights.astro';
 import Timeline from './Timeline.astro';
 import StackExplorer from './StackExplorer.astro';
+import ContactCta from './ContactCta.astro';
 import { useT, journeyPath } from '../i18n/ui';
 import type { Lang } from '../data/career';
 
@@ -21,6 +22,7 @@ const t = useT(lang);
     <Highlights lang={lang} />
     <Timeline lang={lang} />
     <StackExplorer lang={lang} />
+    <ContactCta lang={lang} from="journey" text={t('cta.journey')} />
   </div>
 </Base>
 

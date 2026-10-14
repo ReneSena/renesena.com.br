@@ -1,0 +1,62 @@
+---
+import { useT, emph, localePath, site } from '../i18n/ui';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+  /** onde o bloco aparece, para o evento do Umami */
+  from: string;
+  text: string;
+}
+const { lang, from, text } = Astro.props;
+const t = useT(lang);
+---
+
+<section class="section cta">
+  <div class="container">
+    <p class="eyebrow" data-reveal>{t('contact.label')}</p>
+    <h2 class="display" data-reveal set:html={emph(t('contact.title'))} />
+    <p class="lead" data-reveal>{text}</p>
+    <div class="cta__actions" data-reveal>
+      <a
+        class="pill pill--solid"
+        href={`${localePath(lang, '/')}#contato`}
+        data-magnetic
+        data-umami-event="cta_contact"
+        data-umami-event-from={from}
+      >
+        {t('hero.cta2')} →
+      </a>
+      <a
+        class="pill"
+        href={site.linkedin}
+        target="_blank"
+        rel="noopener"
+        data-magnetic
+        data-umami-event="social_click"
+        data-umami-event-network="linkedin"
+      >
+        LinkedIn ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    border-top: 1px solid var(--border);
+  }
+  .cta .display {
+    font-size: clamp(36px, 5.5vw, 76px);
+  }
+  .cta .lead {
+    margin-top: 24px;
+    max-width: 52ch;
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+  }
+</style>

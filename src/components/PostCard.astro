@@ -79,7 +79,8 @@ const t = useT(lang);
     top: 16px;
     padding: 4px 10px;
     border-radius: 999px;
-    background: var(--cat);
+    /* escurece a cor da categoria para o texto branco passar de 4.5:1 */
+    background: color-mix(in srgb, var(--cat) 70%, #000);
     color: #fff;
     font-size: 10.5px;
     letter-spacing: 0.18em;

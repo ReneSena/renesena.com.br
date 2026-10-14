@@ -1,8 +1,8 @@
 ---
 import '@fontsource-variable/inter/wght.css';
-import '@fontsource/instrument-serif/400.css';
-import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/inter/wght-italic.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import interItalicWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-italic.woff2?url';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -61,6 +61,8 @@ const loadAnalytics = import.meta.env.PROD && !!umamiId;
     }
 
     <link rel="preload" href={interWoff2} as="font" type="font/woff2" crossorigin />
+    <!-- o destaque do título do hero usa a itálica: pré-carrega para não trocar de fonte depois do primeiro paint -->
+    <link rel="preload" href={interItalicWoff2} as="font" type="font/woff2" crossorigin />
 
     <script is:inline>
       (function () {

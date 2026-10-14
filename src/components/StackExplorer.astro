@@ -40,16 +40,19 @@ const rings = stack.map((g, i) => ({
       <p class="eyebrow" data-reveal>{t('stack.label')}</p>
       <h2 class="display stack__title" data-reveal set:html={emph(t('stack.title'))} />
       <p class="lead" data-reveal>{t('stack.hint')}</p>
-      <ul class="legend" data-reveal aria-hidden="true">
+      <ul class="legend" data-reveal>
         {
           rings.map((r) => (
             <li>
-              <span class="legend__ring" style={`--i:${r.index}`} />
-              {r.label[lang]}
+              <button type="button" class="legend__btn" aria-pressed="false" data-ring={r.index} data-names={r.items.map((i) => i.tech).join(' · ')}>
+                <span class="legend__ring" style={`--i:${r.index}`} aria-hidden="true" />
+                {r.label[lang]}
+              </button>
             </li>
           ))
         }
       </ul>
+      <p class="legend__names" aria-live="polite" data-legend-names></p>
     </div>
 
     <div class="planet" data-planet>
@@ -59,6 +62,7 @@ const rings = stack.map((g, i) => ({
           rings.map((r) => (
             <div
               class:list={['ring', { 'ring--reverse': r.reverse }]}
+              data-ring-index={r.index}
               style={`--i:${r.index};--dur:${r.duration}s;--n:${r.items.length}`}
               role="group"
               aria-label={r.label[lang]}
@@ -192,10 +196,39 @@ const rings = stack.map((g, i) => ({
     font-size: 12px;
     color: var(--text-muted);
   }
-  .legend li {
+  .legend__btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    min-height: 32px;
+    padding: 4px 12px 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition:
+      color 0.3s var(--ease),
+      border-color 0.3s var(--ease);
+  }
+  .legend__btn:hover,
+  .legend__btn:focus-visible {
+    color: var(--text);
+    border-color: var(--border);
+  }
+  .legend__btn[aria-pressed='true'] {
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .legend__btn[aria-pressed='true'] .legend__ring {
+    border-color: var(--accent);
+  }
+  .legend__names {
+    min-height: 1.6em;
+    margin: 14px 0 0;
+    font-size: 14px;
+    color: var(--text);
   }
   .legend__ring {
     width: calc(8px + var(--i) * 3px);
@@ -320,6 +353,12 @@ const rings = stack.map((g, i) => ({
   .planet.has-active .orbit-btn:not([aria-pressed='true']):not(:hover) {
     opacity: 0.45;
   }
+  .planet.has-ring .ring:not(.is-focus) .orbit-btn {
+    opacity: 0.2;
+  }
+  .planet.has-ring .ring.is-focus {
+    border-color: var(--accent);
+  }
   @keyframes orbit {
     to {
       rotate: 360deg;
@@ -355,7 +394,7 @@ const rings = stack.map((g, i) => ({
     color: var(--text-muted);
   }
   .center__group {
-    color: var(--accent);
+    color: var(--accent-ink);
     margin-top: 0 !important;
   }
   .center__hint {
@@ -363,7 +402,7 @@ const rings = stack.map((g, i) => ({
     font-family: var(--font-display);
     font-style: italic;
     font-size: 18px;
-    color: var(--accent);
+    color: var(--accent-ink);
   }
   .center__name {
     margin-top: 4px !important;
@@ -484,7 +523,7 @@ const rings = stack.map((g, i) => ({
       background: none;
     }
     .center__list :global(li b) {
-      color: var(--accent);
+      color: var(--accent-ink);
     }
     .center__hint {
       font-size: 15px;
@@ -514,6 +553,21 @@ const rings = stack.map((g, i) => ({
     const emptyText = document.querySelector<HTMLTemplateElement>('template[data-empty]')!.content.textContent ?? '';
     const btns = [...planet.querySelectorAll<HTMLButtonElement>('[data-tech]')];
     let pinned: HTMLButtonElement | null = null;
+    const ringBtns = [...document.querySelectorAll<HTMLButtonElement>('[data-ring]')];
+    const ringNames = document.querySelector<HTMLElement>('[data-legend-names]')!;
+    let ring: HTMLButtonElement | null = null;
+
+    // legenda: destaca um anel e lista o nome das ferramentas dele
+    const focusRing = (btn: HTMLButtonElement | null) => {
+      ring?.setAttribute('aria-pressed', 'false');
+      ring = btn;
+      btn?.setAttribute('aria-pressed', 'true');
+      planet.classList.toggle('has-ring', !!btn);
+      planet.querySelectorAll('[data-ring-index]').forEach((el) => {
+        el.classList.toggle('is-focus', !!btn && (el as HTMLElement).dataset.ringIndex === btn.dataset.ring);
+      });
+      ringNames.textContent = btn?.dataset.names ?? '';
+    };
 
     const show = (btn: HTMLButtonElement | null) => {
       document.querySelectorAll('.phase.is-lit').forEach((el) => el.classList.remove('is-lit'));
@@ -548,6 +602,7 @@ const rings = stack.map((g, i) => ({
     };
 
     const pin = (btn: HTMLButtonElement | null) => {
+      if (btn) focusRing(null);
       pinned?.setAttribute('aria-pressed', 'false');
       pinned = btn;
       btn?.setAttribute('aria-pressed', 'true');
@@ -567,12 +622,25 @@ const rings = stack.map((g, i) => ({
       });
     });
 
-    // toque/clique fora solta o ícone fixado
+    ringBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (ring === btn) return focusRing(null);
+        pin(null);
+        focusRing(btn);
+        track('stack_ring', { ring: btn.textContent!.trim() });
+      });
+    });
+
+    // toque/clique fora solta o ícone fixado e o anel destacado
     document.addEventListener('click', (e) => {
-      if (pinned && !(e.target as HTMLElement).closest('[data-tech]')) pin(null);
+      const target = e.target as HTMLElement;
+      if (pinned && !target.closest('[data-tech]')) pin(null);
+      if (ring && !target.closest('[data-ring]')) focusRing(null);
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && pinned) pin(null);
+      if (e.key !== 'Escape') return;
+      if (pinned) pin(null);
+      if (ring) focusRing(null);
     });
   }
 </script>

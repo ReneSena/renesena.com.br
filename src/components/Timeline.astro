@@ -101,7 +101,7 @@ const lastIndex = phases.length - 1;
                   </ul>
                 )}
                 <button class="phase__more" type="button" data-open-phase={i}>
-                  {t('journey.more')} <span aria-hidden="true">↗</span>
+                  {t('journey.more')} <span aria-hidden="true">→</span>
                 </button>
 
                 <template data-phase-detail>
@@ -348,7 +348,7 @@ const lastIndex = phases.length - 1;
       transform 0.3s var(--ease);
   }
   .altimeter__tick.is-active b {
-    color: var(--accent);
+    color: var(--accent-ink);
     transform: translateX(-4px);
     font-weight: 600;
   }
@@ -428,14 +428,14 @@ const lastIndex = phases.length - 1;
   .phase--final .phase__kind {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
   }
   .phase__period {
     margin: 22px 0 4px;
     font-family: var(--font-display);
     font-style: italic;
     font-size: 22px;
-    color: var(--accent);
+    color: var(--accent-ink);
   }
   .phase__company {
     margin: 0;

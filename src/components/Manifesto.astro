@@ -27,7 +27,10 @@ quote.split(/(\[[^\]]+\])/).forEach((chunk) => {
   <div class="container">
     <p class="eyebrow" data-reveal>{t('manifesto.label')}</p>
     <blockquote class="manifesto__quote" data-manifesto>
-      <span class="manifesto__mark" aria-hidden="true">“</span>
+      <svg class="manifesto__mark" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10 6a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h1.6c-.3 2.2-1.6 3.9-3.8 4.9a1 1 0 0 0 .6 1.9C8 18.6 10 15.4 10 11z" />
+        <path d="M22 6a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v4a3 3 0 0 0 3 3h1.6c-.3 2.2-1.6 3.9-3.8 4.9a1 1 0 0 0 .6 1.9C20 18.6 22 15.4 22 11z" />
+      </svg>
       {
         tokens.map((tk, i) => (
           <>{i > 0 && !tk.glue && ' '}<span class:list={['word', { 'accent-em': tk.em }]}>{tk.text}</span></>
@@ -54,11 +57,10 @@ quote.split(/(\[[^\]]+\])/).forEach((chunk) => {
   }
   .manifesto__mark {
     display: block;
-    margin-bottom: -0.2em;
-    font-family: var(--font-display);
-    color: var(--accent);
-    font-size: 1.4em;
-    line-height: 1;
+    width: 0.42em;
+    height: 0.42em;
+    margin-bottom: 0.12em;
+    fill: var(--accent);
   }
   .manifesto__quote .accent-em {
     font-size: 1.08em;
@@ -78,8 +80,8 @@ quote.split(/(\[[^\]]+\])/).forEach((chunk) => {
   @media (min-width: 701px) {
     .manifesto__mark {
       position: absolute;
-      left: -0.55em;
-      top: -0.18em;
+      left: -0.62em;
+      top: 0.1em;
       margin: 0;
     }
   }

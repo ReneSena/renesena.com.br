@@ -66,9 +66,9 @@ const types = [
           <fieldset class="types">
             <legend>{t('contact.type')}</legend>
             {
-              types.map((ty, i) => (
+              types.map((ty) => (
                 <label class="type">
-                  <input type="radio" name="tipo" value={ty.value} checked={i === 0} />
+                  <input type="radio" name="tipo" value={ty.value} />
                   <span>{ty.label}</span>
                 </label>
               ))
@@ -184,7 +184,7 @@ const types = [
   .field textarea:focus + label,
   .field textarea:not(:placeholder-shown) + label {
     transform: translateY(-20px) scale(0.75);
-    color: var(--accent);
+    color: var(--accent-ink);
   }
   .field.is-invalid input,
   .field.is-invalid textarea {
@@ -237,7 +237,7 @@ const types = [
   .type input:checked + span {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
   }
   .type input:focus-visible + span {
     outline: 2px solid var(--accent);
@@ -308,9 +308,9 @@ const types = [
     margin: 0;
     font-family: var(--font-display);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 40px;
-    color: var(--accent);
+    color: var(--accent-display);
   }
   .form-success p {
     margin: 6px 0 0;
@@ -372,7 +372,7 @@ const types = [
           body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
         });
         if (!res.ok) throw new Error(String(res.status));
-        track('lead_submit', { tipo: String(data.get('tipo') ?? '') });
+        track('lead_submit', { tipo: String(data.get('tipo') ?? 'nao_informado') });
         form.hidden = true;
         success.hidden = false;
         success.focus();

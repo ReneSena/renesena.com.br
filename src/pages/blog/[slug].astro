@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
+import ContactCta from '../../components/ContactCta.astro';
 import { render } from 'astro:content';
 import { getPosts, readingTime } from '../../scripts/blog';
 import { useT } from '../../i18n/ui';
@@ -36,6 +37,8 @@ const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
       <Content />
     </div>
   </article>
+
+  <ContactCta lang="pt" from={`post:${post.id}`} text={t('cta.post')} />
 
   <section class="container related">
     <p class="eyebrow">Continue lendo</p>
@@ -78,7 +81,7 @@ const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
     text-decoration: none;
   }
   .post__back:hover {
-    color: var(--accent);
+    color: var(--accent-ink);
   }
   .post__header {
     margin: 40px 0 48px;
@@ -89,7 +92,8 @@ const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
     display: inline-block;
     padding: 4px 12px;
     border-radius: 999px;
-    background: var(--cat);
+    /* escurece a cor da categoria para o texto branco passar de 4.5:1 */
+    background: color-mix(in srgb, var(--cat) 70%, #000);
     color: #fff;
     font-size: 11px;
     letter-spacing: 0.18em;

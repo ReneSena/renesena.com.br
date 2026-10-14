@@ -67,7 +67,15 @@ const langHref = altPath ?? localePath(otherLang, '/');
       >
         {otherLang.toUpperCase()}
       </a>
-      <button class="pill icon-btn" type="button" data-theme-toggle aria-label={t('nav.theme')}>
+      <button
+        class="pill icon-btn"
+        type="button"
+        data-theme-toggle
+        aria-label={t('nav.theme.dark')}
+        title={t('nav.theme.dark')}
+        data-label-dark={t('nav.theme.dark')}
+        data-label-light={t('nav.theme.light')}
+      >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <circle cx="12" cy="12" r="8.5"></circle>
           <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"></path>
@@ -256,7 +264,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
       background: color-mix(in srgb, var(--bg) 60%, transparent);
     }
     .nav__pill[aria-current] {
-      color: var(--accent);
+      color: var(--accent-ink);
       border-color: var(--accent);
     }
     .nav__tools {
@@ -337,11 +345,21 @@ const langHref = altPath ?? localePath(otherLang, '/');
   }
 
   // ---------- tema ----------
-  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+  const themeBtn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  // o rótulo diz o que o clique faz: no tema claro, "Ativar tema escuro"
+  const syncThemeLabel = () => {
+    if (!themeBtn) return;
+    const label = document.documentElement.dataset.theme === 'dark' ? themeBtn.dataset.labelLight! : themeBtn.dataset.labelDark!;
+    themeBtn.setAttribute('aria-label', label);
+    themeBtn.title = label;
+  };
+  syncThemeLabel();
+  themeBtn?.addEventListener('click', () => {
     const root = document.documentElement;
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     const apply = () => {
       root.dataset.theme = next;
+      syncThemeLabel();
     };
     const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
     if (doc.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) doc.startViewTransition(apply);

@@ -121,6 +121,22 @@ test.describe('trajetória', () => {
     await page.locator('a[hreflang="en"]').click();
     await expect(page).toHaveURL(/\/en\/journey\/$/);
   });
+
+  test('legenda da órbita mostra o nome das ferramentas do anel', async ({ page }) => {
+    const names = page.locator('[data-legend-names]');
+    const arch = page.locator('.legend__btn', { hasText: 'Arquitetura' });
+    await arch.click();
+    await expect(arch).toHaveAttribute('aria-pressed', 'true');
+    await expect(names).toContainText('Storybook');
+    await page.keyboard.press('Escape');
+    await expect(arch).toHaveAttribute('aria-pressed', 'false');
+    await expect(names).toBeEmpty();
+  });
+
+  test('termina com chamada para o formulário de contato', async ({ page }) => {
+    await page.locator('section.cta .pill--solid').click();
+    await expect(page).toHaveURL(/\/#contato$/);
+  });
 });
 
 test.describe('navegação', () => {
@@ -132,6 +148,15 @@ test.describe('navegação', () => {
     await page.goto('/blog/');
     await page.locator('[data-nav-link="stack"]:visible').click();
     await expect(page).toHaveURL(/\/trajetoria\/#stack$/);
+  });
+
+  test('botão de tema diz o que o clique faz', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+    const btn = page.locator('[data-theme-toggle]');
+    await expect(btn).toHaveAttribute('aria-label', 'Ativar tema escuro');
+    await btn.click();
+    await expect(btn).toHaveAttribute('aria-label', 'Ativar tema claro');
   });
 
   test('Contato a partir da trajetória volta para a home', async ({ page }) => {
@@ -146,6 +171,11 @@ test.describe('artigo', () => {
     await page.goto('/blog/2026-10-13-inversao-de-dependencia-no-design-system/');
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /inversao-dependencia\.png$/);
     await expect(page.locator('main')).not.toContainText(/ticket/i);
+  });
+
+  test('termina com chamada para o formulário de contato', async ({ page }) => {
+    await page.goto('/blog/2026-10-13-inversao-de-dependencia-no-design-system/');
+    await expect(page.locator('section.cta .pill--solid')).toHaveAttribute('href', '/#contato');
   });
 });
 
@@ -178,4 +208,59 @@ test('descrição dos cards respeita o corte de 3 linhas', async ({ page }) => {
     els.filter((el) => el.getBoundingClientRect().height > parseFloat(getComputedStyle(el).lineHeight) * 3 + 1).length,
   );
   expect(overflowing).toBe(0);
+});
+
+/** WCAG AA: 4.5:1 para texto normal, 3:1 para texto grande (≥24px ou ≥18.66px em negrito) */
+test.describe('contraste', () => {
+  for (const theme of ['light', 'dark'] as const) {
+    for (const path of [...pages, '/nao-existe/', '/obrigado/']) {
+      test(`${theme} ${path}`, async ({ page, isMobile }) => {
+        test.skip(isMobile, 'as cores não mudam com a largura');
+        await page.addInitScript((t) => localStorage.setItem('theme', t), theme);
+        await page.emulateMedia({ reducedMotion: 'reduce', colorScheme: theme });
+        await page.goto(path);
+        const failures = await page.evaluate(() => {
+          const parse = (c: string) => {
+            const m = c.match(/[\d.]+/g)!.map(Number);
+            const k = c.startsWith('color(') ? 255 : 1; // color-mix() devolve color(srgb 0–1)
+            return { r: m[0] * k, g: m[1] * k, b: m[2] * k, a: m[3] ?? 1 };
+          };
+          type C = ReturnType<typeof parse>;
+          const blend = (fg: C, bg: C): C => ({ r: fg.r * fg.a + bg.r * (1 - fg.a), g: fg.g * fg.a + bg.g * (1 - fg.a), b: fg.b * fg.a + bg.b * (1 - fg.a), a: 1 });
+          const lum = ({ r, g, b }: C) => {
+            const f = (x: number) => ((x /= 255) <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4);
+            return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+          };
+          const bgOf = (el: Element) => {
+            const layers: C[] = [];
+            for (let e: Element | null = el; e; e = e.parentElement) {
+              const c = parse(getComputedStyle(e).backgroundColor);
+              if (c.a > 0) layers.push(c);
+              if (c.a >= 1) break;
+            }
+            return layers.reduceRight((acc, c) => blend(c, acc), { r: 255, g: 255, b: 255, a: 1 } as C);
+          };
+          const out: string[] = [];
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+          const seen = new Set<Element>();
+          while (walker.nextNode()) {
+            const el = walker.currentNode.parentElement!;
+            if (!walker.currentNode.textContent!.trim() || seen.has(el)) continue;
+            seen.add(el);
+            const cs = getComputedStyle(el);
+            if (!el.getClientRects().length || cs.visibility === 'hidden' || el.closest('[hidden], [aria-hidden="true"], .sr-only, dialog:not([open])')) continue;
+            const bg = bgOf(el);
+            const fg = blend(parse(cs.color), bg);
+            const [hi, lo] = [lum(fg), lum(bg)].sort((a, b) => b - a);
+            const ratio = (hi + 0.05) / (lo + 0.05);
+            const size = parseFloat(cs.fontSize);
+            const min = size >= 24 || (parseInt(cs.fontWeight) >= 700 && size >= 18.66) ? 3 : 4.5;
+            if (ratio < min) out.push(`${ratio.toFixed(2)}:1 "${el.textContent!.trim().slice(0, 30)}"`);
+          }
+          return out;
+        });
+        expect(failures).toEqual([]);
+      });
+    }
+  }
 });

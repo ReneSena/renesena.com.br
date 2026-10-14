@@ -5,14 +5,19 @@
   --text-muted: #78716c;
   --border: #e7e5e4;
   --accent: #f97316;
+  /* laranja como texto: --accent-display só em texto grande (≥24px, 3.4:1), --accent-ink no resto (5:1) */
+  --accent-display: #ea580c;
   --accent-ink: #c2410c;
+  /* texto sobre fundo --accent */
+  --on-accent: #1c1917;
   --accent-soft: #fff1e6;
   --sky-1: #fafaf9;
   --sky-2: #fff4ec;
   --cloud: #ffffff;
 
   --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Instrument Serif', Georgia, serif;
+  /* destaques (palavras em [colchetes], números, datas): mesma Inter, em itálico — sem serifa */
+  --font-display: var(--font-sans);
 
   --gutter: clamp(16px, 4vw, 48px);
   --max: 1200px;
@@ -29,7 +34,9 @@
   --text-muted: #a8a29e;
   --border: #292524;
   --accent: #fb923c;
+  --accent-display: #fb923c;
   --accent-ink: #fdba74;
+  --on-accent: #0c0a09;
   --accent-soft: #2a1608;
   --sky-1: #0c0a09;
   --sky-2: #1a0f08;
@@ -94,7 +101,7 @@ textarea {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 :focus-visible {
@@ -123,7 +130,7 @@ textarea {
   padding: 10px 18px;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   text-decoration: none;
   transform: translateY(-200%);
   transition: transform 0.2s;
@@ -174,9 +181,9 @@ textarea {
 .accent-em {
   font-family: var(--font-display);
   font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
-  letter-spacing: -0.01em;
+  font-weight: inherit;
+  color: var(--accent-display);
+  letter-spacing: inherit;
   padding-right: 0.04em;
 }
 
@@ -231,7 +238,7 @@ textarea {
 }
 .pill:hover,
 .pill:focus-visible {
-  color: #fff;
+  color: var(--on-accent);
   border-color: var(--accent);
 }
 .pill:hover::before,
@@ -277,16 +284,3 @@ textarea {
   }
 }
 
-/* Cursor custom só para ponteiros finos */
-@media (pointer: fine) {
-  .has-cursor,
-  .has-cursor a,
-  .has-cursor button,
-  .has-cursor label {
-    cursor: none;
-  }
-  .has-cursor input,
-  .has-cursor textarea {
-    cursor: text;
-  }
-}
