@@ -1,0 +1,375 @@
+---
+import { Picture } from 'astro:assets';
+import { useT, journeyPath } from '../i18n/ui';
+import { stats, type Lang } from '../data/career';
+import Parachutist from './Parachutist.astro';
+import foto from '../assets/foto.jpg';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+
+// Título dividido em palavras no build para a intro em CSS (sem depender do JS);
+// trechos [entre colchetes] ganham o destaque em serifa itálica
+const title = t('hero.title');
+const plain = title.replace(/[[\]]/g, '');
+let i = 0;
+const words = title
+  .split(/(\[[^\]]+\])/)
+  .filter(Boolean)
+  .flatMap((chunk) => {
+    const em = chunk.startsWith('[');
+    return chunk
+      .replace(/[[\]]/g, '')
+      .split(/\s+/)
+      .filter(Boolean)
+      // glue = pontuação que cola na palavra anterior, sem espaço ("operação.")
+      .map((w, j) => ({ w, em, glue: j === 0 && /^[.,;:!?]/.test(w), i: i++ }));
+  });
+const pitch = t('hero.pitch').replace('{years}', String(stats.devYears));
+// Empresas e clientes reais da trajetória (career.ts). O logo entra sozinho quando existir
+// src/assets/logos/<slug>.(svg|png|webp); sem arquivo, aparece o nome como wordmark.
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/logos/*.{svg,png,webp}', { eager: true });
+const logoOf = (slug: string) =>
+  Object.entries(logoFiles).find(([path]) => path.split('/').pop()!.replace(/\.\w+$/, '') === slug)?.[1].default;
+const brands = [
+  { slug: 'tcs', name: 'Tata Consultancy Services' },
+  { slug: 'nttdata', name: 'NTT DATA' },
+  { slug: 'docket', name: 'Docket' },
+  { slug: 'ambev', name: 'Ambev' },
+  { slug: 'c6bank', name: 'C6 Bank' },
+  { slug: 'ticket', name: 'Ticket' },
+].map((b) => ({ ...b, logo: logoOf(b.slug) }));
+---
+
+<section class="hero" id="top" data-hero data-anim-zone>
+  <div class="hero__inner container">
+    <div class="hero__text">
+      <p class="hero__eyebrow" data-hero-fade style="--d:0">
+        {t('hero.greeting')} <span aria-hidden="true">—</span>
+        {t('hero.role')}
+      </p>
+
+      <h1 class="hero__title">
+        <span class="sr-only">{plain}</span>
+        <span aria-hidden="true">
+          {
+            // numa linha só: quebras de linha no JSX viram espaço antes da pontuação
+            words.map(({ w, em, glue, i }) => (
+              <>{i > 0 && !glue && ' '}<span class:list={['hero__word', { 'accent-em': em }]} style={`--i:${i}`}>{w}</span></>
+            ))
+          }
+        </span>
+      </h1>
+
+      <p class="hero__pitch" data-hero-fade style="--d:1">{pitch}</p>
+
+      <div class="hero__ctas" data-hero-fade style="--d:2">
+        <a href={journeyPath(lang)} class="pill pill--solid hero__cta" data-magnetic>
+          {t('hero.cta')}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 12h15M13 6l6 6-6 6"></path>
+          </svg>
+        </a>
+        <a href="#contato" class="pill" data-magnetic>{t('hero.cta2')}</a>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-hero-photo>
+      <div class="hero__arch">
+        <Picture
+          class="hero__photo"
+          pictureAttributes={{ class: 'hero__picture' }}
+          src={foto}
+          alt={t('hero.photoAlt')}
+          formats={['avif', 'webp']}
+          widths={[240, 400, 720]}
+          sizes="(min-width: 900px) 360px, 240px"
+          width={360}
+          height={360}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero__jumper" aria-hidden="true"><Parachutist /></div>
+      <p class="hero__loc"><i aria-hidden="true"></i>{t('hero.location')}</p>
+    </div>
+
+    <div class="hero__proof" data-hero-fade style="--d:3">
+      <p>{t('hero.proof')}</p>
+      <ul>
+        {
+          brands.map((b) => (
+            <li title={b.name}>
+              {b.logo ? (
+                <img src={b.logo.src} width={b.logo.width} height={b.logo.height} alt={b.name} loading="lazy" decoding="async" />
+              ) : (
+                <span class="hero__wordmark">{b.name}</span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 120px 0 56px;
+    background: linear-gradient(180deg, var(--sky-2), var(--bg) 80%);
+    overflow: hidden;
+  }
+  .hero__inner {
+    display: grid;
+    gap: 48px;
+  }
+
+  /* ---------- texto ---------- */
+  .hero__eyebrow {
+    margin: 0 0 22px;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero__eyebrow span {
+    margin: 0 0.3em;
+    color: var(--accent);
+  }
+  .hero__title {
+    margin: 0;
+    font-size: clamp(40px, 5.4vw, 76px);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .hero__word {
+    display: inline-block;
+  }
+  .hero__pitch {
+    margin: 28px 0 0;
+    max-width: 34em;
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.75;
+    color: var(--text-muted);
+  }
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .hero__cta svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.4s var(--ease);
+  }
+  .hero__cta:hover svg,
+  .hero__cta:focus-visible svg {
+    transform: translateX(4px);
+  }
+
+  /* ---------- foto em arco (um pedaço de céu) ---------- */
+  .hero__visual {
+    position: relative;
+    justify-self: start;
+    width: min(220px, 58vw);
+    order: -1;
+  }
+  .hero__arch {
+    aspect-ratio: 4 / 5;
+    border-radius: 999px 999px 28px 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--sky-2);
+  }
+  .hero__picture {
+    display: contents;
+  }
+  .hero__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+  .hero__jumper {
+    position: absolute;
+    width: 30%;
+    top: -6%;
+    right: -40%;
+    color: var(--text);
+    animation: float 3.4s ease-in-out infinite;
+  }
+  .hero__loc {
+    position: absolute;
+    left: 0;
+    bottom: -16px;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    white-space: nowrap;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-elev);
+  }
+  .hero__loc i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  :global(.is-offscreen) .hero__jumper {
+    animation-play-state: paused;
+  }
+
+  /* ---------- prova ---------- */
+  .hero__proof {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .hero__proof p {
+    margin: 0;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero__proof ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px clamp(28px, 4vw, 52px);
+  }
+  .hero__proof li {
+    display: flex;
+    align-items: center;
+    height: 32px;
+  }
+  /* logos monocromáticos na cor do texto; ganham a cor original no hover */
+  .hero__proof img {
+    height: 100%;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0) var(--logo-invert, );
+    opacity: 0.55;
+    transition:
+      filter 0.4s var(--ease),
+      opacity 0.4s var(--ease);
+  }
+  :global([data-theme='dark']) .hero__proof img {
+    --logo-invert: invert(1);
+  }
+  .hero__proof li:hover img {
+    filter: none;
+    opacity: 1;
+  }
+  .hero__wordmark {
+    font-size: clamp(15px, 1.4vw, 18px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    opacity: 0.55;
+    transition: opacity 0.4s var(--ease);
+  }
+  .hero__proof li:hover .hero__wordmark {
+    opacity: 1;
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      min-height: min(100svh, 900px);
+      display: grid;
+      align-items: center;
+      padding: 120px 0 48px;
+    }
+    .hero__inner {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.6fr);
+      column-gap: clamp(48px, 6vw, 96px);
+      row-gap: 72px;
+      align-items: center;
+    }
+    .hero__visual {
+      order: 0;
+      width: min(100%, 360px);
+      justify-self: end;
+    }
+    .hero__jumper {
+      right: auto;
+      left: -18%;
+    }
+    .hero__loc {
+      left: 50%;
+      translate: -50% 0;
+    }
+    .hero__proof {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---------- intro (CSS puro: roda no primeiro paint, sem esperar o JS) ---------- */
+  :global(.js-motion) .hero__word {
+    animation: hero-word 0.8s var(--ease) calc(0.15s + var(--i) * 0.05s) both;
+  }
+  :global(.js-motion) [data-hero-fade] {
+    animation: hero-rise 0.7s var(--ease) calc(0.45s + var(--d) * 0.08s) both;
+  }
+  :global(.js-motion) .hero__arch {
+    animation: hero-arch 1.1s var(--ease) 0.1s both;
+  }
+  :global(.js-motion) .hero__loc {
+    animation: hero-fade 0.6s ease 0.8s both;
+  }
+  @keyframes hero-word {
+    from {
+      transform: translateY(40%);
+      opacity: 0;
+    }
+  }
+  @keyframes hero-rise {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+  }
+  @keyframes hero-arch {
+    from {
+      clip-path: inset(100% 0 0 0 round 999px 999px 28px 28px);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 999px 999px 28px 28px);
+    }
+  }
+  @keyframes hero-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(12px) rotate(3deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__jumper {
+      animation: none;
+    }
+  }
+</style>

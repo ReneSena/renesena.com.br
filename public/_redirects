@@ -1,0 +1,10 @@
+# URLs do blog antigo (Gatsby, branch legacy) → site novo
+/blog/uma-alternativa-para-selecionar-elementos-do-dom-com-javascript/*  /blog/2020-10-13-uma-alternativa-para-selecionar-elementos-do-dom-com-javascript/  301
+/blog/criando-input-checkbox-personalizado/*  /blog/2020-10-14-criando-input-checkbox-personalizado/  301
+/blog/terminal-customizável-com-hyper/*  /blog/2020-10-21-terminal-customizavel-com-hyper/  301
+/blog/terminal-customiz%C3%A1vel-com-hyper/*  /blog/2020-10-21-terminal-customizavel-com-hyper/  301
+/blog/seletores-curiosos-do-css/*  /blog/2020-12-10-seletores-curiosos-do-css/  301
+/sobre/*  /trajetoria/  301
+/search/*  /blog/  301
+/page/*  /blog/  301
+/admin/*  /  301

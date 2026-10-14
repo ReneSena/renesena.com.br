@@ -1,0 +1,61 @@
+---
+// Ilustração em traço fino: paraquedas laranja + saltador.
+// Grupos com data-* são animados pela Timeline.
+---
+
+<svg class="parachutist" viewBox="0 0 200 275" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g data-para>
+    <g data-canopy>
+      <!-- cordas -->
+      <g stroke="currentColor" stroke-width="0.8" opacity="0.55">
+        <path d="M18 74 L94 182"></path>
+        <path d="M59 78 L95 182"></path>
+        <path d="M100 79 L100 180"></path>
+        <path d="M141 78 L105 182"></path>
+        <path d="M182 74 L106 182"></path>
+      </g>
+      <!-- velame -->
+      <path
+        class="parachutist__canopy"
+        d="M18 74 C 22 30, 60 10, 100 10 C 140 10, 178 30, 182 74 Q 162 62 141 78 Q 120 64 100 79 Q 80 64 59 78 Q 38 62 18 74 Z"
+        stroke="currentColor"
+        stroke-width="1.2"></path>
+      <path d="M100 10 C 82 30, 62 52, 59 78 M100 10 C 100 40, 100 60, 100 79 M100 10 C 118 30, 138 52, 141 78" stroke="currentColor" stroke-width="0.9" opacity="0.5"></path>
+      <path class="parachutist__shine" d="M40 44 C 52 28, 70 20, 86 18" stroke-width="2.4" opacity="0.5"></path>
+    </g>
+
+    <!-- saltador -->
+    <g data-body stroke="currentColor">
+      <path d="M90 196 L94 182 M110 196 L106 182" stroke-width="1.4"></path>
+      <path d="M91 206 L88 194 M109 206 L112 194" stroke-width="3"></path>
+      <path d="M100 204 L100 238" stroke-width="5"></path>
+      <path d="M91 203 L109 203" stroke-width="3"></path>
+      <circle class="parachutist__helmet" cx="100" cy="192" r="9.5" stroke-width="2"></circle>
+      <path d="M91.5 191 Q 100 182 108.5 191" class="parachutist__visor" stroke-width="3.2"></path>
+      <g data-legs>
+        <path d="M100 237 L91 254 L94 268" stroke-width="3.6"></path>
+        <path d="M100 237 L110 253 L107 268" stroke-width="3.6"></path>
+      </g>
+    </g>
+  </g>
+</svg>
+
+<style>
+  .parachutist {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .parachutist__canopy {
+    fill: var(--accent);
+  }
+  .parachutist__shine {
+    stroke: #fff;
+  }
+  .parachutist__helmet {
+    fill: var(--bg);
+  }
+  .parachutist__visor {
+    stroke: var(--accent);
+  }
+</style>

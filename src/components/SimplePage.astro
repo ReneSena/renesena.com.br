@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import Parachutist from './Parachutist.astro';
+import { localePath } from '../i18n/ui';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  text: string;
+  cta: string;
+  code?: string;
+}
+const { lang, title, text, cta, code } = Astro.props;
+---
+
+<Base lang={lang} title={`${title} — Rene Sena`}>
+  <section class="simple container">
+    <div class="simple__jumper"><Parachutist /></div>
+    {code && <p class="simple__code">{code}</p>}
+    <h1 class="display">{title}</h1>
+    <p class="lead">{text}</p>
+    <a class="pill pill--solid" href={localePath(lang, '/')}>{cta}</a>
+  </section>
+</Base>
+
+<style>
+  .simple {
+    min-height: 100svh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    text-align: center;
+    gap: 24px;
+    padding-block: 120px 80px;
+  }
+  .simple__jumper {
+    width: 110px;
+    color: var(--text);
+    animation: float 3s ease-in-out infinite;
+  }
+  .simple__code {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 28px;
+  }
+  .simple .display {
+    font-size: clamp(40px, 6vw, 72px);
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(12px) rotate(3deg);
+    }
+  }
+</style>

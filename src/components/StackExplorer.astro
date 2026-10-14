@@ -1,0 +1,578 @@
+---
+import { useT, emph } from '../i18n/ui';
+import { stack } from '../data/stack';
+import { techIcon } from '../data/icons';
+import { phases, phaseYears, stats, type Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+
+const usage = (tech: string) =>
+  phases
+    .filter((p) => p.techs.includes(tech))
+    .map((p) => ({ id: p.id, name: p.client ?? p.company, year: phaseYears(p).start }));
+
+const marquee = stack.flatMap((g) => g.items);
+
+// Anéis: do interno (Base) ao externo (Fluxo); sentidos alternados, mais lentos por fora
+const rings = stack.map((g, i) => ({
+  ...g,
+  index: i,
+  duration: 60 + i * 18,
+  reverse: i % 2 === 1,
+  offset: i * 37, // desalinha os ícones entre anéis
+  items: g.items.map((tech) => ({ tech, ...techIcon(tech), usage: usage(tech) })),
+}));
+---
+
+<section class="section stack" id="stack" data-anim-zone>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      {[0, 1].map(() => marquee.map((m) => <span>{m}<i>✦</i></span>))}
+    </div>
+  </div>
+
+  <div class="container stack__grid">
+    <div class="stack__intro">
+      <p class="eyebrow" data-reveal>{t('stack.label')}</p>
+      <h2 class="display stack__title" data-reveal set:html={emph(t('stack.title'))} />
+      <p class="lead" data-reveal>{t('stack.hint')}</p>
+      <ul class="legend" data-reveal aria-hidden="true">
+        {
+          rings.map((r) => (
+            <li>
+              <span class="legend__ring" style={`--i:${r.index}`} />
+              {r.label[lang]}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="planet" data-planet>
+      <div class="planet__system" data-system>
+        <span class="planet__core" aria-hidden="true"></span>
+        {
+          rings.map((r) => (
+            <div
+              class:list={['ring', { 'ring--reverse': r.reverse }]}
+              style={`--i:${r.index};--dur:${r.duration}s;--n:${r.items.length}`}
+              role="group"
+              aria-label={r.label[lang]}
+            >
+              <div class="ring__spin">
+                {r.items.map((it, k) => (
+                  <div class="orbit-item" style={`--a:${(360 / r.items.length) * k + r.offset}deg`}>
+                    <button
+                      type="button"
+                      class="orbit-btn"
+                      style={`--brand:${it.hex}`}
+                      aria-label={it.tech}
+                      aria-pressed="false"
+                      data-tech={it.tech}
+                      data-group={r.label[lang]}
+                      data-usage={JSON.stringify(it.usage)}
+                    >
+                      <span class="orbit-btn__icon" set:html={it.svg} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+
+      </div>
+      <div class="center" aria-live="polite" data-center>
+        <div class="center__idle" data-center-idle>
+          <p class="center__big">{stats.techs}+</p>
+          <p class="center__label">{t('stack.count')}</p>
+          <p class="center__hint">{t('stack.idle')}</p>
+        </div>
+        <div class="center__active" data-center-active hidden>
+          <p class="center__group" data-center-group></p>
+          <p class="center__name" data-center-name></p>
+          <p class="center__label">{t('stack.usedIn')}</p>
+          <ol class="center__list" data-center-list></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista acessível / sem JS -->
+  <div class="sr-only">
+    <h3>{t('stack.list')}</h3>
+    {
+      stack.map((g) => (
+        <>
+          <h4>{g.label[lang]}</h4>
+          <ul>
+            {g.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </>
+      ))
+    }
+  </div>
+  <template data-empty>{t('stack.none')}</template>
+</section>
+
+<style>
+  .stack {
+    overflow: hidden;
+  }
+
+  /* ---------- marquee ---------- */
+  .marquee {
+    border-block: 1px solid var(--border);
+    padding: 14px 0;
+    margin-bottom: clamp(56px, 10vw, 120px);
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 60s linear infinite;
+  }
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+  .marquee span {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    padding-right: 22px;
+    font-size: clamp(26px, 4vw, 52px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+  .marquee span:nth-child(3n + 2) {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+  .marquee i {
+    font-style: normal;
+    font-size: 0.4em;
+    color: var(--accent);
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ---------- layout (mobile-first) ---------- */
+  .stack__grid {
+    display: grid;
+    gap: 40px;
+  }
+  .stack__intro {
+    display: grid;
+    gap: 22px;
+  }
+  .stack__intro .eyebrow {
+    margin: 0;
+  }
+  .stack__title {
+    font-size: clamp(36px, 5vw, 68px);
+  }
+  .legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .legend__ring {
+    width: calc(8px + var(--i) * 3px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px dashed var(--text-muted);
+  }
+
+  /* ---------- sistema planetário ---------- */
+  .planet {
+    --bubble: 38px;
+    position: relative;
+  }
+  .planet__system {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    /* raio de cada anel, como fração do raio total */
+    --r0: 0.3;
+    --step: 0.155;
+  }
+  .planet__core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--accent) 55%, #fff), var(--accent) 55%, var(--accent-ink));
+    box-shadow:
+      0 0 0 10px color-mix(in srgb, var(--accent) 10%, transparent),
+      0 0 60px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc((var(--r0) + var(--i) * var(--step)) * 100%);
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border-radius: 50%;
+    border: 1px dashed color-mix(in srgb, var(--text-muted) 45%, transparent);
+    pointer-events: none;
+  }
+  .ring__spin {
+    position: absolute;
+    inset: 0;
+    animation: orbit var(--dur) linear infinite;
+  }
+  .ring--reverse .ring__spin {
+    animation-direction: reverse;
+  }
+  .orbit-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    /* raio = metade da largura do anel (container query) */
+    transform: rotate(var(--a)) translateX(50cqw);
+  }
+  .ring__spin {
+    container-type: size;
+  }
+  .orbit-btn {
+    position: absolute;
+    left: calc(var(--bubble) / -2);
+    top: calc(var(--bubble) / -2);
+    width: var(--bubble);
+    height: var(--bubble);
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    /* desfaz a rotação do anel para o ícone ficar de pé */
+    transform: rotate(calc(var(--a) * -1));
+    transition:
+      color 0.3s,
+      border-color 0.3s,
+      box-shadow 0.3s,
+      scale 0.35s var(--ease);
+  }
+  .orbit-btn__icon {
+    display: grid;
+    place-items: center;
+    width: 50%;
+    height: 50%;
+    animation: orbit var(--dur) linear infinite reverse;
+  }
+  .ring--reverse .orbit-btn__icon {
+    animation-direction: normal;
+  }
+  .orbit-btn__icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .orbit-btn:hover,
+  .orbit-btn:focus-visible,
+  .orbit-btn[aria-pressed='true'] {
+    color: var(--brand);
+    border-color: var(--brand);
+    scale: 1.28;
+    z-index: 2;
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--brand) 18%, transparent);
+  }
+  :global(:root[data-theme='dark']) .orbit-btn:hover,
+  :global(:root[data-theme='dark']) .orbit-btn[aria-pressed='true'] {
+    color: color-mix(in srgb, var(--brand) 70%, #fff);
+  }
+  .planet.is-paused .ring__spin,
+  .planet.is-paused .orbit-btn__icon {
+    animation-play-state: paused;
+  }
+  .planet.has-active .orbit-btn:not([aria-pressed='true']):not(:hover) {
+    opacity: 0.45;
+  }
+  @keyframes orbit {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  /* ---------- painel central (mobile: cartão abaixo) ---------- */
+  .center {
+    position: relative;
+    margin-top: 20px;
+    padding: 22px;
+    min-height: 150px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    text-align: center;
+  }
+  .center p {
+    margin: 0;
+  }
+  .center__big {
+    font-size: 44px;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .center__label,
+  .center__group {
+    margin-top: 6px !important;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .center__group {
+    color: var(--accent);
+    margin-top: 0 !important;
+  }
+  .center__hint {
+    margin-top: 12px !important;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .center__name {
+    margin-top: 4px !important;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .center__list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+  .center__list :global(li) {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+    animation: pop 0.4s var(--ease) backwards;
+  }
+  .center__list :global(li b) {
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  .center__list :global(.muted) {
+    background: none;
+    color: var(--text-muted);
+    padding: 0;
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.96);
+    }
+  }
+
+  /* mobile: ao tocar num ícone, o painel vira um "bottom sheet" acima da tab bar */
+  .planet.has-active .center {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(92px + env(safe-area-inset-bottom));
+    z-index: 90;
+    margin: 0;
+    min-height: 0;
+    box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.4);
+    animation: sheet-in 0.45s var(--ease);
+  }
+  @keyframes sheet-in {
+    from {
+      transform: translateY(24px);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring__spin,
+    .orbit-btn__icon {
+      animation: none;
+    }
+  }
+
+  /* ---------- tablet+ : painel dentro do sistema ---------- */
+  @media (min-width: 701px) {
+    .planet {
+      --bubble: 46px;
+    }
+    .planet__system {
+      --r0: 0.44;
+      --step: 0.125;
+    }
+    .planet__core {
+      display: none;
+    }
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: calc(min(100%, 680px) * 0.3);
+      aspect-ratio: 1;
+      min-height: 0;
+      margin: 0;
+      padding: 8%;
+      translate: -50% -50%;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      background: radial-gradient(circle at 50% 30%, var(--bg-elev), var(--accent-soft));
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+      box-shadow: 0 0 80px color-mix(in srgb, var(--accent) 22%, transparent);
+    }
+    .planet.has-active .center {
+      position: absolute;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+      z-index: auto;
+      box-shadow: 0 0 80px color-mix(in srgb, var(--accent) 22%, transparent);
+      animation: none;
+    }
+    .center__name {
+      font-size: clamp(16px, 2vw, 22px);
+    }
+    .center__big {
+      font-size: clamp(36px, 4.4vw, 56px);
+    }
+    .center__list {
+      font-size: 11px;
+      gap: 2px 8px;
+      margin-top: 8px;
+    }
+    .center__list :global(li) {
+      padding: 0;
+      background: none;
+    }
+    .center__list :global(li b) {
+      color: var(--accent);
+    }
+    .center__hint {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 961px) {
+    .stack__grid {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+      gap: clamp(40px, 5vw, 80px);
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  import { track } from '../scripts/track';
+
+  type Use = { id: string; name: string; year: string };
+  const planet = document.querySelector<HTMLElement>('[data-planet]');
+  if (planet) {
+    const idle = planet.querySelector<HTMLElement>('[data-center-idle]')!;
+    const active = planet.querySelector<HTMLElement>('[data-center-active]')!;
+    const nameEl = planet.querySelector<HTMLElement>('[data-center-name]')!;
+    const groupEl = planet.querySelector<HTMLElement>('[data-center-group]')!;
+    const list = planet.querySelector<HTMLElement>('[data-center-list]')!;
+    const emptyText = document.querySelector<HTMLTemplateElement>('template[data-empty]')!.content.textContent ?? '';
+    const btns = [...planet.querySelectorAll<HTMLButtonElement>('[data-tech]')];
+    let pinned: HTMLButtonElement | null = null;
+
+    const show = (btn: HTMLButtonElement | null) => {
+      document.querySelectorAll('.phase.is-lit').forEach((el) => el.classList.remove('is-lit'));
+      planet.classList.toggle('is-paused', !!btn);
+      if (!btn) {
+        idle.hidden = false;
+        active.hidden = true;
+        return;
+      }
+      const uses: Use[] = JSON.parse(btn.dataset.usage || '[]');
+      idle.hidden = true;
+      active.hidden = false;
+      nameEl.textContent = btn.dataset.tech!;
+      groupEl.textContent = btn.dataset.group!;
+      const max = 4;
+      const shown = uses.length > max ? uses.slice(-max) : uses;
+      const extra = uses.length - shown.length;
+      list.replaceChildren(
+        ...(uses.length
+          ? shown.map((u, i) => {
+              const li = document.createElement('li');
+              li.style.animationDelay = `${i * 50}ms`;
+              const b = document.createElement('b');
+              b.textContent = u.year;
+              li.append(b, u.name);
+              return li;
+            })
+          : [Object.assign(document.createElement('li'), { className: 'muted', textContent: emptyText })]),
+      );
+      if (extra > 0) list.append(Object.assign(document.createElement('li'), { className: 'muted', textContent: `+${extra}` }));
+      uses.forEach((u) => document.querySelector(`[data-phase-id="${u.id}"]`)?.classList.add('is-lit'));
+    };
+
+    const pin = (btn: HTMLButtonElement | null) => {
+      pinned?.setAttribute('aria-pressed', 'false');
+      pinned = btn;
+      btn?.setAttribute('aria-pressed', 'true');
+      planet.classList.toggle('has-active', !!btn);
+      show(btn);
+    };
+
+    btns.forEach((btn) => {
+      btn.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && !pinned && show(btn));
+      btn.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && !pinned && show(null));
+      btn.addEventListener('focus', () => !pinned && show(btn));
+      btn.addEventListener('blur', () => !pinned && show(null));
+      btn.addEventListener('click', () => {
+        if (pinned === btn) return pin(null);
+        pin(btn);
+        track('stack_filter', { tech: btn.dataset.tech! });
+      });
+    });
+
+    // toque/clique fora solta o ícone fixado
+    document.addEventListener('click', (e) => {
+      if (pinned && !(e.target as HTMLElement).closest('[data-tech]')) pin(null);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pinned) pin(null);
+    });
+  }
+</script>

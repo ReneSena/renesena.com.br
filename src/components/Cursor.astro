@@ -1,0 +1,84 @@
+<div class="cursor" aria-hidden="true" data-cursor>
+  <span class="cursor__dot"></span>
+  <span class="cursor__ring"></span>
+</div>
+
+<style>
+  .cursor {
+    display: none;
+  }
+  @media (pointer: fine) {
+    :global(.has-cursor) .cursor {
+      display: block;
+    }
+  }
+  .cursor span {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    pointer-events: none;
+    border-radius: 50%;
+    translate: -50% -50%;
+  }
+  .cursor__dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+  }
+  .cursor__ring {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--text);
+    opacity: 0.35;
+    transition:
+      width 0.35s var(--ease),
+      height 0.35s var(--ease),
+      opacity 0.35s,
+      background-color 0.35s,
+      border-color 0.35s;
+  }
+  .cursor.is-hover .cursor__ring {
+    width: 64px;
+    height: 64px;
+    opacity: 1;
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+  .cursor.is-down .cursor__ring {
+    width: 26px;
+    height: 26px;
+  }
+  .cursor.is-hidden span {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import { gsap, reduced, finePointer } from '../scripts/motion';
+
+  const cursor = document.querySelector<HTMLElement>('[data-cursor]');
+  if (cursor && finePointer && !reduced) {
+    document.documentElement.classList.add('has-cursor');
+    const dot = cursor.querySelector('.cursor__dot')!;
+    const ring = cursor.querySelector('.cursor__ring')!;
+    const dx = gsap.quickTo(dot, 'x', { duration: 0.08 });
+    const dy = gsap.quickTo(dot, 'y', { duration: 0.08 });
+    const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+    const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+    window.addEventListener('pointermove', (e) => {
+      dx(e.clientX);
+      dy(e.clientY);
+      rx(e.clientX);
+      ry(e.clientY);
+      cursor.classList.remove('is-hidden');
+    });
+    document.addEventListener('pointerleave', () => cursor.classList.add('is-hidden'));
+    window.addEventListener('pointerdown', () => cursor.classList.add('is-down'));
+    window.addEventListener('pointerup', () => cursor.classList.remove('is-down'));
+    document.addEventListener('pointerover', (e) => {
+      const interactive = (e.target as HTMLElement).closest('a, button, label, .chip, [data-tilt], input, textarea');
+      cursor.classList.toggle('is-hover', !!interactive);
+    });
+  }
+</script>

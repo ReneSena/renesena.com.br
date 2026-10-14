@@ -1,0 +1,175 @@
+---
+import { readingTime, type Post } from '../scripts/blog';
+import { useT } from '../i18n/ui';
+
+interface Props {
+  post: Post;
+  lang?: 'pt' | 'en';
+  /** card largo, com imagem ao lado do texto (destaque da home) */
+  featured?: boolean;
+}
+const { post, lang = 'pt', featured = false } = Astro.props;
+const t = useT(lang);
+---
+
+<article class:list={['post-card', { 'post-card--featured': featured }]} style={`--cat:${post.data.background}`} data-reveal>
+  <a href={`/blog/${post.id}/`} data-umami-event="post_open" data-umami-event-post={post.id}>
+    <div class="post-card__img">
+      {post.data.image && <img src={post.data.image} alt="" loading="lazy" decoding="async" />}
+      <span class="post-card__cat">{post.data.category}</span>
+    </div>
+    <div class="post-card__body">
+      <p class="post-card__meta">
+        {featured && <>{post.data.category} · </>}{readingTime(post)} {t('blog.minutes')}
+      </p>
+      <h3>{post.data.title}</h3>
+      <p class="post-card__desc">{post.data.description}</p>
+      <span class="post-card__cta">{t('blog.read')} <i aria-hidden="true">→</i></span>
+    </div>
+  </a>
+</article>
+
+<style>
+  /* ocupa a célula inteira do grid: cards da mesma linha com a mesma altura */
+  .post-card {
+    height: 100%;
+  }
+  .post-card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-elev);
+    transition:
+      transform 0.5s var(--ease),
+      border-color 0.4s;
+  }
+  .post-card a:hover {
+    transform: translateY(-6px);
+    border-color: var(--cat);
+  }
+  .post-card__img {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--cat);
+    overflow: hidden;
+  }
+  .post-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.85;
+    transition:
+      transform 0.8s var(--ease),
+      mix-blend-mode 0.4s,
+      opacity 0.4s;
+  }
+  .post-card a:hover img {
+    transform: scale(1.06);
+    mix-blend-mode: normal;
+    opacity: 1;
+  }
+  .post-card__cat {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--cat);
+    color: #fff;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  .post-card__body {
+    padding: 22px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .post-card__meta {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .post-card h3 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .post-card__desc {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  /* o "Ler artigo" vai para o fim do card; a descrição mantém o corte em 3 linhas */
+  .post-card__cta {
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .post-card__cta i {
+    display: inline-block;
+    font-style: normal;
+    color: var(--accent);
+    transition: transform 0.3s var(--ease);
+  }
+  .post-card a:hover .post-card__cta i {
+    transform: translateX(5px);
+  }
+
+  /* ---------- destaque ---------- */
+  /* a capa já traz a categoria; no destaque ela vai para a linha de meta */
+  .post-card--featured .post-card__cat {
+    display: none;
+  }
+  .post-card--featured .post-card__img {
+    aspect-ratio: 1200 / 630;
+    background: #0c0a09;
+  }
+  .post-card--featured .post-card__img img,
+  .post-card--featured a:hover img {
+    mix-blend-mode: normal;
+    opacity: 1;
+  }
+  .post-card--featured h3 {
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .post-card--featured .post-card__desc {
+    display: block;
+    font-size: 15.5px;
+    flex: none;
+  }
+  /* lado a lado só quando há largura para a capa não ser cortada */
+  @media (min-width: 1200px) {
+    .post-card--featured a {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    }
+    .post-card--featured .post-card__img {
+      aspect-ratio: auto;
+      min-height: 100%;
+    }
+    .post-card--featured .post-card__body {
+      padding: 32px 36px;
+      justify-content: center;
+      gap: 14px;
+    }
+  }
+</style>

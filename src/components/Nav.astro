@@ -1,0 +1,354 @@
+---
+import { Image } from 'astro:assets';
+import { useT, localePath, journeyPath } from '../i18n/ui';
+import type { Lang } from '../data/career';
+import foto from '../assets/foto.jpg';
+
+interface Props {
+  lang: Lang;
+  altPath?: string | null;
+}
+const { lang, altPath } = Astro.props;
+const t = useT(lang);
+const home = localePath(lang, '/');
+const path = Astro.url.pathname;
+const isHome = path === home;
+const isBlog = path.startsWith('/blog');
+const journey = journeyPath(lang);
+const isJourney = path.replace(/\/?$/, '/') === journey;
+const anchor = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
+const journeyAnchor = (id: string) => (isJourney ? `#${id}` : `${journey}#${id}`);
+
+// Ícones de traço fino (24x24) no estilo do paraquedista
+const icons = {
+  about: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/>',
+  journey: '<path d="M4 11a8 8 0 0 1 16 0q-2-1.6-4 0-2-1.6-4 0-2-1.6-4 0-2-1.6-4 0Z"/><path d="m5 11 6.2 7M19 11l-6.2 7"/><circle cx="12" cy="19.5" r="1.5"/>',
+  stack: '<circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(-25 12 12)"/><circle cx="19.6" cy="8.4" r="1" fill="currentColor"/>',
+  blog: '<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8.5 12h7M8.5 15.5h7"/>',
+  contact: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2.4"/>',
+};
+
+const links = [
+  { id: 'sobre', href: anchor('sobre'), label: t('nav.about'), icon: icons.about },
+  { id: 'trajetoria', href: isJourney ? '#trajetoria' : journey, label: t('nav.journey'), icon: icons.journey },
+  { id: 'stack', href: journeyAnchor('stack'), label: t('nav.stack'), icon: icons.stack },
+  { id: 'blog', href: '/blog/', label: t('nav.blog'), icon: icons.blog },
+  { id: 'contato', href: anchor('contato'), label: t('nav.contact'), icon: icons.contact },
+];
+const otherLang = lang === 'pt' ? 'en' : 'pt';
+const langHref = altPath ?? localePath(otherLang, '/');
+---
+
+<header class:list={['nav', { 'nav--solid': !isHome }]} data-nav>
+  <div class="nav__inner">
+    <a href={home} class="nav__brand" aria-label={t('nav.home')}>
+      <Image src={foto} alt="" width={32} height={32} densities={[1, 2]} format="webp" loading="eager" />
+      <span>Rene Sena</span>
+    </a>
+
+    <nav class="nav__links" aria-label={t('nav.main')}>
+      {
+        links.map((l) => (
+          <a class="pill nav__pill" href={l.href} data-magnetic data-nav-link={l.id} aria-current={isBlog && l.id === 'blog' ? 'page' : undefined}>
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="nav__tools">
+      <a
+        class="pill icon-btn"
+        href={langHref}
+        hreflang={otherLang}
+        data-umami-event="lang_switch"
+        data-umami-event-to={otherLang}
+        aria-label={otherLang === 'en' ? 'English version' : 'Versão em português'}
+      >
+        {otherLang.toUpperCase()}
+      </a>
+      <button class="pill icon-btn" type="button" data-theme-toggle aria-label={t('nav.theme')}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5"></circle>
+          <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Tab bar estilo app (mobile) -->
+<nav class="tabbar" aria-label={t('nav.tabbar')} data-tabbar>
+  <span class="tabbar__pill" aria-hidden="true" data-tab-pill></span>
+  {
+    links.map((l) => (
+      <a class="tabbar__item" href={l.href} data-nav-link={l.id} aria-current={isBlog && l.id === 'blog' ? 'page' : undefined}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={l.icon} />
+        <span>{l.label}</span>
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  /* ---------- barra superior (mobile-first) ---------- */
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    padding: 10px var(--gutter);
+    padding-top: max(10px, env(safe-area-inset-top));
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.4s var(--ease),
+      border-color 0.4s var(--ease),
+      padding 0.4s var(--ease);
+  }
+  .nav.is-scrolled,
+  .nav--solid {
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-color: var(--border);
+  }
+  .nav__inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition:
+      opacity 0.4s var(--ease),
+      transform 0.4s var(--ease);
+  }
+  .nav.is-scrolled .nav__brand,
+  .nav--solid .nav__brand {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .nav__brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .nav__links {
+    display: none;
+  }
+  .nav__tools {
+    display: flex;
+    gap: 8px;
+  }
+  .nav__tools .icon-btn {
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- tab bar ---------- */
+  .tabbar {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 6px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: color-mix(in srgb, var(--bg-elev) 80%, transparent);
+    backdrop-filter: blur(18px) saturate(1.5);
+    -webkit-backdrop-filter: blur(18px) saturate(1.5);
+    box-shadow: 0 12px 32px -16px rgb(0 0 0 / 0.35);
+    transition: transform 0.45s var(--ease);
+  }
+  .tabbar.is-hidden {
+    transform: translateY(calc(100% + 24px));
+  }
+  .tabbar__pill {
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 6px;
+    width: calc((100% - 12px) / 5);
+    border-radius: 16px;
+    background: var(--accent-soft);
+    transform: translateX(calc(var(--tab, 0) * 100%));
+    opacity: var(--tab-on, 0);
+    transition:
+      transform 0.5s var(--ease),
+      opacity 0.3s;
+  }
+  .tabbar__item {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 3px;
+    min-height: 52px;
+    padding: 8px 2px 6px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.3s;
+  }
+  .tabbar__item svg {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.4s var(--ease);
+  }
+  .tabbar__item[aria-current] {
+    color: var(--accent-ink);
+    font-weight: 500;
+  }
+  .tabbar__item[aria-current] svg {
+    transform: translateY(-1px) scale(1.08);
+  }
+  .tabbar__item:active svg {
+    transform: scale(0.9);
+  }
+
+  /* espaço para a tab bar não cobrir o rodapé */
+  :global(body) {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+
+  /* ---------- desktop ---------- */
+  @media (min-width: 861px) {
+    .nav {
+      padding: 18px var(--gutter);
+    }
+    .nav.is-scrolled,
+    .nav--solid {
+      padding-block: 10px;
+    }
+    .nav__inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+    }
+    .nav__brand {
+      justify-self: start;
+    }
+    .nav__links {
+      display: flex;
+      gap: 8px;
+    }
+    .nav__pill {
+      padding-inline: 18px;
+      min-height: 38px;
+      font-size: 10.5px;
+      background: color-mix(in srgb, var(--bg) 60%, transparent);
+    }
+    .nav__pill[aria-current] {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .nav__tools {
+      justify-self: end;
+    }
+    .nav__tools .icon-btn {
+      width: 40px;
+      height: 40px;
+      min-height: 40px;
+    }
+    .tabbar {
+      display: none;
+    }
+    :global(body) {
+      padding-bottom: 0;
+    }
+  }
+</style>
+
+<script>
+  import { track } from '../scripts/track';
+
+  const nav = document.querySelector<HTMLElement>('[data-nav]')!;
+  const tabbar = document.querySelector<HTMLElement>('[data-tabbar]')!;
+  const tabs = [...tabbar.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')];
+  const pills = [...nav.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')];
+
+  // ---------- estado de scroll + esconder/mostrar tab bar ----------
+  let lastY = window.scrollY;
+  const contact = document.getElementById('contato');
+  const onScroll = () => {
+    const y = window.scrollY;
+    nav.classList.toggle('is-scrolled', y > window.innerHeight * 0.55);
+    const delta = y - lastY;
+    const inForm = contact && contact.getBoundingClientRect().top < window.innerHeight * 0.6;
+    if (delta > 12 && y > 200 && !inForm) tabbar.classList.add('is-hidden');
+    else if (delta < -8 || inForm || y < 200) tabbar.classList.remove('is-hidden');
+    if (Math.abs(delta) > 8) lastY = y;
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ---------- aba ativa ----------
+  const setActive = (id: string | null) => {
+    const idx = tabs.findIndex((t) => t.dataset.navLink === id);
+    [...tabs, ...pills].forEach((a) => {
+      if (a.dataset.navLink === id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+    tabbar.style.setProperty('--tab', String(Math.max(idx, 0)));
+    tabbar.style.setProperty('--tab-on', idx >= 0 ? '1' : '0');
+  };
+
+  if (location.pathname.startsWith('/blog')) setActive('blog');
+  else {
+    const ids = ['sobre', 'trajetoria-resumo', 'destaques', 'trajetoria', 'stack', 'blog', 'contato'];
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (sections.length) {
+      const visible = new Map<string, number>();
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => visible.set(e.target.id, e.isIntersecting ? e.intersectionRect.height : 0));
+          let best: string | null = null;
+          let max = 0;
+          visible.forEach((h, id) => {
+            if (h > max) {
+              max = h;
+              best = id;
+            }
+          });
+          // destaques e o resumo da home pertencem à aba Trajetória
+          setActive(best === 'destaques' || best === 'trajetoria-resumo' ? 'trajetoria' : best);
+        },
+        { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] },
+      );
+      sections.forEach((s) => io.observe(s));
+    }
+  }
+
+  // ---------- tema ----------
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    const apply = () => {
+      root.dataset.theme = next;
+    };
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    if (doc.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) doc.startViewTransition(apply);
+    else apply();
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+    track('theme_toggle', { theme: next });
+  });
+</script>

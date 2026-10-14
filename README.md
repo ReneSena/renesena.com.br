@@ -1,28 +1,17 @@
-<div align="center">
-    <img src="/src/images/banner_readme.png" height="350" /><br />
-    <img src="https://img.shields.io/badge/Gatsby-v2.23.12-%23542F61?style=flat-square&logo=appveyor" />
-    <img src="https://img.shields.io/github/license/ReneSena/renesena.com.br?style=flat-square&logo=appveyor" />
-    <img src="https://img.shields.io/badge/Lan%C3%A7amento-16%2F10%2F2020-%233570B2?style=flat-square&logo=appveyor" />
-</div>
+# renesena.com.br — portfólio
 
-## :pencil2: Objetivo
-A proposta dessa aplicação é consolidar meus conhecimentos e compartilhar aquilo vou aprendendo ao longo da minha trajetória com as pessoas da área, acredito que compartilhar aquilo que sabemos é uma ótima forma de aprender e ajudar outras pessoas que estão entrando na área.
+Astro 5 + GSAP (ScrollTrigger/SplitText) + Lenis. PT em `/`, EN em `/en/`, blog em `/blog/`.
 
-## :hammer_and_wrench: Tecnologias usadas no projeto
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # astro check + build estático em dist/
+```
 
-- [GatsbyJS](https://www.gatsbyjs.com/docs/)
-- [GraphQL](https://graphql.org/)
-- [Styled Components](https://styled-components.com/)
-- [Styled Icons](https://styled-icons.js.org/)
-- [Styled Media Query](https://github.com/morajabi/styled-media-query)
-- [Algolia](https://www.algolia.com/)
-- [Netlify](https://www.netlify.com/)
-- [Netlify CMS](https://www.netlifycms.org/)
-- [Disqus](https://disqus.com/)
-- [PrismJs](https://prismjs.com/)
+- **Conteúdo da carreira:** `src/data/career.ts` (fases do paraquedista, números calculados daqui) e `src/data/stack.ts`.
+- **Textos/i18n:** `src/i18n/ui.ts` — `[trecho]` vira destaque laranja em itálico.
+- **Posts:** `src/content/blog/*.md` (imagens em `public/assets/img/`).
+- **Formulário:** Netlify Forms (`name="contato"`). Ative notificação por e-mail em Netlify → Forms → Notifications.
+- **Analytics:** copie `.env.example` para `.env` e preencha `PUBLIC_UMAMI_WEBSITE_ID` (também nas env vars da Netlify). Só carrega em produção.
 
-## :dizzy: Status Deploy 
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4404d923-a526-4739-8872-5e9076f00725/deploy-status)](https://app.netlify.com/sites/renesena/deploys)
-
-:link: Acesse clicando [aqui](https://renesena.com.br).
+> O blog antigo em Gatsby está preservado na branch [`legacy`](../../tree/legacy) (tag `gatsby-legacy`).

@@ -1,0 +1,814 @@
+---
+import { useT, emph } from '../i18n/ui';
+import { phases, formatPeriod, phaseYears, phaseLocation, type Lang } from '../data/career';
+import Parachutist from './Parachutist.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+const firstYear = phaseYears(phases[0]).start;
+const lastIndex = phases.length - 1;
+---
+
+<section class="section journey" id="trajetoria">
+  <div class="container journey__head">
+    <p class="eyebrow" data-reveal>{t('journey.label')}</p>
+    <h2 class="display" data-reveal set:html={emph(t('journey.title'))} />
+    <p class="lead" data-reveal>{t('journey.intro')}</p>
+  </div>
+
+  <div class="journey__body container" data-journey>
+    <!-- Cena fixa: céu, nuvens, paraquedista, altímetro -->
+    <div class="scene" aria-hidden="true" data-scene data-anim-zone>
+      <div class="scene__year" data-year>{firstYear}</div>
+
+      <div class="scene__clouds scene__clouds--far" data-clouds="far">
+        {[12, 38, 70, 22, 84, 55].map((x, i) => <span class="cloud cloud--s" style={`left:${x}%;top:${i * 34 + 8}%`} />)}
+      </div>
+      <div class="scene__speed" data-speed>
+        {[8, 19, 31, 46, 63, 77, 90].map((x, i) => <i style={`left:${x}%;animation-delay:${i * -0.37}s`} />)}
+      </div>
+
+      <div class="scene__jumper" data-jumper>
+        <Parachutist />
+      </div>
+
+      <div class="scene__clouds scene__clouds--near" data-clouds="near">
+        {[4, 62, 30, 78, 10].map((x, i) => <span class="cloud" style={`left:${x}%;top:${i * 48 + 30}%`} />)}
+      </div>
+
+      <div class="scene__ground" data-ground>
+        <span class="scene__flag"></span>
+      </div>
+
+      <div class="altimeter">
+        <span class="altimeter__label">{t('journey.altitude')}</span>
+        <div class="altimeter__track">
+          {
+            phases.map((p, i) => (
+              <span class="altimeter__tick" style={`top:${(i / lastIndex) * 100}%`} data-tick={i}>
+                {(i === 0 || phaseYears(phases[i - 1]).start !== phaseYears(p).start) && <b>{phaseYears(p).start}</b>}
+              </span>
+            ))
+          }
+          <span class="altimeter__marker" data-marker></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fases -->
+    <ol class="phases" data-phases>
+      {
+        phases.map((p, i) => {
+          const isLast = i === lastIndex;
+          return (
+            <li class:list={['phase', { 'phase--final': isLast }]} data-phase={i} data-phase-id={p.id} data-year={phaseYears(p).start} data-techs={p.techs.join('|')}>
+              <article class="phase__card">
+                <span class="phase__platform" aria-hidden="true" />
+                <header class="phase__meta">
+                  <span class="phase__num">
+                    {t('journey.phase')} {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span class:list={['phase__kind', `phase__kind--${p.kind}`]}>
+                    {isLast ? t('journey.landed') : t(`journey.kind.${p.kind}`)}
+                  </span>
+                </header>
+                <p class="phase__period">{formatPeriod(p, lang)}</p>
+                <h3 class="phase__company">
+                  {p.client ? (
+                    <>
+                      {p.client}
+                      <small> via {p.company}</small>
+                    </>
+                  ) : (
+                    p.company
+                  )}
+                </h3>
+                <ul class="phase__roles">
+                  {p.roles.map((r) => (
+                    <li>{r.title[lang]}</li>
+                  ))}
+                </ul>
+                <p class="phase__summary">{p.summary[lang]}</p>
+                {p.techs.length > 0 && (
+                  <ul class="phase__techs">
+                    {p.techs.slice(0, 6).map((tech) => (
+                      <li>{tech}</li>
+                    ))}
+                    {p.techs.length > 6 && <li>+{p.techs.length - 6}</li>}
+                  </ul>
+                )}
+                <button class="phase__more" type="button" data-open-phase={i}>
+                  {t('journey.more')} <span aria-hidden="true">↗</span>
+                </button>
+
+                <template data-phase-detail>
+                  <p class="drawer__kicker">
+                    {formatPeriod(p, lang)} · {phaseLocation(p, lang)}
+                  </p>
+                  <h3 class="drawer__title">{p.client ? `${p.client} · ${p.company}` : p.company}</h3>
+                  <ol class="drawer__roles">
+                    {p.roles.map((r) => (
+                      <li>
+                        <b>{r.title[lang]}</b>
+                        <span>
+                          {r.start.slice(0, 4)}
+                          {r.end ? ` — ${r.end.slice(0, 4)}` : ` — ${t('journey.now').toLowerCase()}`}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                  <ul class="drawer__bullets">
+                    {p.bullets[lang].map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                  {p.techs.length > 0 && (
+                    <ul class="phase__techs">
+                      {p.techs.map((tech) => (
+                        <li>{tech}</li>
+                      ))}
+                    </ul>
+                  )}
+                </template>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+
+  <dialog class="drawer" data-drawer aria-labelledby="drawer-content">
+    <button class="pill icon-btn drawer__close" type="button" data-close-drawer aria-label={t('journey.close')}>✕</button>
+    <div class="drawer__content" id="drawer-content" data-drawer-content></div>
+  </dialog>
+</section>
+
+<style>
+  .journey {
+    padding-bottom: 0;
+  }
+  .journey__head {
+    display: grid;
+    gap: 28px;
+    margin-bottom: clamp(48px, 8vw, 96px);
+  }
+  .journey__head .eyebrow {
+    margin: 0;
+  }
+
+  .journey__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    position: relative;
+    padding: 0;
+  }
+  .scene,
+  .phases {
+    grid-area: 1 / 1;
+  }
+
+  /* ---------- cena ---------- */
+  .scene {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    align-self: start;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--sky-2), var(--sky-1) 70%);
+  }
+  .scene__year {
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    translate: -50% 0;
+    font-size: clamp(110px, 17vw, 240px);
+    font-weight: 200;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    color: var(--text);
+    opacity: 0.06;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .scene__clouds {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+  }
+  .cloud {
+    position: absolute;
+    width: 140px;
+    height: 44px;
+    border-radius: 999px;
+    background: var(--cloud);
+    border: 1px solid var(--border);
+    opacity: 0.95;
+  }
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: var(--cloud);
+    border: 1px solid var(--border);
+    border-bottom: 0;
+    border-radius: 50% 50% 0 0;
+  }
+  .cloud::before {
+    width: 64px;
+    height: 32px;
+    left: 22px;
+    top: -26px;
+    border-radius: 64px 64px 0 0;
+  }
+  .cloud::after {
+    width: 44px;
+    height: 22px;
+    left: 70px;
+    top: -18px;
+    border-radius: 44px 44px 0 0;
+  }
+  .cloud--s {
+    transform: scale(0.55);
+    opacity: 0.6;
+  }
+  .scene__clouds--near .cloud {
+    transform: scale(1.25);
+  }
+
+  .scene__speed {
+    position: absolute;
+    inset: 0;
+    opacity: var(--speed, 0.25);
+    transition: opacity 0.3s;
+  }
+  .scene__speed i {
+    position: absolute;
+    top: 100%;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(transparent, var(--text-muted));
+    animation: rush 1.4s linear infinite;
+  }
+  @keyframes rush {
+    to {
+      transform: translateY(calc(-100svh - 120px));
+    }
+  }
+
+  .scene__jumper {
+    position: absolute;
+    right: 48px;
+    top: 7%;
+    width: 92px;
+    color: var(--text);
+    z-index: 2;
+    transition: right 0.9s var(--ease);
+  }
+  /* pousado: centraliza para aparecer sob o último card */
+  .scene.is-landed .scene__jumper {
+    right: calc(50% - 46px);
+  }
+
+  .scene__ground {
+    position: absolute;
+    left: -5%;
+    right: -5%;
+    bottom: 0;
+    height: 22%;
+    background: var(--bg);
+    border-top: 1px solid var(--text);
+    border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+    transform: translateY(130%);
+    z-index: 1;
+  }
+  .scene__flag {
+    position: absolute;
+    left: 70%;
+    top: -38px;
+    width: 1px;
+    height: 38px;
+    background: var(--text);
+  }
+  .scene__flag::after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 0;
+    border-left: 18px solid var(--accent);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+  }
+
+  .altimeter {
+    position: absolute;
+    right: 10px;
+    top: 12%;
+    bottom: 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 3;
+  }
+  .altimeter__label {
+    display: none;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .altimeter__track {
+    position: relative;
+    flex: 1;
+    width: 1px;
+    background: var(--border);
+  }
+  .altimeter__tick {
+    position: absolute;
+    right: 0;
+    width: 8px;
+    height: 1px;
+    background: var(--text-muted);
+  }
+  .altimeter__tick b {
+    display: none;
+    position: absolute;
+    right: 14px;
+    top: -7px;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    transition:
+      color 0.3s,
+      transform 0.3s var(--ease);
+  }
+  .altimeter__tick.is-active b {
+    color: var(--accent);
+    transform: translateX(-4px);
+    font-weight: 600;
+  }
+  .altimeter__marker {
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  /* ---------- fases ---------- */
+  .phases {
+    position: relative;
+    z-index: 4;
+    list-style: none;
+    margin: 0;
+    padding: 45svh 40px 75svh var(--gutter);
+    display: grid;
+    gap: 40svh;
+  }
+  .phase__card {
+    position: relative;
+    padding: clamp(24px, 3vw, 36px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-elev);
+    transition:
+      border-color 0.5s var(--ease),
+      box-shadow 0.5s var(--ease),
+      opacity 0.5s var(--ease);
+  }
+  .js-motion .phase:not(.is-active) .phase__card {
+    opacity: 0.45;
+  }
+  .phase.is-active .phase__card {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+    box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  .phase.is-lit .phase__card {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+    opacity: 1;
+  }
+  .phase__platform {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: -1px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease);
+  }
+  .phase.is-active .phase__platform {
+    transform: scaleX(1);
+  }
+  .phase__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .phase__kind {
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+  .phase--final .phase__kind {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .phase__period {
+    margin: 22px 0 4px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .phase__company {
+    margin: 0;
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .phase__company small {
+    font-size: 0.5em;
+    color: var(--text-muted);
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .phase__roles {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 4px;
+    font-size: 13.5px;
+    font-weight: 500;
+  }
+  .phase__roles li + li::before {
+    content: '→';
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .phase__summary {
+    margin: 16px 0 0;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+  .phase__techs {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .phase__techs li {
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+  .phase__more {
+    margin-top: 22px;
+    padding: 8px 0;
+    border: 0;
+    background: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text);
+    border-bottom: 1px solid var(--accent);
+    cursor: pointer;
+  }
+  .phase__more span {
+    display: inline-block;
+    transition: transform 0.3s var(--ease);
+  }
+  .phase__more:hover span {
+    transform: translate(3px, -3px);
+  }
+
+  /* ---------- drawer ---------- */
+  .drawer {
+    margin: 0 0 0 auto;
+    height: 100dvh;
+    max-height: none;
+    width: min(560px, 100vw);
+    border: 0;
+    border-left: 1px solid var(--border);
+    padding: clamp(28px, 5vw, 56px);
+    padding-top: 84px;
+    background: var(--bg);
+    color: var(--text);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .drawer[open] {
+    animation: drawer-in 0.5s var(--ease);
+  }
+  .drawer::backdrop {
+    background: rgb(0 0 0 / 0.35);
+    backdrop-filter: blur(4px);
+  }
+  @keyframes drawer-in {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  .drawer__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 14px;
+  }
+  .drawer :global(.drawer__kicker) {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .drawer :global(.drawer__title) {
+    margin: 10px 0 28px;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .drawer :global(.drawer__roles) {
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0 0 0 18px;
+    border-left: 1px solid var(--accent);
+    display: grid;
+    gap: 12px;
+  }
+  .drawer :global(.drawer__roles li) {
+    display: grid;
+  }
+  .drawer :global(.drawer__roles span) {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .drawer :global(.drawer__bullets) {
+    margin: 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 10px;
+    color: var(--text-muted);
+  }
+  .drawer :global(.drawer__bullets li::marker) {
+    color: var(--accent);
+  }
+  .drawer :global(.phase__techs) {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .drawer :global(.phase__techs li) {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+
+  /* ---------- desktop: cena à esquerda, fases à direita ---------- */
+  @media (min-width: 861px) {
+    .journey__body {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 64px);
+      padding-inline: var(--gutter);
+    }
+    .scene {
+      grid-area: 1 / 1;
+      border-radius: 0 0 var(--radius) var(--radius);
+      border-inline: 1px solid var(--border);
+    }
+    .phases {
+      grid-area: 1 / 2;
+      z-index: auto;
+      padding: 30svh 0 40svh;
+      gap: 34svh;
+    }
+    .scene__year {
+      top: 50%;
+      bottom: auto;
+      translate: -50% -50%;
+    }
+    .scene__jumper,
+    .scene.is-landed .scene__jumper {
+      right: auto;
+      left: 50%;
+      top: 30%;
+      width: clamp(120px, 15vw, 190px);
+      translate: -50% 0;
+    }
+    .altimeter {
+      right: 18px;
+    }
+    .altimeter__label,
+    .altimeter__tick b {
+      display: block;
+    }
+  }
+
+  /* ---------- sem animação: lista simples ---------- */
+  :global(html:not(.js-motion)) .scene__speed {
+    display: none;
+  }
+  :global(html:not(.js-motion)) .phases {
+    gap: 24px;
+    padding-block: 24px 64px;
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger, reduced, lockScroll } from '../scripts/motion';
+  import { track } from '../scripts/track';
+
+  const root = document.querySelector<HTMLElement>('[data-journey]');
+  if (root) {
+    const phaseEls = [...root.querySelectorAll<HTMLElement>('[data-phase]')];
+    const yearEl = root.querySelector<HTMLElement>('[data-year]')!;
+    const ticks = [...root.querySelectorAll<HTMLElement>('[data-tick]')];
+    const marker = root.querySelector<HTMLElement>('[data-marker]')!;
+    const jumper = root.querySelector<HTMLElement>('[data-jumper]')!;
+    const svg = jumper.querySelector('svg')!;
+    const para = jumper.querySelector<SVGGElement>('[data-para]')!;
+    const canopy = jumper.querySelector<SVGGElement>('[data-canopy]')!;
+    const legs = jumper.querySelector<SVGGElement>('[data-legs]')!;
+    const ground = root.querySelector<HTMLElement>('[data-ground]')!;
+    const speed = root.querySelector<HTMLElement>('[data-speed]')!;
+    const last = phaseEls.length - 1;
+    gsap.set(para, { svgOrigin: '100 10' });
+    gsap.set(canopy, { svgOrigin: '100 182' });
+    gsap.set(legs, { svgOrigin: '100 237' });
+    if (!reduced) gsap.set(ground, { y: 0, yPercent: 130 });
+    const seen = new Set<number>();
+    let current = -1;
+    let landed = false;
+    let sway: ReturnType<typeof gsap.to> | undefined;
+
+    const setActive = (i: number) => {
+      if (i === current) return;
+      const prev = current;
+      current = i;
+      phaseEls.forEach((el, k) => el.classList.toggle('is-active', k === i));
+      ticks.forEach((el, k) => el.classList.toggle('is-active', k === i));
+      const year = phaseEls[i].dataset.year!;
+      if (yearEl.textContent !== year) {
+        if (reduced) yearEl.textContent = year;
+        else
+          gsap
+            .timeline()
+            .to(yearEl, { yPercent: i > prev ? -30 : 30, opacity: 0, duration: 0.2 })
+            .call(() => {
+              yearEl.textContent = year;
+            })
+            .fromTo(yearEl, { yPercent: i > prev ? 30 : -30 }, { yPercent: 0, opacity: 0.06, duration: 0.35, ease: 'power3.out' });
+      }
+      if (!seen.has(i)) {
+        seen.add(i);
+        track('timeline_phase', { phase: phaseEls[i].dataset.phaseId!, index: i + 1 });
+        if (i === last) track('timeline_landed');
+      }
+      if (reduced) return;
+
+      if (i === last) land();
+      else {
+        if (landed) takeOff();
+        // "abre" o paraquedas: infla, desacelera e dá um pequeno tranco
+        gsap
+          .timeline()
+          .to(canopy, { scaleX: 1.14, scaleY: 0.9, duration: 0.25, ease: 'power2.out' })
+          .to(canopy, { scaleX: 1, scaleY: 1, duration: 0.9, ease: 'elastic.out(1, 0.4)' });
+        gsap.fromTo(jumper, { y: -18 }, { y: 0, duration: 1, ease: 'elastic.out(1, 0.5)' });
+      }
+    };
+
+    const scene = root.querySelector<HTMLElement>('[data-scene]')!;
+    const isDesktop = () => window.matchMedia('(min-width: 861px)').matches;
+    const land = () => {
+      landed = true;
+      scene.classList.add('is-landed');
+      gsap.to(ground, { yPercent: 0, duration: 1, ease: 'power3.out' });
+      const groundTop = scene.clientHeight - ground.offsetHeight;
+      gsap.to(jumper, { top: groundTop - jumper.offsetHeight + 6, duration: 1.1, ease: 'power2.inOut' });
+      gsap.to(para, { rotate: 0, duration: 0.6 });
+      sway?.pause();
+      gsap.to(svg, { x: 0, rotate: 0, duration: 0.6 });
+      gsap.to(canopy, { scaleY: 0.18, scaleX: 0.7, rotate: -70, x: -70, y: 120, opacity: 0.75, duration: 0.8, delay: 0.9, ease: 'power2.in' });
+      gsap.to(legs, { scaleY: 1.08, duration: 0.3, delay: 1 });
+      speed.style.setProperty('--speed', '0');
+    };
+
+    const takeOff = () => {
+      landed = false;
+      scene.classList.remove('is-landed');
+      gsap.to(ground, { yPercent: 130, duration: 0.6, ease: 'power2.in' });
+      gsap.to(jumper, { top: isDesktop() ? '30%' : '7%', duration: 0.6 });
+      gsap.to(canopy, { scaleY: 1, scaleX: 1, rotate: 0, x: 0, y: 0, opacity: 1, duration: 0.5 });
+      gsap.to(legs, { scaleY: 1, duration: 0.3 });
+      sway?.resume();
+    };
+
+    phaseEls.forEach((el, i) => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 62%',
+        end: 'bottom 38%',
+        onEnter: () => setActive(i),
+        onEnterBack: () => setActive(i),
+      });
+    });
+    setActive(0);
+
+    if (!reduced) {
+      const swingTo = gsap.quickTo(para, 'rotate', { duration: 0.8, ease: 'power3.out' });
+      // progresso geral: altímetro + nuvens subindo (sensação de queda)
+      ScrollTrigger.create({
+        trigger: root.querySelector('[data-phases]'),
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        onUpdate: (self) => {
+          gsap.set(marker, { top: `${self.progress * 100}%` });
+          const v = Math.min(Math.abs(self.getVelocity()) / 2500, 1);
+          if (!landed) speed.style.setProperty('--speed', String(0.15 + v * 0.85));
+          // balanço proporcional à velocidade/direção
+          swingTo(landed ? 0 : gsap.utils.clamp(-14, 14, self.getVelocity() / -160));
+        },
+      });
+      gsap.fromTo('[data-clouds="far"]', { yPercent: 40 }, { yPercent: -160, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true } });
+      gsap.fromTo('[data-clouds="near"]', { yPercent: 80 }, { yPercent: -260, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', scrub: true } });
+      // pêndulo contínuo: zig-zag lateral durante a queda (período diferente da flutuação)
+      sway = gsap.fromTo(
+        svg,
+        { x: -12, rotate: -5 },
+        {
+          x: 12,
+          rotate: 5,
+          transformOrigin: '50% 4%',
+          duration: 1.7,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', toggleActions: 'play pause resume pause' },
+        },
+      );
+      // flutuação ociosa
+      gsap.to(svg, {
+        y: 8,
+        duration: 2.2,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', toggleActions: 'play pause resume pause' },
+      });
+    }
+
+    // ---------- drawer ----------
+    const drawer = document.querySelector<HTMLDialogElement>('[data-drawer]')!;
+    const content = drawer.querySelector<HTMLElement>('[data-drawer-content]')!;
+    let opener: HTMLElement | null = null;
+    root.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-open-phase]');
+      if (!btn) return;
+      const tpl = btn.closest('.phase__card')!.querySelector<HTMLTemplateElement>('template[data-phase-detail]')!;
+      content.replaceChildren(tpl.content.cloneNode(true));
+      opener = btn;
+      drawer.showModal();
+      lockScroll(true);
+    });
+    const close = () => drawer.close();
+    drawer.querySelector('[data-close-drawer]')!.addEventListener('click', close);
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) close();
+    });
+    drawer.addEventListener('close', () => {
+      lockScroll(false);
+      opener?.focus();
+    });
+  }
+</script>

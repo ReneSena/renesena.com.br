@@ -1,0 +1,222 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { render } from 'astro:content';
+import { getPosts, readingTime } from '../../scripts/blog';
+import { useT } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props;
+const { Content } = await render(post);
+const t = useT('pt');
+const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
+---
+
+<Base title={`${post.data.title} — Rene Sena`} description={post.data.description} image={post.data.image}>
+  <div class="progress" aria-hidden="true" data-progress style={`--cat:${post.data.background}`}></div>
+  <article class="post container" style={`--cat:${post.data.background}`}>
+    <a class="post__back" href="/blog/">← {t('blog.back')}</a>
+    <header class="post__header">
+      <span class="post__cat">{post.data.category}</span>
+      <h1>{post.data.title}</h1>
+      <p class="post__desc">{post.data.description}</p>
+      <p class="post__meta">
+        <img src="/foto.jpg" alt="" width="36" height="36" />
+        <span>
+          Rene Sena<br />
+          <small>{readingTime(post)} {t('blog.minutes')}</small>
+        </span>
+      </p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <section class="container related">
+    <p class="eyebrow">Continue lendo</p>
+    <div class="related__grid">
+      {related.map((p) => <PostCard post={p} />)}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 2px;
+    z-index: 150;
+    background: var(--cat);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @supports (animation-timeline: scroll()) {
+    .progress {
+      animation: grow linear both;
+      animation-timeline: scroll(root);
+    }
+    @keyframes grow {
+      to {
+        transform: scaleX(1);
+      }
+    }
+  }
+  .post {
+    max-width: 760px;
+    padding-top: 140px;
+  }
+  .post__back {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .post__back:hover {
+    color: var(--accent);
+  }
+  .post__header {
+    margin: 40px 0 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .post__cat {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--cat);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  .post h1 {
+    margin: 20px 0 16px;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .post__desc {
+    margin: 0;
+    font-size: 19px;
+    color: var(--text-muted);
+  }
+  .post__meta {
+    margin: 28px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  .post__meta img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .post__meta small {
+    color: var(--text-muted);
+  }
+
+  .prose {
+    font-size: 17.5px;
+    line-height: 1.8;
+  }
+  .prose :global(h2) {
+    margin: 2.4em 0 0.6em;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .prose :global(h3) {
+    margin: 2em 0 0.5em;
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .prose :global(p) {
+    margin: 0 0 1.3em;
+  }
+  .prose :global(a) {
+    color: var(--accent-ink);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .prose :global(img) {
+    margin: 2em auto;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    height: auto;
+  }
+  .prose :global(:not(pre) > code) {
+    font-size: 0.88em;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+  .prose :global(pre) {
+    margin: 1.6em 0;
+    padding: 20px 22px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+  :global(:root[data-theme='dark']) .prose :global(.astro-code),
+  :global(:root[data-theme='dark']) .prose :global(.astro-code span) {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+  .prose :global(blockquote) {
+    margin: 1.6em 0;
+    padding: 4px 0 4px 20px;
+    border-left: 2px solid var(--cat);
+    color: var(--text-muted);
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.3em;
+    margin: 0 0 1.3em;
+  }
+  .prose :global(li::marker) {
+    color: var(--cat);
+  }
+  .prose :global(table) {
+    width: 100%;
+    margin: 0 0 1.6em;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .prose :global(th) {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .related {
+    padding-block: 80px 120px;
+  }
+  .related__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 20px;
+  }
+</style>

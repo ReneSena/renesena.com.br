@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import Manifesto from './Manifesto.astro';
+import JourneyTeaser from './JourneyTeaser.astro';
+import BlogPreview from './BlogPreview.astro';
+import Contact from './Contact.astro';
+import { localePath } from '../i18n/ui';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const altPath = localePath(lang === 'pt' ? 'en' : 'pt', '/');
+---
+
+<Base lang={lang} altPath={altPath}>
+  <Hero lang={lang} />
+  <Manifesto lang={lang} />
+  <JourneyTeaser lang={lang} />
+  <BlogPreview lang={lang} />
+  <Contact lang={lang} />
+</Base>

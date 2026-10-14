@@ -1,0 +1,80 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts } from '../../scripts/blog';
+import { useT, emph } from '../../i18n/ui';
+
+const t = useT('pt');
+const posts = await getPosts();
+const categories = [...new Set(posts.map((p) => p.data.category))];
+---
+
+<Base title={t('blog.pageTitle')} description={t('blog.pageIntro')}>
+  <section class="blog container">
+    <p class="eyebrow">{t('blog.label')}</p>
+    <h1 class="display" set:html={emph(t('blog.title'))} />
+    <p class="lead">{t('blog.pageIntro')}</p>
+
+    <div class="blog__filters" role="group" aria-label="Categorias">
+      <button class="pill is-on" type="button" data-filter="all" aria-pressed="true">Todos</button>
+      {categories.map((c) => <button class="pill" type="button" data-filter={c} aria-pressed="false">{c}</button>)}
+    </div>
+
+    <div class="blog__grid">
+      {
+        posts.map((post) => (
+          <div data-cat={post.data.category}>
+            <PostCard post={post} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .blog {
+    padding-top: 160px;
+    padding-bottom: 120px;
+    display: grid;
+    gap: 28px;
+  }
+  .blog .eyebrow {
+    margin: 0;
+  }
+  .blog__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .blog__filters .pill.is-on {
+    color: #fff;
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .blog__grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 20px;
+  }
+  .blog__grid > [hidden] {
+    display: none;
+  }
+</style>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const items = [...document.querySelectorAll<HTMLElement>('[data-cat]')];
+  buttons.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      buttons.forEach((b) => {
+        b.classList.toggle('is-on', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      items.forEach((it) => (it.hidden = f !== 'all' && it.dataset.cat !== f));
+    }),
+  );
+</script>

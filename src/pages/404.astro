@@ -1,0 +1,7 @@
+---
+import SimplePage from '../components/SimplePage.astro';
+import { useT } from '../i18n/ui';
+const t = useT('pt');
+---
+
+<SimplePage lang="pt" code="404" title={t('404.title')} text={t('404.text')} cta={t('thanks.back')} />

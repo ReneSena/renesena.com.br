@@ -1,0 +1,399 @@
+---
+import { useT, emph, site, localePath } from '../i18n/ui';
+import type { Lang } from '../data/career';
+import Parachutist from './Parachutist.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+const types = [
+  { value: 'vaga', label: t('contact.type.job') },
+  { value: 'freelance', label: t('contact.type.freela') },
+  { value: 'outro', label: t('contact.type.other') },
+];
+---
+
+<section class="section contact" id="contato">
+  <div class="container">
+    <p class="eyebrow" data-reveal>{t('contact.label')}</p>
+    <h2 class="contact__title" data-reveal set:html={emph(t('contact.title'))} />
+
+    <div class="contact__grid">
+      <div class="contact__side" data-reveal>
+        <p class="lead">{t('contact.intro')}</p>
+        <p class="contact__alt">{t('contact.alt')}</p>
+        <div class="contact__social">
+          <a class="pill" href={site.linkedin} target="_blank" rel="noopener" data-magnetic data-umami-event="social_click" data-umami-event-network="linkedin">LinkedIn ↗</a>
+          <a class="pill" href={site.github} target="_blank" rel="noopener" data-magnetic data-umami-event="social_click" data-umami-event-network="github">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="contact__form-wrap" data-reveal>
+        <form
+          class="form"
+          name="contato"
+          method="POST"
+          action={localePath(lang, '/obrigado/')}
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          novalidate
+          data-contact-form
+          data-msg-required={t('contact.required')}
+          data-msg-email={t('contact.invalidEmail')}
+        >
+          <input type="hidden" name="form-name" value="contato" />
+          <input type="hidden" name="idioma" value={lang} />
+          <p class="sr-only" aria-hidden="true">
+            <label>Não preencha: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div class="field">
+            <input id="f-name" name="nome" type="text" placeholder=" " required autocomplete="name" aria-describedby="e-name" />
+            <label for="f-name">{t('contact.name')} *</label>
+            <span class="field__error" id="e-name" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <input id="f-email" name="email" type="email" placeholder=" " required autocomplete="email" aria-describedby="e-email" />
+            <label for="f-email">{t('contact.email')} *</label>
+            <span class="field__error" id="e-email" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <input id="f-company" name="empresa" type="text" placeholder=" " autocomplete="organization" />
+            <label for="f-company">{t('contact.company')}</label>
+          </div>
+
+          <fieldset class="types">
+            <legend>{t('contact.type')}</legend>
+            {
+              types.map((ty, i) => (
+                <label class="type">
+                  <input type="radio" name="tipo" value={ty.value} checked={i === 0} />
+                  <span>{ty.label}</span>
+                </label>
+              ))
+            }
+          </fieldset>
+
+          <div class="field">
+            <textarea id="f-msg" name="mensagem" rows="4" placeholder=" " required aria-describedby="e-msg"></textarea>
+            <label for="f-msg">{t('contact.message')} *</label>
+            <span class="field__error" id="e-msg" aria-live="polite"></span>
+          </div>
+
+          <button class="pill pill--solid form__submit" type="submit" data-magnetic>
+            <span class="form__label">{t('contact.send')}</span>
+            <span class="form__sending">{t('contact.sending')}</span>
+            <span class="form__spinner" aria-hidden="true"></span>
+          </button>
+          <p class="form__error" role="alert" hidden data-form-error>
+            {t('contact.error')} <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>.
+          </p>
+        </form>
+
+        <div class="form-success" hidden data-form-success tabindex="-1">
+          <div class="form-success__jumper" data-success-jumper>
+            <Parachutist />
+          </div>
+          <span class="form-success__ground" aria-hidden="true"></span>
+          <h3>{t('contact.success.title')}</h3>
+          <p>{t('contact.success.text')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact__title {
+    margin: 0;
+    font-size: clamp(56px, 12vw, 180px);
+    font-weight: 300;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+  }
+  .contact__grid {
+    margin-top: clamp(48px, 8vw, 96px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 96px);
+  }
+  .contact__side {
+    display: grid;
+    align-content: start;
+    gap: 32px;
+  }
+  .contact__alt {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .contact__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .contact__form-wrap {
+    position: relative;
+    padding: clamp(24px, 4vw, 44px);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 6px);
+    background: var(--bg-elev);
+  }
+  .form {
+    display: grid;
+    gap: 22px;
+  }
+  .field {
+    position: relative;
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 22px 0 10px;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.3s;
+    border-radius: 0;
+  }
+  .field textarea {
+    min-height: 110px;
+  }
+  .field label {
+    position: absolute;
+    left: 0;
+    top: 22px;
+    color: var(--text-muted);
+    pointer-events: none;
+    transform-origin: left top;
+    transition:
+      transform 0.35s var(--ease),
+      color 0.3s;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--accent);
+  }
+  .field input:focus + label,
+  .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label,
+  .field textarea:not(:placeholder-shown) + label {
+    transform: translateY(-20px) scale(0.75);
+    color: var(--accent);
+  }
+  .field.is-invalid input,
+  .field.is-invalid textarea {
+    border-color: #dc2626;
+  }
+  .field__error {
+    display: block;
+    min-height: 0;
+    font-size: 12.5px;
+    color: #dc2626;
+    margin-top: 6px;
+  }
+  .field__error:empty {
+    display: none;
+  }
+  :root[data-theme='dark'] .field__error {
+    color: #f87171;
+  }
+
+  .types {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .types legend {
+    padding: 0;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .type input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .type span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+  }
+  .type input:checked + span {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .type input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .form__submit {
+    justify-self: start;
+    min-width: 200px;
+    min-height: 52px;
+  }
+  .form__sending,
+  .form__spinner {
+    display: none;
+  }
+  .form.is-sending .form__label {
+    display: none;
+  }
+  .form.is-sending .form__sending {
+    display: inline;
+  }
+  .form.is-sending .form__spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .form__error {
+    margin: 0;
+    font-size: 14px;
+    color: #dc2626;
+  }
+
+  .form-success {
+    position: relative;
+    min-height: 420px;
+    display: grid;
+    place-content: end center;
+    text-align: center;
+    padding-bottom: 12px;
+    outline: none;
+    overflow: hidden;
+  }
+  .form-success__jumper {
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    width: 120px;
+    translate: -50% 0;
+    color: var(--text);
+  }
+  .form-success__ground {
+    display: block;
+    height: 1px;
+    width: 220px;
+    margin: 0 auto 28px;
+    background: var(--text);
+  }
+  .form-success h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 40px;
+    color: var(--accent);
+  }
+  .form-success p {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 861px) {
+    .contact__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    }
+  }
+</style>
+
+<script>
+  import { gsap, reduced } from '../scripts/motion';
+  import { track } from '../scripts/track';
+
+  // ---------- formulário ----------
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (form) {
+    const success = document.querySelector<HTMLElement>('[data-form-success]')!;
+    const errorBox = form.querySelector<HTMLElement>('[data-form-error]')!;
+    const msgRequired = form.dataset.msgRequired!;
+    const msgEmail = form.dataset.msgEmail!;
+
+    const validateField = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      const field = el.closest('.field');
+      const out = field?.querySelector<HTMLElement>('.field__error');
+      if (!field || !out) return true;
+      let msg = '';
+      if (el.validity.valueMissing || (el.required && !el.value.trim())) msg = msgRequired;
+      else if (el.validity.typeMismatch) msg = msgEmail;
+      field.classList.toggle('is-invalid', !!msg);
+      el.setAttribute('aria-invalid', String(!!msg));
+      out.textContent = msg;
+      return !msg;
+    };
+
+    const inputs = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('.field input, .field textarea')];
+    inputs.forEach((el) => {
+      el.addEventListener('blur', () => el.value && validateField(el));
+      el.addEventListener('input', () => el.closest('.field')?.classList.contains('is-invalid') && validateField(el));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.hidden = true;
+      const results = inputs.map(validateField);
+      if (results.includes(false)) {
+        inputs[results.indexOf(false)].focus();
+        return;
+      }
+      const data = new FormData(form);
+      if (data.get('bot-field')) return;
+      form.classList.add('is-sending');
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        track('lead_submit', { tipo: String(data.get('tipo') ?? '') });
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+        if (!reduced) {
+          const jumper = success.querySelector('[data-success-jumper]')!;
+          const canopy = jumper.querySelector('[data-canopy]')!;
+          gsap.set(canopy, { svgOrigin: '100 182' });
+          gsap
+            .timeline()
+            .fromTo(jumper, { y: -260, rotate: -10 }, { y: 0, rotate: 0, duration: 1.6, ease: 'power2.out' })
+            .to(canopy, { scaleY: 0.18, scaleX: 0.7, rotate: -70, x: -70, y: 120, opacity: 0.75, duration: 0.7, ease: 'power2.in' }, '-=0.1')
+            .from(success.querySelectorAll('h3, p'), { opacity: 0, y: 16, stagger: 0.1, duration: 0.5 }, '-=0.3');
+        }
+      } catch (err) {
+        errorBox.hidden = false;
+        track('lead_error', { reason: String((err as Error).message) });
+      } finally {
+        form.classList.remove('is-sending');
+      }
+    });
+  }
+</script>

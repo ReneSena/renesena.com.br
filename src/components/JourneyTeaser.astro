@@ -1,0 +1,71 @@
+---
+import { useT, emph, journeyPath } from '../i18n/ui';
+import Parachutist from './Parachutist.astro';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<section class="section teaser" id="trajetoria-resumo">
+  <div class="container teaser__inner">
+    <div class="teaser__text">
+      <p class="eyebrow" data-reveal>{t('journey.label')}</p>
+      <h2 class="display" data-reveal set:html={emph(t('journey.teaser.title'))} />
+      <p class="lead" data-reveal>{t('journey.teaser.text')}</p>
+      <a class="pill pill--solid teaser__cta" href={journeyPath(lang)} data-magnetic data-reveal>{t('journey.teaser.cta')} →</a>
+    </div>
+    <div class="teaser__jumper" aria-hidden="true" data-reveal><Parachutist /></div>
+  </div>
+</section>
+
+<style>
+  .teaser {
+    border-top: 1px solid var(--border);
+  }
+  .teaser__inner {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+  }
+  .teaser__jumper {
+    order: -1;
+    width: 96px;
+    color: var(--text);
+    animation: float 3s ease-in-out infinite;
+  }
+  .teaser .display {
+    font-size: clamp(36px, 5.5vw, 76px);
+    max-width: 16ch;
+  }
+  .teaser .lead {
+    margin-top: 24px;
+  }
+  .teaser__cta {
+    margin-top: 36px;
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(12px) rotate(3deg);
+    }
+  }
+  @media (min-width: 861px) {
+    .teaser__inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 56px;
+    }
+    .teaser__jumper {
+      order: 0;
+      width: 160px;
+      margin-right: clamp(0px, 6vw, 96px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .teaser__jumper {
+      animation: none;
+    }
+  }
+</style>

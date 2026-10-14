@@ -1,0 +1,43 @@
+---
+import { useT, emph } from '../i18n/ui';
+import { getPosts } from '../scripts/blog';
+import PostCard from './PostCard.astro';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+const [latest] = await getPosts();
+---
+
+<section class="section blog-preview" id="blog">
+  <div class="container">
+    <div class="blog-preview__head">
+      <div>
+        <p class="eyebrow" data-reveal>{t('blog.latest')}</p>
+        <h2 class="display" data-reveal set:html={emph(t('blog.title'))} />
+      </div>
+      <a class="pill" href="/blog/" data-magnetic data-reveal>{t('blog.all')} →</a>
+    </div>
+    {latest && <PostCard post={latest} lang={lang} featured />}
+  </div>
+</section>
+
+<style>
+  .blog-preview {
+    padding-top: 0;
+  }
+  .blog-preview__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: clamp(40px, 6vw, 72px);
+  }
+  .blog-preview .display {
+    font-size: clamp(36px, 5.5vw, 76px);
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import { useT } from '../i18n/ui';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+
+// Quebra a frase em palavras; trechos [entre colchetes] viram destaque
+const quote = t('manifesto.quote');
+// glue = pontuação que cola na palavra anterior, sem espaço ("inteligentes.")
+const tokens: { text: string; em: boolean; glue: boolean }[] = [];
+quote.split(/(\[[^\]]+\])/).forEach((chunk) => {
+  if (!chunk) return;
+  const em = chunk.startsWith('[');
+  chunk
+    .replace(/[[\]]/g, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .forEach((w, i) => tokens.push({ text: w, em, glue: i === 0 && /^[.,;:!?]/.test(w) }));
+});
+---
+
+<section class="section manifesto" id="sobre">
+  <div class="container">
+    <p class="eyebrow" data-reveal>{t('manifesto.label')}</p>
+    <blockquote class="manifesto__quote" data-manifesto>
+      <span class="manifesto__mark" aria-hidden="true">“</span>
+      {
+        tokens.map((tk, i) => (
+          <>{i > 0 && !tk.glue && ' '}<span class:list={['word', { 'accent-em': tk.em }]}>{tk.text}</span></>
+        ))
+      }
+    </blockquote>
+    <div class="manifesto__body">
+      <p class="lead" data-reveal>{t('manifesto.p1')}</p>
+      <p class="lead" data-reveal>{t('manifesto.p2')}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto__quote {
+    position: relative;
+    margin: 0;
+    font-weight: 300;
+    font-size: clamp(32px, 5.6vw, 80px);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  .manifesto__mark {
+    display: block;
+    margin-bottom: -0.2em;
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-size: 1.4em;
+    line-height: 1;
+  }
+  .manifesto__quote .accent-em {
+    font-size: 1.08em;
+  }
+  .js-motion .manifesto__quote .word {
+    opacity: 0.14;
+  }
+  .manifesto__body {
+    margin-top: clamp(48px, 8vw, 96px);
+    margin-left: auto;
+    max-width: 640px;
+    display: grid;
+    gap: 20px;
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+  }
+  @media (min-width: 701px) {
+    .manifesto__mark {
+      position: absolute;
+      left: -0.55em;
+      top: -0.18em;
+      margin: 0;
+    }
+  }
+</style>

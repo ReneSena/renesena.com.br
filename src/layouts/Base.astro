@@ -1,0 +1,106 @@
+---
+import '@fontsource-variable/inter/wght.css';
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+import { useT } from '../i18n/ui';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang?: Lang;
+  title?: string;
+  description?: string;
+  image?: string;
+  /** caminho equivalente no outro idioma (null = não existe) */
+  altPath?: string | null;
+}
+
+const { lang = 'pt', title, description, image = '/foto.jpg', altPath } = Astro.props;
+const t = useT(lang);
+const pageTitle = title ?? t('meta.title');
+const pageDesc = description ?? t('meta.description');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const loadAnalytics = import.meta.env.PROD && !!umamiId;
+---
+
+<!doctype html>
+<html lang={lang === 'pt' ? 'pt-BR' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0a09" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'pt' ? 'pt_BR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {
+      altPath && (
+        <>
+          <link rel="alternate" hreflang={lang === 'pt' ? 'en' : 'pt-BR'} href={new URL(altPath, Astro.site)} />
+          <link rel="alternate" hreflang={lang === 'pt' ? 'pt-BR' : 'en'} href={canonical} />
+        </>
+      )
+    }
+
+    <link rel="preload" href={interWoff2} as="font" type="font/woff2" crossorigin />
+
+    <script is:inline>
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        var root = document.documentElement;
+        root.dataset.theme = theme;
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          root.classList.add('js-motion');
+          // failsafe: se o bundle de animação não carregar, mostra o conteúdo sem animação
+          setTimeout(function () {
+            if (!root.classList.contains('motion-ready')) root.classList.remove('js-motion');
+          }, 4000);
+        }
+      })();
+    </script>
+
+    {loadAnalytics && <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id={umamiId} />}
+
+    <style is:global>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t('nav.skip')}</a>
+    <Nav lang={lang} altPath={altPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <Cursor />
+    <script>
+      import '../scripts/animations';
+    </script>
+  </body>
+</html>

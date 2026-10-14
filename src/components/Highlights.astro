@@ -1,0 +1,279 @@
+---
+import { useT, emph } from '../i18n/ui';
+import { certifications, type Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+
+const cases = [
+  {
+    tag: 'TCS · Ticket',
+    year: '2024 —',
+    title: { pt: 'Backoffice pós-Oracle R12', en: 'Post-Oracle R12 backoffice' },
+    pain: {
+      pt: 'A migração do Oracle R11 para o R12 deixou um módulo crítico sem substituto — e a operação não podia parar.',
+      en: 'Migrating Oracle R11 to R12 left a critical module with no replacement — and operations could not stop.',
+    },
+    decision: {
+      pt: 'Com autonomia sobre layout e UX, desenhei os fluxos a partir da rotina de quem opera e garanti a entrega com testes unitários e de ponta a ponta.',
+      en: 'Owning layout and UX decisions, I designed the flows around operators’ routines and backed each delivery with unit and end-to-end tests.',
+    },
+    solution: {
+      pt: 'Novos módulos de Contratos e Clientes pensados a partir da rotina de quem opera, para que a troca de sistema não travasse o dia a dia.',
+      en: 'New Contracts and Customers modules designed around operators’ routines, so the system switch wouldn’t stall the day-to-day.',
+    },
+    tags: ['Micro Front-ends', 'React', 'TypeScript', 'E2E'],
+  },
+  {
+    tag: 'NTT DATA · BEES',
+    year: '2021 — 2024',
+    title: { pt: 'Backoffice BEES / Ambev', en: 'BEES / Ambev backoffice' },
+    pain: {
+      pt: 'Usuários internos dependiam de outras equipes para tarefas do dia a dia na plataforma B2B.',
+      en: 'Internal users depended on other teams for day-to-day tasks on the B2B platform.',
+    },
+    decision: {
+      pt: 'Construí as telas e a camada que entrega a elas só o necessário, acompanhei o uso de cada feature e apoiei quem estava chegando no time.',
+      en: 'I built the screens and the layer that feeds them only what they need, tracked how each feature was used and backed up newcomers on the team.',
+    },
+    solution: {
+      pt: 'Ferramentas internas que devolveram autonomia a quem opera a plataforma, sem depender de outros times para o básico.',
+      en: 'Internal tools that gave platform operators their autonomy back, without depending on other teams for the basics.',
+    },
+    tags: ['React Query', 'NestJS', 'Azure DevOps', 'Jest'],
+  },
+  {
+    tag: 'Docket',
+    year: '2018 — 2021',
+    title: { pt: 'Design System do zero', en: 'Design System from scratch' },
+    pain: {
+      pt: 'Telas inconsistentes e features legadas difíceis de evoluir em HTML/Thymeleaf.',
+      en: 'Inconsistent screens and legacy features that were hard to evolve in HTML/Thymeleaf.',
+    },
+    decision: {
+      pt: 'Lado a lado com o design, construí e mantive os componentes do Design System — e ajudei a escolher quem chegaria ao time, conduzindo entrevistas técnicas.',
+      en: 'Side by side with design, I built and maintained the Design System components — and helped choose who’d join the team by running technical interviews.',
+    },
+    solution: {
+      pt: 'Um Design System criado junto com o time de design, dando uma linguagem única às telas e um caminho para modernizar o legado.',
+      en: 'A Design System built with the design team, giving screens a single language and a path to modernize the legacy.',
+    },
+    tags: ['Storybook', 'Design System', 'Styled Components'],
+  },
+];
+const labels =
+  lang === 'pt'
+    ? { pain: 'Dor', decision: 'Meu papel', solution: 'Solução' }
+    : { pain: 'Pain', decision: 'My role', solution: 'Solution' };
+---
+
+<section class="section highlights" id="destaques">
+  <div class="container">
+    <p class="eyebrow" data-reveal>{t('highlights.label')}</p>
+    <h2 class="display" data-reveal set:html={emph(t('highlights.title'))} />
+
+    <div class="cases">
+      {
+        cases.map((c, i) => (
+          <article class="case" data-tilt data-reveal>
+            <div class="case__inner">
+              <header class="case__head">
+                <span>{c.tag}</span>
+                <span>{c.year}</span>
+              </header>
+              <span class="case__num" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <h3>{c.title[lang]}</h3>
+              <dl>
+                <div>
+                  <dt>{labels.pain}</dt>
+                  <dd>{c.pain[lang]}</dd>
+                </div>
+                <div>
+                  <dt>{labels.decision}</dt>
+                  <dd>{c.decision[lang]}</dd>
+                </div>
+                <div>
+                  <dt class="is-solution">{labels.solution}</dt>
+                  <dd>{c.solution[lang]}</dd>
+                </div>
+              </dl>
+              <ul>
+                {c.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+              <span class="case__glare" aria-hidden="true" />
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="certs" data-reveal>
+      <p class="certs__label">{t('highlights.certs')}</p>
+      <ul>
+        {certifications.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlights .display {
+    font-size: clamp(36px, 5.5vw, 76px);
+    max-width: 16ch;
+  }
+  .cases {
+    margin-top: clamp(48px, 8vw, 96px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    perspective: 1200px;
+  }
+  .case {
+    transform-style: preserve-3d;
+  }
+  .case__inner {
+    position: relative;
+    height: 100%;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-elev);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow: hidden;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition:
+      transform 0.5s var(--ease),
+      border-color 0.4s;
+    will-change: transform;
+  }
+  .case:hover .case__inner {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+    transition:
+      transform 0.12s linear,
+      border-color 0.4s;
+  }
+  .case__glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at var(--gx, 50%) var(--gy, 50%),
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .case:hover .case__glare {
+    opacity: 1;
+  }
+  .case__head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .case__num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 64px;
+    line-height: 0.8;
+    color: var(--accent);
+  }
+  .case h3 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .case dl {
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    flex: 1;
+  }
+  .case dt {
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .case dt.is-solution {
+    color: var(--accent);
+  }
+  .case dd {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--text-muted);
+  }
+  .case ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .case li {
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+
+  .certs {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: baseline;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .certs__label {
+    margin: 0;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .certs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-size: 14px;
+  }
+  .certs li::before {
+    content: '✦';
+    color: var(--accent);
+    font-size: 9px;
+    margin-right: 8px;
+    vertical-align: 2px;
+  }
+
+  @media (min-width: 961px) {
+    .cases {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .certs {
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+    }
+  }
+</style>
