@@ -7,7 +7,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Cursor from '../components/Cursor.astro';
-import { useT } from '../i18n/ui';
+import { useT, localePath, site } from '../i18n/ui';
 import type { Lang } from '../data/career';
 
 interface Props {
@@ -17,9 +17,11 @@ interface Props {
   image?: string;
   /** caminho equivalente no outro idioma (null = não existe) */
   altPath?: string | null;
+  /** páginas utilitárias (obrigado, 404) ficam fora dos buscadores */
+  noindex?: boolean;
 }
 
-const { lang = 'pt', title, description, image = '/foto.jpg', altPath } = Astro.props;
+const { lang = 'pt', title, description, image = '/foto.jpg', altPath, noindex = false } = Astro.props;
 const t = useT(lang);
 const pageTitle = title ?? t('meta.title');
 const pageDesc = description ?? t('meta.description');
@@ -27,6 +29,33 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 const loadAnalytics = import.meta.env.PROD && !!umamiId;
+
+// Dados estruturados na home: dizem ao Google que o site, o LinkedIn e o GitHub são da mesma pessoa
+const isHome = Astro.url.pathname === localePath(lang, '/');
+const siteUrl = new URL('/', Astro.site).href;
+const jsonLd = isHome && {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#person`,
+      name: 'Rene Sena',
+      url: siteUrl,
+      image: new URL('/foto.jpg', Astro.site).href,
+      jobTitle: t('hero.role'),
+      description: t('meta.description'),
+      sameAs: [site.linkedin, site.github],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      name: 'Rene Sena',
+      url: siteUrl,
+      inLanguage: ['pt-BR', 'en'],
+      publisher: { '@id': `${siteUrl}#person` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -37,6 +66,8 @@ const loadAnalytics = import.meta.env.PROD && !!umamiId;
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {jsonLd && <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />}
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

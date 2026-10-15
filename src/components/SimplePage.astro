@@ -16,7 +16,7 @@ interface Props {
 const { lang, title, text, cta, code, secondary } = Astro.props;
 ---
 
-<Base lang={lang} title={`${title} — Rene Sena`}>
+<Base lang={lang} title={`${title} — Rene Sena`} noindex>
   <section class="simple container">
     <div class="simple__jumper"><Parachutist /></div>
     {code && <p class="simple__code">{code}</p>}
