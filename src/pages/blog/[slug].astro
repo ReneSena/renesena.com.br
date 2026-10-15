@@ -41,7 +41,7 @@ const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
   <ContactCta lang="pt" from={`post:${post.id}`} text={t('cta.post')} />
 
   <section class="container related">
-    <p class="eyebrow">Continue lendo</p>
+    <h2 class="eyebrow">Continue lendo</h2>
     <div class="related__grid">
       {related.map((p) => <PostCard post={p} />)}
     </div>
@@ -74,6 +74,9 @@ const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
     padding-top: 140px;
   }
   .post__back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -161,6 +164,7 @@ const related = posts.filter((p) => p.id !== post.id).slice(0, 2);
     height: auto;
   }
   .prose :global(:not(pre) > code) {
+    overflow-wrap: anywhere;
     font-size: 0.88em;
     padding: 2px 6px;
     border-radius: 6px;

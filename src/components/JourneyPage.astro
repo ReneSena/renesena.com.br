@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Numbers from './Numbers.astro';
+import JourneyIntro from './JourneyIntro.astro';
 import Highlights from './Highlights.astro';
 import Timeline from './Timeline.astro';
 import StackExplorer from './StackExplorer.astro';
@@ -17,8 +17,7 @@ const t = useT(lang);
 
 <Base lang={lang} title={t('journey.pageTitle')} description={t('journey.pageDesc')} altPath={journeyPath(lang === 'pt' ? 'en' : 'pt')}>
   <div class="journey-page">
-    <h1 class="sr-only">{t('journey.pageTitle')}</h1>
-    <Numbers lang={lang} />
+    <JourneyIntro lang={lang} />
     <Highlights lang={lang} />
     <Timeline lang={lang} />
     <StackExplorer lang={lang} />

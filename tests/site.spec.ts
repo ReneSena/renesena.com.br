@@ -58,6 +58,9 @@ test.describe('home', () => {
       '#sobre .eyebrow',
       '#trajetoria-resumo .eyebrow',
       '#trajetoria-resumo .display',
+      '#servicos .eyebrow',
+      '#servicos .display',
+      '#servicos .service',
       '#blog .eyebrow',
       '#blog .post-card',
       '#contato .eyebrow',
@@ -77,6 +80,17 @@ test.describe('home', () => {
     const img = cards.locator('img');
     await img.scrollIntoViewIfNeeded();
     await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
+  });
+
+  test('serviços: 4 cards e o botão já marca "Freelance / projeto" no formulário', async ({ page }) => {
+    await expect(page.locator('#servicos .service')).toHaveCount(4);
+    await page.locator('#servicos .services__cta').click();
+    await expect(page.locator('input[name="tipo"][value="freelance"]')).toBeChecked();
+  });
+
+  test('link com ?tipo=freelance já marca o tipo no formulário', async ({ page }) => {
+    await page.goto('/?tipo=freelance#contato');
+    await expect(page.locator('input[name="tipo"][value="freelance"]')).toBeChecked();
   });
 
   test('faixa "Por onde passei" lista as empresas', async ({ page }) => {
@@ -99,10 +113,10 @@ test.describe('trajetória', () => {
     await page.goto('/trajetoria/');
   });
 
-  test('um número só, alinhado à esquerda', async ({ page }) => {
-    await expect(page.locator('.numbers [data-count]')).toHaveCount(1);
-    await expect(page.locator('.numbers__label')).toHaveText(/anos de carreira/i);
-    await expectOnRail(page, ['.numbers__label', '.numbers__cta', '#destaques .eyebrow', '#trajetoria .eyebrow']);
+  test('título visível com os anos calculados, alinhado à esquerda', async ({ page }) => {
+    await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.locator('h1')).toHaveText(/^Do estoque ao código: \d+ anos perto de quem opera\.$/);
+    await expectOnRail(page, ['.intro .eyebrow', '.intro__title', '.intro__cta', '#destaques .eyebrow', '#trajetoria .eyebrow']);
   });
 
   test('ordem: destaques → trajetória → stack', async ({ page }) => {
@@ -113,7 +127,7 @@ test.describe('trajetória', () => {
   });
 
   test('link "Ver os destaques" leva aos destaques', async ({ page }) => {
-    await page.locator('.numbers__cta').click();
+    await page.locator('.intro__cta').click();
     await expect(page).toHaveURL(/#destaques$/);
   });
 
@@ -122,15 +136,9 @@ test.describe('trajetória', () => {
     await expect(page).toHaveURL(/\/en\/journey\/$/);
   });
 
-  test('legenda da órbita mostra o nome das ferramentas do anel', async ({ page }) => {
-    const names = page.locator('[data-legend-names]');
-    const arch = page.locator('.legend__btn', { hasText: 'Arquitetura' });
-    await arch.click();
-    await expect(arch).toHaveAttribute('aria-pressed', 'true');
-    await expect(names).toContainText('Storybook');
-    await page.keyboard.press('Escape');
-    await expect(arch).toHaveAttribute('aria-pressed', 'false');
-    await expect(names).toBeEmpty();
+  test('órbita é só visual: sem botões, com lista para leitores de tela', async ({ page }) => {
+    await expect(page.locator('#stack button')).toHaveCount(0);
+    await expect(page.locator('#stack .sr-only li', { hasText: 'Storybook' })).toHaveCount(1);
   });
 
   test('termina com chamada para o formulário de contato', async ({ page }) => {
@@ -140,14 +148,11 @@ test.describe('trajetória', () => {
 });
 
 test.describe('navegação', () => {
-  test('aba Trajetória e Stack levam à página nova', async ({ page }) => {
+  test('aba Trajetória leva à página nova e o menu não tem Stack', async ({ page }) => {
     await page.goto('/');
+    await expect(page.locator('[data-nav-link="stack"]')).toHaveCount(0);
     await page.locator('[data-nav-link="trajetoria"]:visible').click();
     await expect(page).toHaveURL(/\/trajetoria\/$/);
-
-    await page.goto('/blog/');
-    await page.locator('[data-nav-link="stack"]:visible').click();
-    await expect(page).toHaveURL(/\/trajetoria\/#stack$/);
   });
 
   test('botão de tema diz o que o clique faz', async ({ page }) => {
@@ -208,6 +213,61 @@ test('descrição dos cards respeita o corte de 3 linhas', async ({ page }) => {
     els.filter((el) => el.getBoundingClientRect().height > parseFloat(getComputedStyle(el).lineHeight) * 3 + 1).length,
   );
   expect(overflowing).toBe(0);
+});
+
+test.describe('acessibilidade', () => {
+  for (const path of pages) {
+    test(`${path}: títulos não pulam nível`, async ({ page }) => {
+      await page.goto(path);
+      const levels = await page.evaluate(() =>
+        [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')]
+          .filter((h) => !h.closest('.sr-only, [hidden], template'))
+          .map((h) => Number(h.tagName[1])),
+      );
+      expect(levels[0], 'começa com h1').toBe(1);
+      levels.forEach((lv, i) => i > 0 && expect(lv - levels[i - 1], `h${levels[i - 1]} → h${lv}`).toBeLessThanOrEqual(1));
+    });
+  }
+
+  test('marca do menu fica visível quando recebe foco no topo da home', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'teclado no desktop');
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    const brand = page.locator('.nav__brand');
+    await expect(brand).toBeFocused();
+    await expect(brand).toHaveCSS('opacity', '1');
+  });
+
+  test('anel de foco usa a cor com contraste ≥3:1', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'teclado no desktop');
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    await expect(page.locator('.skip-link')).toHaveCSS('outline-color', 'rgb(194, 65, 12)');
+  });
+
+  test('na versão EN, os artigos (em português) são marcados como pt-BR', async ({ page }) => {
+    await page.goto('/en/');
+    await expect(page.locator('#blog .post-card__title')).toHaveAttribute('lang', 'pt-BR');
+    await expect(page.locator('#blog .post-card__desc')).toHaveAttribute('lang', 'pt-BR');
+  });
+
+  test('alvos de toque do rodapé e do "voltar" têm 44px no celular', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'só no celular');
+    await page.goto('/blog/2026-10-13-inversao-de-dependencia-no-design-system/');
+    for (const selector of ['.footer a', '.post__back']) {
+      for (const box of await page.locator(selector).evaluateAll((els) => els.map((el) => el.getBoundingClientRect().height))) {
+        expect(box, selector).toBeGreaterThanOrEqual(44);
+      }
+    }
+  });
+
+  test('artigo não vaza para os lados em 320px', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 700 });
+    await page.goto('/blog/2026-10-13-inversao-de-dependencia-no-design-system/');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
+  });
 });
 
 /** WCAG AA: 4.5:1 para texto normal, 3:1 para texto grande (≥24px ou ≥18.66px em negrito) */

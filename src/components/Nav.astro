@@ -17,13 +17,11 @@ const isBlog = path.startsWith('/blog');
 const journey = journeyPath(lang);
 const isJourney = path.replace(/\/?$/, '/') === journey;
 const anchor = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
-const journeyAnchor = (id: string) => (isJourney ? `#${id}` : `${journey}#${id}`);
 
 // Ícones de traço fino (24x24) no estilo do paraquedista
 const icons = {
   about: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/>',
   journey: '<path d="M4 11a8 8 0 0 1 16 0q-2-1.6-4 0-2-1.6-4 0-2-1.6-4 0-2-1.6-4 0Z"/><path d="m5 11 6.2 7M19 11l-6.2 7"/><circle cx="12" cy="19.5" r="1.5"/>',
-  stack: '<circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(-25 12 12)"/><circle cx="19.6" cy="8.4" r="1" fill="currentColor"/>',
   blog: '<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8.5 12h7M8.5 15.5h7"/>',
   contact: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2.4"/>',
 };
@@ -31,7 +29,6 @@ const icons = {
 const links = [
   { id: 'sobre', href: anchor('sobre'), label: t('nav.about'), icon: icons.about },
   { id: 'trajetoria', href: isJourney ? '#trajetoria' : journey, label: t('nav.journey'), icon: icons.journey },
-  { id: 'stack', href: journeyAnchor('stack'), label: t('nav.stack'), icon: icons.stack },
   { id: 'blog', href: '/blog/', label: t('nav.blog'), icon: icons.blog },
   { id: 'contato', href: anchor('contato'), label: t('nav.contact'), icon: icons.contact },
 ];
@@ -144,7 +141,8 @@ const langHref = altPath ?? localePath(otherLang, '/');
       transform 0.4s var(--ease);
   }
   .nav.is-scrolled .nav__brand,
-  .nav--solid .nav__brand {
+  .nav--solid .nav__brand,
+  .nav__brand:focus-visible {
     opacity: 1;
     transform: none;
     pointer-events: auto;
@@ -175,7 +173,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
     bottom: calc(10px + env(safe-area-inset-bottom));
     z-index: 100;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     padding: 6px;
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -193,7 +191,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
     top: 6px;
     bottom: 6px;
     left: 6px;
-    width: calc((100% - 12px) / 5);
+    width: calc((100% - 12px) / 4);
     border-radius: 16px;
     background: var(--accent-soft);
     transform: translateX(calc(var(--tab, 0) * 100%));
@@ -335,8 +333,8 @@ const langHref = altPath ?? localePath(otherLang, '/');
               best = id;
             }
           });
-          // destaques e o resumo da home pertencem à aba Trajetória
-          setActive(best === 'destaques' || best === 'trajetoria-resumo' ? 'trajetoria' : best);
+          // destaques, stack e o resumo da home pertencem à aba Trajetória
+          setActive(best === 'destaques' || best === 'stack' || best === 'trajetoria-resumo' ? 'trajetoria' : best);
         },
         { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] },
       );

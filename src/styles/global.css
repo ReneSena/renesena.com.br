@@ -105,7 +105,7 @@ textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -147,12 +147,13 @@ textarea {
 }
 
 .section {
-  padding: clamp(96px, 14vw, 180px) 0;
+  padding: clamp(64px, 12vw, 180px) 0;
   position: relative;
 }
 
 .eyebrow {
   display: inline-flex;
+  font-weight: 400;
   align-items: center;
   gap: 12px;
   font-size: 11px;
@@ -266,7 +267,7 @@ textarea {
 /* Reveal genérico — só esconde quando JS + motion estão ativos */
 .js-motion [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(16px);
 }
 
 /* Animações CSS infinitas ficam pausadas fora da viewport (ver watchAnimZones) */

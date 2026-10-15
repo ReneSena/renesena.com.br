@@ -48,8 +48,8 @@ const brands = [
   <div class="hero__inner container">
     <div class="hero__text">
       <p class="hero__eyebrow" data-hero-fade style="--d:0">
-        {t('hero.greeting')} <span aria-hidden="true">—</span>
-        {t('hero.role')}
+        {t('hero.greeting')} <span class="hero__dash" aria-hidden="true">—</span>
+        <span class="hero__role">{t('hero.role').replace('-', '\u2011')}</span>
       </p>
 
       <h1 class="hero__title">
@@ -86,7 +86,7 @@ const brands = [
           alt={t('hero.photoAlt')}
           formats={['avif', 'webp']}
           widths={[240, 400, 720]}
-          sizes="(min-width: 900px) 360px, 240px"
+          sizes="(min-width: 900px) 360px, 132px"
           width={360}
           height={360}
           loading="eager"
@@ -119,26 +119,33 @@ const brands = [
 <style>
   .hero {
     position: relative;
-    padding: 120px 0 56px;
+    padding: 88px 0 48px;
     background: linear-gradient(180deg, var(--sky-2), var(--bg) 80%);
     overflow: hidden;
   }
   .hero__inner {
     display: grid;
-    gap: 48px;
+    gap: 40px;
   }
 
   /* ---------- texto ---------- */
   .hero__eyebrow {
     margin: 0 0 22px;
     font-size: 11px;
-    letter-spacing: 0.28em;
+    /* 0.2em no mobile: o cargo cabe numa linha a partir de 360px (sem "FRONT- / END") */
+    letter-spacing: 0.2em;
+    line-height: 1.9;
     text-transform: uppercase;
     color: var(--text-muted);
   }
-  .hero__eyebrow span {
+  /* mobile: cargo em linha própria em vez de quebrar no meio */
+  .hero__dash {
+    display: none;
     margin: 0 0.3em;
     color: var(--accent);
+  }
+  .hero__role {
+    display: block;
   }
   .hero__title {
     margin: 0;
@@ -162,7 +169,12 @@ const brands = [
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 36px;
+    margin-top: 32px;
+  }
+  /* mobile: botões do mesmo tamanho, lado a lado ou empilhados, nunca tortos */
+  .hero__ctas .pill {
+    flex: 1 1 200px;
+    padding-inline: 20px;
   }
   .hero__cta svg {
     width: 18px;
@@ -178,7 +190,8 @@ const brands = [
   .hero__visual {
     position: relative;
     justify-self: start;
-    width: min(220px, 58vw);
+    /* mobile: foto compacta para título e botões caberem na primeira tela */
+    width: min(132px, 36vw);
     order: -1;
   }
   .hero__arch {
@@ -199,9 +212,9 @@ const brands = [
   }
   .hero__jumper {
     position: absolute;
-    width: 30%;
-    top: -6%;
-    right: -40%;
+    width: 44%;
+    top: 4%;
+    right: -72%;
     color: var(--text);
     animation: float 3.4s ease-in-out infinite;
   }
@@ -255,7 +268,7 @@ const brands = [
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 18px clamp(28px, 4vw, 52px);
+    gap: 6px clamp(24px, 4vw, 52px);
   }
   .hero__proof li {
     display: flex;
@@ -299,6 +312,22 @@ const brands = [
       display: grid;
       align-items: center;
       padding: 120px 0 48px;
+    }
+    .hero__eyebrow {
+      letter-spacing: 0.28em;
+    }
+    .hero__dash {
+      display: inline;
+    }
+    .hero__role {
+      display: inline;
+    }
+    .hero__ctas .pill {
+      flex: 0 0 auto;
+      padding-inline: 24px;
+    }
+    .hero__proof ul {
+      row-gap: 18px;
     }
     .hero__inner {
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.6fr);

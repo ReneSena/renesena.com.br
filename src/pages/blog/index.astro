@@ -24,7 +24,7 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
       {
         posts.map((post) => (
           <div data-cat={post.data.category}>
-            <PostCard post={post} />
+            <PostCard post={post} headingLevel={2} />
           </div>
         ))
       }
@@ -42,11 +42,28 @@ const categories = [...new Set(posts.map((p) => p.data.category))];
   .blog .eyebrow {
     margin: 0;
   }
+  /* mobile: uma linha com rolagem lateral, sangrando até a borda da tela */
   .blog__filters {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
-    margin-top: 16px;
+    margin: 16px calc(var(--gutter) * -1) 0;
+    padding: 2px var(--gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .blog__filters::-webkit-scrollbar {
+    display: none;
+  }
+  .blog__filters .pill {
+    flex: 0 0 auto;
+  }
+  @media (min-width: 701px) {
+    .blog__filters {
+      flex-wrap: wrap;
+      margin-inline: 0;
+      padding-inline: 0;
+      overflow: visible;
+    }
   }
   .blog__filters .pill.is-on {
     color: var(--on-accent);

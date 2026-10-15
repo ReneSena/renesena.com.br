@@ -30,12 +30,12 @@ const year = new Date().getFullYear();
     letter-spacing: 0.15em;
     color: var(--text-muted);
   }
+  /* mobile: uma coluna com ritmo fixo; desktop: três colunas alinhadas (sem quebra em zigue-zague) */
   .footer__inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    gap: 12px;
+    justify-items: start;
     align-items: center;
-    gap: 12px 24px;
   }
   .footer p {
     margin: 0;
@@ -46,9 +46,24 @@ const year = new Date().getFullYear();
   }
   .footer__links {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    /* a área de toque de 44px não deve somar espaço visual */
+    margin-block: -12px;
+  }
+  @media (min-width: 861px) {
+    .footer__inner {
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+    }
+    .footer__links {
+      justify-self: end;
+    }
   }
   .footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.3s;

@@ -30,26 +30,11 @@ if (!reduced) {
 
   // ---------- reveals ----------
   ScrollTrigger.batch('[data-reveal]', {
-    start: 'top 92%',
+    start: 'top bottom',
     once: true,
-    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.9, stagger: 0.1, ease: 'power3.out', overwrite: true }),
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', overwrite: true }),
   });
 
-  // ---------- contadores ----------
-  document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-    const target = Number(el.dataset.count);
-    const obj = { v: 0 };
-    el.textContent = '0';
-    gsap.to(obj, {
-      v: target,
-      duration: 1.8,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      onUpdate: () => {
-        el.textContent = String(Math.round(obj.v));
-      },
-    });
-  });
 }
 
 if (finePointer && !reduced) {

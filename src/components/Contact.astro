@@ -153,7 +153,8 @@ const types = [
     width: 100%;
     padding: 22px 0 10px;
     border: 0;
-    border-bottom: 1px solid var(--border);
+    /* ≥3:1 contra o card nos dois temas (WCAG 1.4.11) */
+    border-bottom: 1px solid color-mix(in srgb, var(--text-muted) 85%, var(--bg-elev));
     background: transparent;
     font-size: 16px;
     outline: none;
@@ -177,7 +178,8 @@ const types = [
   }
   .field input:focus,
   .field textarea:focus {
-    border-color: var(--accent);
+    border-color: var(--accent-ink);
+    box-shadow: 0 1px 0 var(--accent-ink);
   }
   .field input:focus + label,
   .field input:not(:placeholder-shown) + label,
@@ -240,7 +242,7 @@ const types = [
     color: var(--on-accent);
   }
   .type input:focus-visible + span {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--accent-ink);
     outline-offset: 3px;
   }
 
@@ -331,6 +333,14 @@ const types = [
   // ---------- formulário ----------
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
   if (form) {
+    // tipo já marcado quando a pessoa vem do botão de serviços ou de um link com ?tipo=
+    const selectType = (value?: string) => {
+      const radio = [...form.querySelectorAll<HTMLInputElement>('input[name="tipo"]')].find((r) => r.value === value);
+      if (radio) radio.checked = true;
+    };
+    document.querySelectorAll<HTMLElement>('[data-contact-type]').forEach((a) => a.addEventListener('click', () => selectType(a.dataset.contactType)));
+    selectType(new URLSearchParams(location.search).get('tipo') ?? undefined);
+
     const success = document.querySelector<HTMLElement>('[data-form-success]')!;
     const errorBox = form.querySelector<HTMLElement>('[data-form-error]')!;
     const msgEmail = form.dataset.msgEmail!;

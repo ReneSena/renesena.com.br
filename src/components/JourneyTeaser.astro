@@ -27,13 +27,17 @@ const t = useT(lang);
     border-top: 1px solid var(--border);
   }
   .teaser__inner {
+    position: relative;
     display: grid;
     gap: 40px;
     align-items: center;
   }
+  /* mobile: paraquedista no canto, ao lado do eyebrow, em vez de um bloco solto acima do texto */
   .teaser__jumper {
-    order: -1;
-    width: 96px;
+    position: absolute;
+    top: -12px;
+    right: var(--gutter);
+    width: 64px;
     color: var(--text);
     animation: float 3s ease-in-out infinite;
   }
@@ -58,7 +62,7 @@ const t = useT(lang);
       gap: 56px;
     }
     .teaser__jumper {
-      order: 0;
+      position: static;
       width: 160px;
       margin-right: clamp(0px, 6vw, 96px);
     }

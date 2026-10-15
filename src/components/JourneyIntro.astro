@@ -1,0 +1,86 @@
+---
+import { useT, emph } from '../i18n/ui';
+import { stats, type Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+// anos calculados a partir da primeira fase, para não envelhecer
+const headline = t('journey.headline').replace('{years}', String(stats.journeyYears));
+---
+
+<section class="intro">
+  <div class="container intro__inner">
+    <p class="eyebrow" data-reveal>{t('journey.label')}</p>
+    <h1 class="display intro__title" data-reveal set:html={emph(headline)} />
+    <p class="lead intro__text" data-reveal>{t('journey.headlineText')}</p>
+    <a class="intro__cta" href="#destaques" data-reveal>
+      {t('journey.highlightsCta')}
+      <i aria-hidden="true"></i>
+    </a>
+  </div>
+</section>
+
+<style>
+  .intro {
+    padding: clamp(72px, 12vw, 140px) 0 clamp(56px, 8vw, 96px);
+    border-bottom: 1px solid var(--border);
+  }
+  .intro__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .intro__title {
+    font-size: clamp(40px, 6.5vw, 92px);
+    max-width: 20ch;
+  }
+  .intro__text {
+    margin-top: 28px;
+  }
+  .intro__cta {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+  .intro__cta:hover,
+  .intro__cta:focus-visible {
+    color: var(--accent-ink);
+  }
+  .intro__cta i {
+    position: relative;
+    order: -1;
+    width: 1px;
+    height: 44px;
+    overflow: hidden;
+  }
+  .intro__cta i::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, var(--accent), transparent);
+    animation: drop 2s var(--ease) infinite;
+  }
+  @keyframes drop {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .intro__cta i::before {
+      animation: none;
+    }
+  }
+</style>

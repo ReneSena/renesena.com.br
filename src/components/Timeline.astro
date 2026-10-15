@@ -64,7 +64,7 @@ const lastIndex = phases.length - 1;
         phases.map((p, i) => {
           const isLast = i === lastIndex;
           return (
-            <li class:list={['phase', { 'phase--final': isLast }]} data-phase={i} data-phase-id={p.id} data-year={phaseYears(p).start} data-techs={p.techs.join('|')}>
+            <li class:list={['phase', { 'phase--final': isLast }]} data-phase={i} data-year={phaseYears(p).start} data-techs={p.techs.join('|')}>
               <article class="phase__card">
                 <span class="phase__platform" aria-hidden="true" />
                 <header class="phase__meta">
@@ -391,11 +391,6 @@ const lastIndex = phases.length - 1;
     border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
     box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--accent) 40%, transparent);
   }
-  .phase.is-lit .phase__card {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
-    opacity: 1;
-  }
   .phase__platform {
     position: absolute;
     left: 24px;
@@ -486,7 +481,12 @@ const lastIndex = phases.length - 1;
     color: var(--accent-ink);
   }
   .phase__more {
-    margin-top: 22px;
+    /* 44px de área de toque; o texto fica colado no sublinhado, o espaço extra vai para cima */
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 0.4em;
+    margin-top: 12px;
+    min-height: 44px;
     padding: 8px 0;
     border: 0;
     background: none;

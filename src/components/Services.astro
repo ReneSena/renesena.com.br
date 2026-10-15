@@ -1,0 +1,241 @@
+---
+import { useT, emph } from '../i18n/ui';
+import type { Lang } from '../data/career';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+
+// Cada card parte de uma dor do cliente; a lista mostra o que entra no pacote
+const services: { title: Record<Lang, string>; pain: Record<Lang, string>; items: Record<Lang, string[]> }[] = [
+  {
+    title: { pt: 'Sites e landing pages', en: 'Websites and landing pages' },
+    pain: { pt: 'Precisa de uma página que traga resultado de verdade?', en: 'Need a page that actually brings results?' },
+    items: {
+      pt: ['Landing pages e sites institucionais', 'Migração de sites antigos ou lentos', 'SEO, formulário de contato e métricas já configurados'],
+      en: ['Landing pages and company websites', 'Migrating old or slow websites', 'SEO, contact form and analytics set up from day one'],
+    },
+  },
+  {
+    title: { pt: 'Check-up do seu site ou sistema', en: 'A check-up for your website or system' },
+    pain: { pt: 'Não sabe se seu site está lento, difícil de usar ou vulnerável?', en: 'Not sure if your site is slow, hard to use or vulnerable?' },
+    items: {
+      pt: [
+        'Performance: velocidade e Core Web Vitals',
+        'Acessibilidade: WCAG e Lei Brasileira de Inclusão',
+        'Segurança: HTTPS, dependências, formulários e dados pessoais (LGPD)',
+        'Relatório com o que corrigir e em que ordem, e a correção, se você quiser',
+      ],
+      en: [
+        'Performance: speed and Core Web Vitals',
+        'Accessibility: WCAG guidelines',
+        'Security: HTTPS, dependencies, forms and personal data',
+        'A report of what to fix and in what order, plus the fix if you want it',
+      ],
+    },
+  },
+  {
+    title: { pt: 'Automação e IA no dia a dia', en: 'Automation and AI for everyday work' },
+    pain: { pt: 'Sua equipe perde horas com tarefas repetitivas?', en: 'Is your team losing hours to repetitive tasks?' },
+    items: {
+      pt: ['Integração entre planilhas, formulários, CRM e e-mail', 'Assistentes com IA para atendimento e documentos', 'Apoio para o time usar IA com segurança'],
+      en: ['Connecting spreadsheets, forms, CRM and email', 'AI assistants for support and documents', 'Helping your team use AI safely'],
+    },
+  },
+  {
+    title: { pt: 'Ferramentas internas sob medida', en: 'Custom internal tools' },
+    pain: { pt: 'Controla tudo em planilha e já não está dando conta?', en: 'Running everything on spreadsheets and it no longer keeps up?' },
+    items: {
+      pt: ['Painéis e dashboards', 'Pequenos sistemas de gestão', 'Pensados a partir de quem usa no dia a dia'],
+      en: ['Dashboards and admin panels', 'Small management systems', 'Designed around the people who use them every day'],
+    },
+  },
+];
+
+const formats: { title: Record<Lang, string>; text: Record<Lang, string> }[] = [
+  {
+    title: { pt: 'Diagnóstico', en: 'Assessment' },
+    text: { pt: 'Escopo e prazo fechados, com relatório no final.', en: 'Fixed scope and deadline, with a report at the end.' },
+  },
+  {
+    title: { pt: 'Projeto fechado', en: 'Fixed-scope project' },
+    text: { pt: 'Entregas e prazo combinados antes de começar.', en: 'Deliverables and timeline agreed before we start.' },
+  },
+  {
+    title: { pt: 'Consultoria', en: 'Consulting' },
+    text: {
+      pt: 'Uma segunda opinião, ajuda para escolher tecnologias ou revisar a arquitetura.',
+      en: 'A second opinion, help choosing technologies or reviewing architecture.',
+    },
+  },
+];
+---
+
+<section class="section services" id="servicos">
+  <div class="container">
+    <p class="eyebrow" data-reveal>{t('services.label')}</p>
+    <h2 class="display" data-reveal set:html={emph(t('services.title'))} />
+    <p class="lead services__intro" data-reveal>{t('services.intro')}</p>
+
+    <div class="services__grid">
+      {
+        services.map((s, i) => (
+          <article class="service" data-reveal>
+            <span class="service__num" aria-hidden="true">
+              0{i + 1}
+            </span>
+            <h3>{s.title[lang]}</h3>
+            <p class="service__pain">{s.pain[lang]}</p>
+            <ul>
+              {s.items[lang].map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="formats" data-reveal>
+      <p class="formats__label">{t('services.formats')}</p>
+      <dl>
+        {
+          formats.map((f) => (
+            <div>
+              <dt>{f.title[lang]}</dt>
+              <dd>{f.text[lang]}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <a
+      class="pill pill--solid services__cta"
+      href="#contato"
+      data-contact-type="freelance"
+      data-magnetic
+      data-reveal
+      data-umami-event="services_cta">{t('services.cta')} →</a
+    >
+  </div>
+</section>
+
+<style>
+  .services {
+    border-top: 1px solid var(--border);
+  }
+  .services .display {
+    font-size: clamp(36px, 5.5vw, 76px);
+    max-width: 16ch;
+  }
+  .services__intro {
+    margin-top: 24px;
+  }
+  .services__grid {
+    margin-top: clamp(48px, 8vw, 96px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .service {
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-elev);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.4s;
+  }
+  .service:hover {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  }
+  .service__num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 0.8;
+    color: var(--accent-display);
+  }
+  .service h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .service__pain {
+    margin: 0;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+  .service ul {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 14px 0 0;
+    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 8px;
+    font-size: 14.5px;
+  }
+  .service li {
+    position: relative;
+    padding-left: 20px;
+  }
+  .service li::before {
+    content: '✦';
+    content: '✦' / '';
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    color: var(--accent);
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .formats {
+    margin-top: 56px;
+    display: grid;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .formats__label {
+    margin: 0;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .formats dl {
+    margin: 0;
+    display: grid;
+    gap: 16px;
+  }
+  .formats dt {
+    font-weight: 500;
+  }
+  .formats dd {
+    margin: 4px 0 0;
+    font-size: 14.5px;
+    color: var(--text-muted);
+  }
+  .services__cta {
+    margin-top: 40px;
+  }
+
+  @media (min-width: 701px) {
+    .services__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .formats dl {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+    }
+  }
+</style>
