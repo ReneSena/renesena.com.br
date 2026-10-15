@@ -5,6 +5,7 @@ export const ui = {
     'meta.title': 'Rene Sena — Senior Software Engineer · Front-end',
     'meta.description':
       'Rene Sena, Senior Software Engineer com foco em front-end. Construo sistemas internos para operações de grandes empresas, da interface à arquitetura.',
+    'nav.start': 'Início',
     'nav.about': 'Sobre',
     'nav.journey': 'Trajetória',
     'nav.blog': 'Blog',
@@ -16,7 +17,6 @@ export const ui = {
     'nav.main': 'Principal',
     'nav.tabbar': 'Navegação',
     'hero.role': 'Senior Software Engineer · Front-end',
-    'hero.location': 'Mogi das Cruzes · SP · Brasil',
     'hero.photoAlt': 'Foto de Rene Sena',
     'hero.greeting': 'Oi, eu sou o Rene',
     'hero.title': 'Transformo dores de negócio em [soluções] com tecnologia.',
@@ -113,6 +113,7 @@ export const ui = {
     'meta.title': 'Rene Sena — Senior Software Engineer · Front-end',
     'meta.description':
       'Rene Sena, Senior Software Engineer focused on front-end. I build internal systems for the operations of large companies, from interface to architecture.',
+    'nav.start': 'Home',
     'nav.about': 'About',
     'nav.journey': 'Journey',
     'nav.blog': 'Blog',
@@ -124,7 +125,6 @@ export const ui = {
     'nav.main': 'Main',
     'nav.tabbar': 'Navigation',
     'hero.role': 'Senior Software Engineer · Front-end',
-    'hero.location': 'Mogi das Cruzes · SP · Brazil',
     'hero.photoAlt': 'Photo of Rene Sena',
     'hero.greeting': "Hi, I'm Rene",
     'hero.title': 'I turn business pain points into [solutions] with technology.',

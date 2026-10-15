@@ -67,16 +67,18 @@ test.describe('home', () => {
     ]);
   });
 
-  test('no celular, o hero é centralizado: foto, localização e título no mesmo eixo', async ({ page, isMobile }) => {
+  test('no celular, a foto fica centralizada e o texto alinhado à esquerda, com as redes na base da foto', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'só no layout empilhado');
-    const centers = await page.evaluate(() =>
-      ['.hero__visual', '.hero__loc', '.hero__title', '.hero__social'].map((s) => {
-        const r = document.querySelector(s)!.getBoundingClientRect();
-        return r.left + r.width / 2;
-      }),
+    const box = (s: string) => page.locator(s).first().boundingBox();
+    const [visual, title, pitch, ctas, social] = await Promise.all(
+      ['.hero__visual', '.hero__title', '.hero__pitch', '.hero__ctas', '.hero__social'].map(box),
     );
     const axis = page.viewportSize()!.width / 2;
-    for (const c of centers) expect(Math.abs(c - axis)).toBeLessThan(2);
+    expect(Math.abs(visual!.x + visual!.width / 2 - axis)).toBeLessThan(2);
+    for (const b of [pitch, ctas]) expect(Math.abs(b!.x - title!.x)).toBeLessThan(2);
+    expect(Math.abs(social!.x + social!.width / 2 - (visual!.x + visual!.width / 2))).toBeLessThan(2);
+    expect(social!.y + social!.height).toBeGreaterThan(visual!.y + visual!.height);
+    await expect(page.locator('.hero__social a')).toHaveCount(2);
   });
 
   test('só o último artigo aparece, em destaque e com capa', async ({ page }) => {

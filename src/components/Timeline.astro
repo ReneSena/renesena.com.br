@@ -369,9 +369,9 @@ const lastIndex = phases.length - 1;
     z-index: 4;
     list-style: none;
     margin: 0;
-    padding: 45svh 40px 75svh var(--gutter);
+    padding: 30svh 40px 50svh var(--gutter);
     display: grid;
-    gap: 40svh;
+    gap: 26svh;
   }
   .phase__card {
     position: relative;
@@ -669,6 +669,7 @@ const lastIndex = phases.length - 1;
     let current = -1;
     let landed = false;
     let sway: ReturnType<typeof gsap.to> | undefined;
+    let float: ReturnType<typeof gsap.to> | undefined;
 
     const setActive = (i: number) => {
       if (i === current) return;
@@ -716,8 +717,10 @@ const lastIndex = phases.length - 1;
       const groundTop = scene.clientHeight - ground.offsetHeight;
       gsap.to(jumper, { top: groundTop - jumper.offsetHeight + 6, duration: 1.1, ease: 'power2.inOut' });
       gsap.to(para, { rotate: 0, duration: 0.6 });
+      // pousado: para o balanço e a flutuação, senão ele segue "voando" no chão
       sway?.pause();
-      gsap.to(svg, { x: 0, rotate: 0, duration: 0.6 });
+      float?.pause();
+      gsap.to(svg, { x: 0, y: 0, rotate: 0, duration: 0.6 });
       gsap.to(canopy, { scaleY: 0.18, scaleX: 0.7, rotate: -70, x: -70, y: 120, opacity: 0.75, duration: 0.8, delay: 0.9, ease: 'power2.in' });
       gsap.to(legs, { scaleY: 1.08, duration: 0.3, delay: 1 });
       speed.style.setProperty('--speed', '0');
@@ -731,6 +734,7 @@ const lastIndex = phases.length - 1;
       gsap.to(canopy, { scaleY: 1, scaleX: 1, rotate: 0, x: 0, y: 0, opacity: 1, duration: 0.5 });
       gsap.to(legs, { scaleY: 1, duration: 0.3 });
       sway?.resume();
+      float?.resume();
     };
 
     phaseEls.forEach((el, i) => {
@@ -774,17 +778,20 @@ const lastIndex = phases.length - 1;
           ease: 'sine.inOut',
           yoyo: true,
           repeat: -1,
-          scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', toggleActions: 'play pause resume pause' },
+          paused: true,
         },
       );
       // flutuação ociosa
-      gsap.to(svg, {
-        y: 8,
-        duration: 2.2,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-        scrollTrigger: { trigger: root, start: 'top bottom', end: 'bottom top', toggleActions: 'play pause resume pause' },
+      float = gsap.to(svg, { y: 8, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, paused: true });
+      // só anima com a cena na tela, e nunca depois de pousar
+      ScrollTrigger.create({
+        trigger: root,
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: (self) => {
+          const on = self.isActive && !landed;
+          [sway, float].forEach((tw) => (on ? tw?.resume() : tw?.pause()));
+        },
       });
     }
 

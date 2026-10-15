@@ -20,6 +20,7 @@ const anchor = (id: string) => (isHome ? `#${id}` : `${home}#${id}`);
 
 // Ícones de traço fino (24x24) no estilo do paraquedista
 const icons = {
+  start: '<path d="M4 11 12 4.5 20 11"/><path d="M6.5 9.5V20h11V9.5"/><path d="M10 20v-5h4v5"/>',
   about: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/>',
   journey: '<path d="M4 11a8 8 0 0 1 16 0q-2-1.6-4 0-2-1.6-4 0-2-1.6-4 0-2-1.6-4 0Z"/><path d="m5 11 6.2 7M19 11l-6.2 7"/><circle cx="12" cy="19.5" r="1.5"/>',
   blog: '<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4M8.5 12h7M8.5 15.5h7"/>',
@@ -27,6 +28,7 @@ const icons = {
 };
 
 const links = [
+  { id: 'top', href: isHome ? '#top' : home, label: t('nav.start'), icon: icons.start },
   { id: 'sobre', href: anchor('sobre'), label: t('nav.about'), icon: icons.about },
   { id: 'trajetoria', href: isJourney ? '#trajetoria' : journey, label: t('nav.journey'), icon: icons.journey },
   { id: 'blog', href: '/blog/', label: t('nav.blog'), icon: icons.blog },
@@ -173,7 +175,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
     bottom: calc(10px + env(safe-area-inset-bottom));
     z-index: 100;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     padding: 6px;
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -191,7 +193,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
     top: 6px;
     bottom: 6px;
     left: 6px;
-    width: calc((100% - 12px) / 4);
+    width: calc((100% - 12px) / 5);
     border-radius: 16px;
     background: var(--accent-soft);
     transform: translateX(calc(var(--tab, 0) * 100%));
@@ -295,7 +297,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
   const contact = document.getElementById('contato');
   const onScroll = () => {
     const y = window.scrollY;
-    nav.classList.toggle('is-scrolled', y > window.innerHeight * 0.55);
+    nav.classList.toggle('is-scrolled', y > 8);
     const delta = y - lastY;
     const inForm = contact && contact.getBoundingClientRect().top < window.innerHeight * 0.6;
     if (delta > 12 && y > 200 && !inForm) tabbar.classList.add('is-hidden');
@@ -318,7 +320,7 @@ const langHref = altPath ?? localePath(otherLang, '/');
 
   if (location.pathname.startsWith('/blog')) setActive('blog');
   else {
-    const ids = ['sobre', 'trajetoria-resumo', 'destaques', 'trajetoria', 'stack', 'blog', 'contato'];
+    const ids = ['top', 'sobre', 'trajetoria-resumo', 'destaques', 'trajetoria', 'stack', 'blog', 'contato'];
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     if (sections.length) {
       const visible = new Map<string, number>();

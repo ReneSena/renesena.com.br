@@ -35,6 +35,18 @@ if (!reduced) {
     onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, ease: 'power3.out', overwrite: true }),
   });
 
+  // clique em âncora (#contato, #sobre…): a seção de destino já chega revelada, sem esperar o fade
+  document.addEventListener(
+    'click',
+    (e) => {
+      const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#"]');
+      if (!link || link.pathname !== location.pathname) return;
+      const target = link.hash && document.getElementById(decodeURIComponent(link.hash.slice(1)));
+      if (target) gsap.to(target.querySelectorAll('[data-reveal]'), { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out', overwrite: true });
+    },
+    { capture: true },
+  );
+
 }
 
 if (finePointer && !reduced) {

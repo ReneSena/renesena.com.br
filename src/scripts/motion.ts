@@ -12,7 +12,11 @@ let lenis: Lenis | null = null;
 export function getLenis() {
   if (reduced) return null;
   if (!lenis) {
-    lenis = new Lenis({ lerp: 0.1, anchors: { offset: -70 } });
+    // âncoras com duração fixa: o lerp puro demora demais em saltos longos (ex.: Contato a partir do topo)
+    lenis = new Lenis({
+      lerp: 0.1,
+      anchors: { offset: -70, duration: 0.9, easing: (t) => 1 - Math.pow(2, -10 * t) },
+    });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis!.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
