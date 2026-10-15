@@ -67,9 +67,16 @@ test.describe('home', () => {
     ]);
   });
 
-  test('no celular, a foto do hero segue o eixo do texto', async ({ page, isMobile }) => {
+  test('no celular, o hero é centralizado: foto, localização e título no mesmo eixo', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'só no layout empilhado');
-    await expectOnRail(page, ['.hero__visual', '.hero__loc']);
+    const centers = await page.evaluate(() =>
+      ['.hero__visual', '.hero__loc', '.hero__title', '.hero__social'].map((s) => {
+        const r = document.querySelector(s)!.getBoundingClientRect();
+        return r.left + r.width / 2;
+      }),
+    );
+    const axis = page.viewportSize()!.width / 2;
+    for (const c of centers) expect(Math.abs(c - axis)).toBeLessThan(2);
   });
 
   test('só o último artigo aparece, em destaque e com capa', async ({ page }) => {
