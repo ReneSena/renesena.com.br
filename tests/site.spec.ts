@@ -246,6 +246,30 @@ test('descrição dos cards respeita o corte de 3 linhas', async ({ page }) => {
   expect(overflowing).toBe(0);
 });
 
+test.describe('segurança', () => {
+  for (const path of [...pages, '/nao-existe/', '/obrigado/']) {
+    test(`${path}: CSP não bloqueia nada da própria página`, async ({ page }) => {
+      await page.addInitScript(() => {
+        (window as any).__csp = [];
+        document.addEventListener('securitypolicyviolation', (e) =>
+          (window as any).__csp.push(`${e.effectiveDirective} ${e.blockedURI} ${e.sourceFile}:${e.lineNumber}`),
+        );
+      });
+      await page.goto(path);
+      await expect(page.locator('meta[http-equiv="content-security-policy"]')).toHaveCount(1);
+      await page.mouse.wheel(0, 4000);
+      await page.waitForTimeout(300);
+      expect(await page.evaluate(() => (window as any).__csp)).toEqual([]);
+    });
+  }
+
+  test('animações rodam com o CSP ativo', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveClass(/motion-ready/);
+  });
+});
+
 test.describe('acessibilidade', () => {
   for (const path of pages) {
     test(`${path}: títulos não pulam nível`, async ({ page }) => {

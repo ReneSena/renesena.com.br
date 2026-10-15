@@ -224,9 +224,10 @@ export function useT(lang: Lang) {
   return (key: UIKey) => ui[lang][key] ?? ui.pt[key];
 }
 
-/** Converte "texto [destaque]" em HTML com <em> */
+/** Converte "texto [destaque]" em HTML com <em>; escapa o resto, já que o resultado vai para set:html */
 export function emph(text: string) {
-  return text.replace(/\[([^\]]+)\]/g, '<em class="accent-em">$1</em>');
+  const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return escaped.replace(/\[([^\]]+)\]/g, '<em class="accent-em">$1</em>');
 }
 
 export function localePath(lang: Lang, path = '/') {
