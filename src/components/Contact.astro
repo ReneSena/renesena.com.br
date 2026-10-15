@@ -383,6 +383,12 @@ const types = [
         });
         if (!res.ok) throw new Error(String(res.status));
         track('lead_submit', { tipo: String(data.get('tipo') ?? 'nao_informado') });
+        // limpa os campos: sem isso o navegador restaura o que foi digitado no reload ou no voltar
+        form.reset();
+        inputs.forEach((el) => {
+          el.closest('.field')?.classList.remove('is-invalid');
+          el.removeAttribute('aria-invalid');
+        });
         form.hidden = true;
         success.hidden = false;
         success.focus();

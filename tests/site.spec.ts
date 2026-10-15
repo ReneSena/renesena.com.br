@@ -79,6 +79,7 @@ test.describe('home', () => {
     expect(Math.abs(social!.x + social!.width / 2 - (visual!.x + visual!.width / 2))).toBeLessThan(2);
     expect(social!.y + social!.height).toBeGreaterThan(visual!.y + visual!.height);
     await expect(page.locator('.hero__social a')).toHaveCount(2);
+    await expect(page.locator('.hero__eyebrow')).toHaveCSS('text-align', 'center');
   });
 
   test('só o último artigo aparece, em destaque e com capa', async ({ page }) => {
@@ -100,6 +101,27 @@ test.describe('home', () => {
   test('link com ?tipo=freelance já marca o tipo no formulário', async ({ page }) => {
     await page.goto('/?tipo=freelance#contato');
     await expect(page.locator('input[name="tipo"][value="freelance"]')).toBeChecked();
+  });
+
+  // simula a resposta do Netlify Forms, que só existe em produção
+  const fillContact = async (page: Page, status: number) => {
+    await page.route('/', (r) => (r.request().method() === 'POST' ? r.fulfill({ status, body: '' }) : r.continue()));
+    await page.locator('#f-name').fill('Teste');
+    await page.locator('#f-email').fill('teste@exemplo.com');
+    await page.locator('#f-msg').fill('Olá!');
+    await page.locator('.form__submit').click();
+  };
+
+  test('depois do envio o formulário fica limpo', async ({ page }) => {
+    await fillContact(page, 200);
+    await expect(page.locator('[data-form-success]')).toBeVisible();
+    for (const id of ['#f-name', '#f-email', '#f-msg']) await expect(page.locator(id)).toHaveValue('');
+  });
+
+  test('se o envio falha, a mensagem continua no formulário', async ({ page }) => {
+    await fillContact(page, 500);
+    await expect(page.locator('[data-form-error]')).toBeVisible();
+    await expect(page.locator('#f-msg')).toHaveValue('Olá!');
   });
 
   test('faixa "Por onde passei" lista as empresas', async ({ page }) => {
