@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # ID público do Umami Cloud (aparece no HTML de qualquer jeito, não é segredo)
+  PUBLIC_UMAMI_WEBSITE_ID = "929626a3-d7b4-44b5-8388-df0680961086"
 
 [[headers]]
   for = "/*"
