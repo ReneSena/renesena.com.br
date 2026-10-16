@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.renesena.com.br',
   // páginas de "obrigado" do formulário não entram no sitemap (também são noindex)
-  integrations: [sitemap({ filter: (page) => !page.includes('/obrigado/') })],
+  integrations: [sitemap({ filter: (page) => !page.includes('/obrigado/') && !page.includes('/assistente/') })],
   // CSS inline no HTML: elimina requests bloqueantes no primeiro paint
   build: { inlineStylesheets: 'always' },
   // CSP via <meta> com hash de cada script/estilo inline, gerado no build.
