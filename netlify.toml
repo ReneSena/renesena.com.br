@@ -17,6 +17,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
 
+# base de conhecimento do assistente (lida pela função /api/chat): pública, mas fora dos buscadores
+[[headers]]
+  for = "/assistente/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 [[headers]]
   for = "/_astro/*"
   [headers.values]
